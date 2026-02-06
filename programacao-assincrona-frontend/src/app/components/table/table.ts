@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -7,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrl: './table.css',
 })
 export class Table {
+  @Input() data: any[] = [];
+  @Input() type: string = '';
+
+  @Input() columnsStudentsForTeacher = ["nome", "cpf", "matricula", "Detalhes"];
+  @Input() columnsStudentsForAdmin = ["nome", "cpf", "matricula", "Ações"];
+
+  @Input() columnsSubjectsForAdmin = ["nome",  "reprovados", "média"];
+  @Input() columnsSubjectsForTeacher = ["nome",  "reprovados", "média"];
+
 
 }

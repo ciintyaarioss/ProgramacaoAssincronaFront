@@ -1,1 +1,37 @@
 <h1>Lista de Alunos</h1>
+
+<div class="filters-containers">
+  <p 
+    class="filters-text"
+    [class.active]="selectedFilter === 'matriculados'"
+    (click)="selectFilter('matriculados')"
+  >
+    Alunos Matriculados
+  </p>
+
+  <p 
+    class="filters-text"
+    [class.active]="selectedFilter === 'pendentes'"
+    (click)="selectFilter('pendentes')"
+  >
+    Alunos sem Aceitação
+  </p>
+</div>
+
+<div class="table-container">
+    <div class="search-container">
+        <div class="input-wrapper">
+          <img 
+            src="/search.svg" 
+            class="input-icon"
+          >
+          <input placeholder="Buscar usuário">
+        </div>
+    </div>
+
+        <app-table
+          [data]="studentsData"
+          [type]="'students-for-admin'"
+        ></app-table>
+
+</div>

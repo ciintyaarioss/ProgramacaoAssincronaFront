@@ -8,6 +8,8 @@ import { Matricula } from './pages/matricula/matricula';
 import { MyProfile } from './pages/my-profile/my-profile';
 import { Table } from './components/table/table';
 import { Students } from './pages/students/students';
+import { Subjects } from './pages/subjects/subjects';
+import { Teachers } from './pages/teachers/teachers';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { Students } from './pages/students/students';
     Matricula,
     MyProfile,
     Table,
-    Students
+    Students,
+    Subjects,
+    Teachers
   ],
   imports: [
     BrowserModule,
