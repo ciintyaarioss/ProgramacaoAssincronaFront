@@ -2,6 +2,7 @@
 
     border-radius: 20px;
     align-items: center;
+    margin-top: 10px;
     width: 90%;
     background-color: #FAFAFA;
     margin: 5%;
@@ -28,25 +29,8 @@ h1{
   padding-left: 40px;
   border-radius: 8px;
   border: none;
-}
-.filters-containers {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 7%;
-    width: 20%;
-    padding-right: 50px;
-}
-.filters-text {
-  cursor: pointer;
-  color: #666;
-}
 
-.filters-text.active {
-  color: #E2857E;
-  text-decoration: underline;
-  font-weight: 600;
 }
-
 
 .input-icon {
   position: absolute;

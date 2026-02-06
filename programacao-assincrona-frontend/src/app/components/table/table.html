@@ -1,1 +1,75 @@
-<p>table works!</p>
+<table class="custom-table" *ngIf="type =='students-for-teacher'">
+    <thead>
+            <th *ngFor="let col of columnsStudentsForTeacher">{{ col }}            
+            </th>
+    </thead>
+    <tbody>        
+    <tr *ngFor="let row of data">
+        <td *ngFor="let col of columnsStudentsForTeacher">
+            <span>{{ row[col] }}</span>
+            <span *ngIf="col=='Detalhes'">
+                Ver Mais    
+            <img src="open-new-window.svg" alt="">
+            </span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<table class="custom-table" *ngIf="type =='students-for-admin'">
+    <thead>
+        <th *ngFor="let col of columnsStudentsForAdmin">{{ col }}            
+        </th>
+    </thead>
+    <tbody>        
+    <tr *ngFor="let row of data">
+        <td *ngFor="let col of columnsStudentsForAdmin">
+            <span>{{ row[col] }}</span>
+            <span *ngIf="col=='Ações'">
+                    <img src="remove-user.svg" style="margin-right: 30px;" alt="">
+                    <img src="verified-user.svg" alt="">
+
+            </span>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<table class="custom-table" *ngIf="type =='subjects-for-admin'">
+    <thead>
+        <th *ngFor="let col of columnsSubjectsForAdmin">{{ col }}            
+        </th>
+    </thead>
+    <tbody>        
+    <tr *ngFor="let row of data">
+        <td *ngFor="let col of columnsSubjectsForAdmin">
+            <span>{{ row[col] }}</span>
+            <span *ngIf="col=='média'">
+                    
+            <span>{{ row.media }}</span>
+
+            </span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<table class="custom-table" *ngIf="type =='subjects-for-teacher'">
+    <thead>
+        <th *ngFor="let col of columnsSubjectsForTeacher">{{ col }}            
+        </th>
+    </thead>
+    <tbody>        
+    <tr *ngFor="let row of data">
+        <td *ngFor="let col of columnsSubjectsForTeacher">
+            <span>{{ row[col] }}</span>
+            <span *ngIf="col=='média'">
+                    
+            <span>{{ row.media }}</span>
+
+            </span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
