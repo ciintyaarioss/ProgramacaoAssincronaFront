@@ -1,1 +1,51 @@
 <h1>Meu Perfil</h1>
+
+<p *ngFor="let info of infos">{{ info }}</p>
+
+<h1>
+    Notas
+</h1>
+<div class="filters-button-container">
+    
+    <div class="filters-containers">
+      <span *ngFor="let sub of subjects "
+          class="filters-text"
+        [class.active]="sub.nome === selectedFilter"
+        (click)="selectFilter(sub.nome)"
+    
+      >{{ sub.nome }}
+      </span>
+    </div>
+
+    <button class="button-boletim">Imprimir Boletim</button>
+</div>
+
+
+
+
+<div class ="table-cards-container">
+    
+    
+        <div class="grades-container">
+            <app-card
+                title="Média Atual"
+                value="8.5"
+            ></app-card>
+            <app-card
+                title="Aprovado?"
+                value="7.2"
+            ></app-card>
+        </div>
+
+    
+        <app-small-table
+        style="width: 60%;"
+            [data]="scoresData"
+            [type]="'scores-for-students'">
+    
+        </app-small-table>
+    
+
+</div>
+
+

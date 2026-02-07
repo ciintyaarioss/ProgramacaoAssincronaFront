@@ -16,5 +16,10 @@ export class Table {
   @Input() columnsSubjectsForAdmin = ["nome",  "reprovados", "média"];
   @Input() columnsSubjectsForTeacher = ["nome",  "reprovados", "média"];
 
+  @Input() columnsTeacherForStudents = ["nome",  "disciplina", "matricula"];
+  @Input() columnsTeacherForAdmin = ["nome",  "disciplina", "matricula"];
+  
+
+
 
 }

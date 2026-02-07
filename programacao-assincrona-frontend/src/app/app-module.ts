@@ -10,6 +10,8 @@ import { Table } from './components/table/table';
 import { Students } from './pages/students/students';
 import { Subjects } from './pages/subjects/subjects';
 import { Teachers } from './pages/teachers/teachers';
+import { Card } from './components/card/card';
+import { SmallTable } from './components/small-table/small-table';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { Teachers } from './pages/teachers/teachers';
     Table,
     Students,
     Subjects,
-    Teachers
+    Teachers,
+    Card,
+    SmallTable
   ],
   imports: [
     BrowserModule,
