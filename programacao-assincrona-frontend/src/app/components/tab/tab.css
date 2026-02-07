@@ -1,0 +1,36 @@
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 15px;
+    margin-bottom: 8px;
+}
+
+.menu-item img {
+    width: 24px;
+    height: 24px;
+    transition: filter 0.3s ease;
+}
+
+.menu-item span {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.active-class {
+    background-color: #454a6acb;
+}
+
+.active-class span{
+    color: white;
+}
+
+.active-class img {
+    filter: brightness(0) invert(1);
+}

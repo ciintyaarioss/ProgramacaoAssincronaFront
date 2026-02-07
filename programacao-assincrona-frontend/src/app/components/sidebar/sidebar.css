@@ -1,0 +1,47 @@
+.sidebar{
+  width: var(--sidebar-width);
+  height: 100vh;
+  background-color: #FAFAFA;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  border-right: 1px solid #e0e0e0;
+  padding: 20px;
+  z-index: 1001;
+  box-sizing: border-box;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+.sidebar.closed {
+  padding: 20px 15px;
+}
+
+.branding {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    white-space: nowrap;
+}
+
+#school-icon {
+    width: 50px;
+    height: 50px;
+}
+
+#school-name {
+    height: 20px;
+}
+
+#button-action {
+    cursor: pointer;
+    width: 20px;
+    transition: transform 0.3s;
+}
+
+.itens-tab {
+    margin-top: 50%;
+}
