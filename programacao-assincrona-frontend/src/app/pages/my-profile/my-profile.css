@@ -10,19 +10,27 @@ p{
 .grades-container{
     display: flex;
     justify-content: space-between;
-    width: 30%;
+    width: 35%;
     margin-top: 20px;
 }
 
 .filters-button-container{
     display: flex;
-    width: 80%;
+    width: 60%;
     margin-left: 7%;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .button-boletim{
     padding: 15px;
-    border: #7C89AB 2px solid;
+    border: #7C89AB 3px solid;
+    background-color: transparent;
+    border-radius: 15px;
+    width: 200px;
+    font-size: 16px;
+    color: #7C89AB;
+    font-weight: bold;
 
 }
 
@@ -37,7 +45,7 @@ p{
 .filters-containers {
     display: flex;
     justify-content: space-between;
-    width: 20%;
+    width: 50%;
 }
 .filters-text {
   cursor: pointer;
@@ -48,4 +56,60 @@ p{
   color: #E2857E;
   text-decoration: underline;
   font-weight: 600;
+}
+    .table{
+        width: 60%;
+    }
+
+@media (max-width: 1200px) {
+    .table-cards-container{
+        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 20px;
+        padding: 0px;
+        margin-left: 0px;
+    }
+    .table{
+        width: 80%;
+        margin-top: 40px;
+        margin-left: 10%;
+    }
+    .grades-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 20px;
+    } 
+    .filters-button-container{
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        
+    }  
+
+    .filters-containers {
+        display: flex;
+        justify-content: space-between;
+        width: 70%;
+        flex-wrap: wrap;
+    }
+
+    .button-boletim{
+        padding: 15px;
+        border: #7C89AB 3px solid;
+        background-color: transparent;
+        border-radius: 15px;
+        width: 200px;
+        font-size: 16px;
+        color: #7C89AB;
+        font-weight: bold;
+        margin-top: 20px;
+
+    }
 }
