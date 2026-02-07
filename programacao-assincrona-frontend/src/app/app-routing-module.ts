@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Login } from './pages/login/login';
 import { Matricula } from './pages/matricula/matricula';
-import {MyProfile} from "./pages/my-profile/my-profile";
+import { MyProfile } from "./pages/my-profile/my-profile";
 import { Students } from './pages/students/students';
 import { Subjects } from './pages/subjects/subjects';
 import { Teachers } from './pages/teachers/teachers';
@@ -14,7 +14,6 @@ const routes: Routes = [
   { path: 'students', component: Students},
   { path: 'subjects', component: Subjects},
   { path: 'teachers', component: Teachers}
-
 ];
 
 @NgModule({
