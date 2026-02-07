@@ -73,3 +73,35 @@
 </table>
 
 
+<table class="custom-table" *ngIf="type =='teacher-for-students'">
+    <thead>
+        <th *ngFor="let col of columnsTeacherForStudents">{{ col }}            
+        </th>
+    </thead>
+    <tbody>        
+    <tr *ngFor="let row of data">
+        <td *ngFor="let col of columnsTeacherForStudents">
+            <span>{{ row[col] }}</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+<table class="custom-table" *ngIf="type =='teacher-for-admin'">
+    <thead>
+        <th *ngFor="let col of columnsTeacherForAdmin">{{ col }}            
+        </th>
+        </thead>
+        <tbody>        
+        <tr *ngFor="let row of data">
+            <td *ngFor="let col of columnsTeacherForAdmin">
+            <span>{{ row[col] }}</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+

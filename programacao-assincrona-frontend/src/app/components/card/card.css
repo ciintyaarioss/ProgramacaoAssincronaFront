@@ -1,0 +1,17 @@
+div{
+    margin-top: 50px;
+    margin-left: 7%;
+    background-color: #FAFAFA;
+    border-radius: 8px;
+    padding: 20px;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+}
+p{
+    color: #E2857E;
+    font-size: 20px;
+    margin: 0;
+}

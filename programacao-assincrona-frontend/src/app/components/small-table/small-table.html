@@ -1,0 +1,15 @@
+<div class="table-container">
+    <table class="custom-table" *ngIf="type =='scores-for-students'">
+        <thead>
+                <th *ngFor="let col of columnsScoresForStudents">{{ col }}
+                </th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let row of data">
+            <td *ngFor="let col of columnsScoresForStudents">
+                <span>{{ row[col] }}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

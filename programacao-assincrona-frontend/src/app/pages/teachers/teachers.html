@@ -1,1 +1,17 @@
-<p>teachers works!</p>
+<h1>Lista de Professores</h1>
+<div class="table-container">
+    <div class="search-container">
+<div class="input-wrapper">
+  <img 
+    src="/search.svg" 
+    class="input-icon"
+  >
+  <input placeholder="Buscar disciplina">
+</div>
+    </div>
+    <app-table
+      [data]="teachersData"
+      [type]="'teacher-for-students'"
+    ></app-table>
+
+</div>
