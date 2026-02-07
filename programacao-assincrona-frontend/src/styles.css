@@ -1,4 +1,11 @@
 *{
   font-family: 'RF Dewi', sans-serif;
   font-weight: 00;
+  margin: 0;
+  padding: 0;
+  color: #2C2C2C;
+}
+
+:root {
+  --sidebar-width: 260px;
 }

@@ -12,6 +12,9 @@ import { Subjects } from './pages/subjects/subjects';
 import { Teachers } from './pages/teachers/teachers';
 import { Card } from './components/card/card';
 import { SmallTable } from './components/small-table/small-table';
+import { Header } from './components/header/header';
+import { Sidebar } from './components/sidebar/sidebar';
+import { Tab } from './components/tab/tab';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { SmallTable } from './components/small-table/small-table';
     Subjects,
     Teachers,
     Card,
-    SmallTable
+    SmallTable,
+    Header,
+    Sidebar,
+    Tab
   ],
   imports: [
     BrowserModule,
