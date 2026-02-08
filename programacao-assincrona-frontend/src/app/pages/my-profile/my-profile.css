@@ -1,12 +1,17 @@
 h1{
     margin-top: 50px;
     margin-left: 7%;
-    margin-bottom: 25px;
-
+    margin-bottom: 30px;
+}
+h2{
+    margin-top: 70px;
+    margin-left: 7%;
+    margin-bottom: 15px;
+    font-size: 28px;
 }
 
 p{
-    font-size: 20px;
+    font-size: 18px;
     margin-left: 7%;
     margin-bottom: 25px;
 }
@@ -19,17 +24,17 @@ p{
 
 .filters-button-container{
     display: flex;
-    width: 60%;
+    width: 75%;
     margin-left: 7%;
     align-items: center;
     justify-content: space-between;
 }
 
+
 .pdf-wrapper {
   position: absolute;
   top: -9999px;
   left: -9999px;
-
   width: 210mm;
   background: white;
 }
@@ -49,25 +54,28 @@ p{
 .table-cards-container{
     justify-content: space-between;
     display: flex;
-    width: 60%;
+    width: 75%;
     margin-left: 7%;
     margin-top: 20px;
 }
 
 .filters-containers {
     display: flex;
-    justify-content: space-between;
-    width: 50%;
+    width: 45%;
 }
 .filters-text {
   cursor: pointer;
   color: #666;
+  margin-right: 50px;
+  font-weight: bold;
 }
 
 .filters-text.active {
   color: #E2857E;
   text-decoration: underline;
   font-weight: 600;
+  text-decoration-thickness: 2px;   /* espessura */
+  text-underline-offset: 6px; 
 }
     .table{
         width: 60%;
@@ -83,6 +91,13 @@ p{
         padding: 0px;
         margin-left: 0px;
     }
+    .filters-text {
+      cursor: pointer;
+      margin-bottom: 25px;
+      color: #666;
+      font-weight: bold;
+    }
+
     .table{
         width: 80%;
         margin-top: 40px;

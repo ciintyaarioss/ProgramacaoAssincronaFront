@@ -5,7 +5,7 @@
     width: 90%;
     background-color: #FAFAFA;
     margin: 5%;
-    padding: 40px 25px 25px 25px;
+    padding: 25px 25px 25px 25px;
 }
 h1{
     margin-top: 50px;
@@ -34,20 +34,23 @@ h1{
     justify-content: space-between;
     align-items: center ;
     margin-left: 7%;
-    width: 20%;
+    margin-top: 25px;
+    width: 25%;
     padding-right: 50px;
 }
 .filters-text {
   cursor: pointer;
   color: #666;
+  font-weight: bold;
 }
 
 .filters-text.active {
   color: #E2857E;
   text-decoration: underline;
   font-weight: 600;
+  text-decoration-thickness: 2px;   /* espessura */
+  text-underline-offset: 6px; 
 }
-
 
 .input-icon {
   position: absolute;
