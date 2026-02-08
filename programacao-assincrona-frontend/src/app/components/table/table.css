@@ -1,5 +1,6 @@
 .custom-table {
   width: 98%;
+  margin-top: 25px;
   min-width: 98%;
   border-collapse: separate;
   border-spacing: 0;
@@ -21,6 +22,8 @@
 
 }
 .custom-table thead th{
+  text-transform: capitalize;
+
     color: #E2857E;
 }
 th, td {
@@ -36,7 +39,7 @@ th, td {
 
 .custom-table tbody tr::after {
   content: "";
-    align-items: center;
+  align-items: center;
   position: absolute;
   bottom: 0;
   left: 2.5%;

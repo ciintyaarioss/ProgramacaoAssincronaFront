@@ -5,8 +5,8 @@ div{
     border-radius: 8px;
     padding: 20px;
     align-items: center;
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     display: flex;
     flex-direction: column;
 }
@@ -14,4 +14,10 @@ p{
     color: #E2857E;
     font-size: 20px;
     margin: 0;
+    font-weight: bold;
+}
+h1{
+    margin-top: 35px;
+    color: #616161;
+    font-size: 40px;
 }
