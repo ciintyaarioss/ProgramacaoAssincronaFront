@@ -17,7 +17,7 @@ export class Sidebar {
     { icon: 'students.svg', name: 'Estudantes', link: 'students', roles: ['admin', 'teacher'] },
     { icon: 'obs.svg', name: 'Observações', link: '/observacoes', roles: ['admin', 'student'] },
     { icon: 'disciplinas.svg', name: 'Disciplinas', link: 'subjects', roles: ['admin', 'teacher','student'] },    
-    { icon: 'dashboards.svg', name: 'Dashboards', link: '/dashboards', roles: ['admin', 'teacher'] },
+    { icon: 'dashboards.svg', name: 'Dashboards', link: '/home', roles: ['admin', 'teacher'] },
     { icon: 'teachers.svg', name: 'Professores', link: 'teachers', roles: ['admin', 'teacher','student'] },    
     { icon: 'profile.svg', name: 'Perfil', link: '/perfil', roles: ['teacher', 'student'] }
   ];

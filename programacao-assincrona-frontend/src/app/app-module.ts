@@ -15,6 +15,7 @@ import { SmallTable } from './components/small-table/small-table';
 import { Header } from './components/header/header';
 import { Sidebar } from './components/sidebar/sidebar';
 import { Tab } from './components/tab/tab';
+import { Home } from './pages/home/home';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { Tab } from './components/tab/tab';
     SmallTable,
     Header,
     Sidebar,
-    Tab
+    Tab,
+    Home
   ],
   imports: [
     BrowserModule,
