@@ -9,6 +9,8 @@ import { Component, Input } from '@angular/core';
 export class Table {
   @Input() data: any[] = [];
   @Input() type: string = '';
+  @Input() pdfMode = false;
+
 
   @Input() columnsStudentsForTeacher = ["nome", "cpf", "matricula", "Detalhes"];
   @Input() columnsStudentsForAdmin = ["nome", "cpf", "matricula", "Ações"];
@@ -18,6 +20,9 @@ export class Table {
 
   @Input() columnsTeacherForStudents = ["nome",  "disciplina", "matricula"];
   @Input() columnsTeacherForAdmin = ["nome",  "disciplina", "matricula"];
+
+  @Input() columnsScoresForPdf = [  "disciplina", "média final", "status"];
+
   
 
 

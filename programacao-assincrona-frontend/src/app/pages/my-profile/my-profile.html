@@ -1,3 +1,5 @@
+
+<app-header></app-header>
 <h1>Meu Perfil</h1>
 
 <p *ngFor="let info of infos">{{ info }}</p>
@@ -17,7 +19,7 @@
       </span>
     </div>
 
-    <button class="button-boletim">Imprimir Boletim</button>
+    <button class="button-boletim" (click)="gerarPdf()">Imprimir Boletim</button>
 </div>
 
 
@@ -48,3 +50,17 @@
 </div>
 
 
+<div
+class="pdf-wrapper"
+#pdfContent>
+<h1>
+    Boletim Escolar
+</h1>
+<p *ngFor="let info of infos">{{ info }}</p>
+
+    <app-table 
+       [pdfMode]="true"
+        [data]="scoresDataForPdf"
+         [type]="'scores-for-pdf'">
+    </app-table>
+</div>

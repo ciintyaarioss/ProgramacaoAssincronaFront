@@ -1,4 +1,4 @@
-<table class="custom-table" *ngIf="type =='students-for-teacher'">
+<table [class.pdf]="pdfMode" class="custom-table" *ngIf="type =='students-for-teacher'">
     <thead>
             <th *ngFor="let col of columnsStudentsForTeacher">{{ col }}            
             </th>
@@ -15,7 +15,7 @@
     </tr>
     </tbody>
 </table>
-<table class="custom-table" *ngIf="type =='students-for-admin'">
+<table [class.pdf]="pdfMode" class="custom-table" *ngIf="type =='students-for-admin'">
     <thead>
         <th *ngFor="let col of columnsStudentsForAdmin">{{ col }}            
         </th>
@@ -35,7 +35,7 @@
     </tbody>
 </table>
 
-<table class="custom-table" *ngIf="type =='subjects-for-admin'">
+<table [class.pdf]="pdfMode" class="custom-table" *ngIf="type =='subjects-for-admin'">
     <thead>
         <th *ngFor="let col of columnsSubjectsForAdmin">{{ col }}            
         </th>
@@ -53,7 +53,7 @@
     </tr>
     </tbody>
 </table>
-<table class="custom-table" *ngIf="type =='subjects-for-teacher'">
+<table [class.pdf]="pdfMode" class="custom-table" *ngIf="type =='subjects-for-teacher'">
     <thead>
         <th *ngFor="let col of columnsSubjectsForTeacher">{{ col }}            
         </th>
@@ -73,7 +73,7 @@
 </table>
 
 
-<table class="custom-table" *ngIf="type =='teacher-for-students'">
+<table [class.pdf]="pdfMode"  class="custom-table" *ngIf="type =='teacher-for-students'">
     <thead>
         <th *ngFor="let col of columnsTeacherForStudents">{{ col }}            
         </th>
@@ -90,7 +90,7 @@
 
 
 
-<table class="custom-table" *ngIf="type =='teacher-for-admin'">
+<table [class.pdf]="pdfMode" class="custom-table" *ngIf="type =='teacher-for-admin'">
     <thead>
         <th *ngFor="let col of columnsTeacherForAdmin">{{ col }}            
         </th>
@@ -105,3 +105,26 @@
 </table>
 
 
+
+<div [class.pdf]="pdfMode" *ngIf="type =='scores-for-pdf'">
+    <table class="custom-table" >
+        <thead>
+            <th *ngFor="let col of columnsScoresForPdf">{{ col }}
+            </th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let row of data">
+                <td *ngFor="let col of columnsScoresForPdf">
+                <span>{{ row[col] }}</span>
+    
+                <span *ngIf="col=='média final'">
+    
+                <span>{{ row.mediaFinal }}</span>
+    
+                </span>
+                </td>
+        </tr>
+        </tbody>
+    </table>
+    
+</div>
