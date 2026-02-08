@@ -1,11 +1,14 @@
 h1{
     margin-top: 50px;
     margin-left: 7%;
+    margin-bottom: 25px;
+
 }
 
 p{
     font-size: 20px;
     margin-left: 7%;
+    margin-bottom: 25px;
 }
 .grades-container{
     display: flex;
@@ -22,12 +25,21 @@ p{
     justify-content: space-between;
 }
 
+.pdf-wrapper {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+
+  width: 210mm;
+  background: white;
+}
 .button-boletim{
-    padding: 15px;
+    padding: 10px;
     border: #7C89AB 3px solid;
     background-color: transparent;
     border-radius: 15px;
     width: 200px;
+    cursor: pointer;
     font-size: 16px;
     color: #7C89AB;
     font-weight: bold;
@@ -101,7 +113,8 @@ p{
     }
 
     .button-boletim{
-        padding: 15px;
+        padding: 10px;
+        cursor: pointer;
         border: #7C89AB 3px solid;
         background-color: transparent;
         border-radius: 15px;
