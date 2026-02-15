@@ -1,0 +1,15 @@
+<app-base-modal 
+  cancelText="Cancelar"
+  confirmText="Enviar"
+  (cancel)="closeModal()"
+  (confirm)="sendObservation()"
+>
+  <h2 modal-title>Enviar observação</h2>
+  <div modal-body>
+    <p>Mensagem para o aluno:</p>
+    <textarea 
+      id="obs-text"
+      maxlength="250"
+      placeholder="Insira a mensagem que deseja mandar para o aluno..."></textarea>
+  </div>
+</app-base-modal>

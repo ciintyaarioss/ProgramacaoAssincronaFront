@@ -1,0 +1,18 @@
+<app-base-modal 
+  cancelText="Cancelar"
+  confirmText="Enviar"
+  (cancel)="closeModal()"
+  (confirm)="sendScore()"
+>
+  <h2 modal-title>Enviar nota</h2>
+  <div modal-body>
+    <div class="input-group">
+      <label for="activity">Atividade</label>
+      <input type="text" id="activity-name" placeholder="Insira o nome da atividade">
+    </div>
+    <div class="input-group">
+      <label for="score">Nota</label>
+      <input type="number" id="activity-score" placeholder="Insira a nota para a atividade">
+    </div>
+  </div>
+</app-base-modal>

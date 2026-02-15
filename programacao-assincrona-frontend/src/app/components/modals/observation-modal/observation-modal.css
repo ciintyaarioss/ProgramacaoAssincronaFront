@@ -1,0 +1,18 @@
+#obs-text {
+    border: 1px solid #C7C7C7;
+    border-radius: 16px;
+    width: 20vw;
+    height: 10vh;
+    padding: 10px;
+    resize: none;
+    font-family: inherit;
+}
+
+p {
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+textarea:focus {
+    outline: none;
+}
