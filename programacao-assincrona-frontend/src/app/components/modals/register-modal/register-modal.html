@@ -1,0 +1,35 @@
+<app-base-modal 
+  cancelText="Cancelar"
+  confirmText="Cadastrar"
+  (cancel)="closeModal()"
+  (confirm)="registerTeacher()"
+>
+  <h2 modal-title>Cadastrar professor</h2>
+  <div modal-body>
+    <div class="input-group">
+      <label for="name">Nome completo</label>
+      <input type="text" id="teacher-name" placeholder="Insira o nome completo do professor">
+    </div>
+    <div class="input-group">
+      <label for="cpf">CPF</label>
+      <input type="text" id="teacher-cpf" placeholder="Insira o CPF do professor">
+    </div>
+    <div class="dropdown">
+      <label for="disciplina">Disciplina</label>
+      <div class="dropdown-header" (click)="toggleDropdown()">
+        {{ selected || 'Selecione uma disciplina' }}
+      </div>
+      <div class="dropdown-options" *ngIf="isOpenDrop">
+        <div class="option" (click)="select('Matemática')">Matemática</div>
+        <div class="option" (click)="select('Português')">Português</div>
+        <div class="option" (click)="select('História')">História</div>
+        <div class="option" (click)="select('Inglês')">Inglês</div>
+        <div class="option" (click)="select('Filosofia')">Filosofia</div>
+        <div class="option" (click)="select('Biologia')">Biologia</div>
+        <div class="option" (click)="select('Educação Física')">Educação Física</div>
+        <div class="option" (click)="select('Química')">Química</div>
+        <div class="option" (click)="select('Artes')">Artes</div>
+      </div>
+    </div>
+  </div>
+</app-base-modal>

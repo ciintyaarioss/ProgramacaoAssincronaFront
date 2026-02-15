@@ -16,6 +16,10 @@ import { Header } from './components/header/header';
 import { Sidebar } from './components/sidebar/sidebar';
 import { Tab } from './components/tab/tab';
 import { Home } from './pages/home/home';
+import { BaseModal } from './components/modals/base-modal/base-modal';
+import { ObservationModal } from './components/modals/observation-modal/observation-modal';
+import { RegisterModal } from './components/modals/register-modal/register-modal';
+import { ScoreModal } from './components/modals/score-modal/score-modal';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,11 @@ import { Home } from './pages/home/home';
     Header,
     Sidebar,
     Tab,
-    Home
+    Home,
+    BaseModal,
+    ObservationModal,
+    RegisterModal,
+    ScoreModal,
   ],
   imports: [
     BrowserModule,
