@@ -29,7 +29,7 @@ export class Sidebar {
   toggleSidebar() {
     this.isOpen = !this.isOpen;
     this.iconAction = this.isOpen ? 'icon_voltar.svg' : 'icon_abrir.svg';
-    const width = this.isOpen ? '260px' : '55px';
+    const width = this.isOpen ? '260px' : '95px';
     document.documentElement.style.setProperty('--sidebar-width', width);
   }
 

@@ -5,7 +5,7 @@
         <img [src]="iconAction" alt="" id="button-action" (click)="toggleSidebar()">
     </div>
 
-    <div *ngIf="isOpen" class="itens-tab">
+    <div class="itens-tab">
         <app-tab 
             *ngFor="let item of filteredMenu"
             [icon]="item.icon"
