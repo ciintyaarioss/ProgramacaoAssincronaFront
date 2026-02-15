@@ -1,0 +1,68 @@
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 70px;
+}
+
+.container img{
+    justify-self: end;
+}
+
+.text-group {
+    margin: 7% 3%;
+    width: 40%;
+}
+
+.text-group h1{
+    font-weight: 700;
+    font-size: 48px;
+    margin-bottom: 23px;
+}
+
+.text-group p{
+    font-size: 16px;
+    margin-bottom: 46px;
+}
+
+.button-group {
+    display: flex;
+    gap: 25px;
+    font-size: 16px;
+}
+
+.button-group button{
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 12px;
+    height: 57px;
+    transition: 1s;
+}
+
+#button-one {
+    width: 248px;
+    background-color: #454A6A;
+    border: none;
+    color: white;
+}
+
+#button-two {
+    width: 347px;
+    border: #454A6A 3px solid;
+    background-color: transparent;
+    color: #454A6A;
+}
+
+#button-two:hover {
+    color: #131a49;
+    border: #131a49 3px solid;
+    transition: 1s;
+    cursor: pointer;
+}
+
+#button-one:hover {
+    background-color: #2d324e;
+    transition: 1s;
+    cursor: pointer;
+}
