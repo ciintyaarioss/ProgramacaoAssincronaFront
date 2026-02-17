@@ -1,0 +1,44 @@
+h1 {
+    margin-top: 10vh;
+    margin-left: 3vw;
+}
+
+.white-container {
+    margin-left: 2vw;
+    margin-top: 2vh;
+    background-color: #FAFAFA;
+    width: 100%;
+    max-width: 77vw;
+    height: 60vh;
+    border-radius: 30px;
+    padding: 2rem;
+    overflow-y: auto; 
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.white-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.white-container::-webkit-scrollbar-track {
+    background: transparent; 
+    margin: 20px 0;
+}
+
+.white-container::-webkit-scrollbar-thumb {
+    background-color: #d1d1d1;
+    border-radius: 20px;
+    border: 2px solid transparent;
+}
+
+.white-container::-webkit-scrollbar-thumb:hover {
+    background-color: #b0b0b0;
+}
+
+.without-info {
+    text-align: center;
+    color: #666;
+    padding: 20px;
+}

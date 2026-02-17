@@ -1,0 +1,21 @@
+<h1>Lista de observações</h1>
+<div class="list-container">
+    <div class="white-container">
+        @if (observationsList.length > 0) {
+            @for (obs of observationsList; track obs.id) {
+                <app-observation
+                    [teacherName]="obs.teacherName"
+                    [studentName]="obs.studentName"
+                    [date]="obs.date"
+                    [message]="obs.message"
+                    [type]="userType === 'admin' ? 'admin' : 'student'"
+                >
+                </app-observation>
+            }
+        } @else {
+            <p class="without-info">
+                Nenhuma observação encontrada.
+            </p>
+        }
+    </div>
+</div>

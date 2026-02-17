@@ -7,15 +7,17 @@ import { Students } from './pages/students/students';
 import { Subjects } from './pages/subjects/subjects';
 import { Teachers } from './pages/teachers/teachers';
 import { Home } from './pages/home/home';
+import { Observations } from './pages/observations/observations';
 
 const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'matricula', component: Matricula },
   { path: 'my-profile', component: MyProfile },
-  { path: 'students', component: Students},
-  { path: 'subjects', component: Subjects},
-  { path: 'teachers', component: Teachers},
-  { path: 'home', component: Home}
+  { path: 'students', component: Students },
+  { path: 'subjects', component: Subjects },
+  { path: 'teachers', component: Teachers },
+  { path: 'home', component: Home },
+  { path: 'observations', component: Observations }
 ];
 
 @NgModule({

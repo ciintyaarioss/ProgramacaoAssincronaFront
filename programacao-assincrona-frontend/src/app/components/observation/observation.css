@@ -1,0 +1,60 @@
+.obs-container {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  display: block;
+
+  &.is-selectable {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 10px;
+
+    .separator { display: none; } 
+  }
+}
+
+.obs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.teacher-name, strong {
+  color: #E57373;
+}
+
+.student-name, .student-name > strong {
+  color: #7C89AB;
+}
+
+.meta-date {
+  color: #999;
+  font-size: 0.85rem;
+  font-weight: normal;
+}
+
+.obs-message p {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.separator {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 8px 0 12px 0;
+}
+
+.checkbox-area { 
+  padding-top: 4px; 
+}
+.content-area { 
+  flex: 1; 
+}
