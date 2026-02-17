@@ -1,0 +1,16 @@
+<div class="status-backdrop">
+  <div class="status-card">
+    <div class="illustration-container">
+        @if (type === 'success') {
+            <img src="/success-status.svg" alt="Imagem de sucesso">
+        } @else {
+            <img src="/error-status.svg" alt="Imagem de erro">
+        }
+    </div>
+
+    <div class="status-content">
+        <h2 class="status-title">{{ title }}</h2>
+        <p class="status-description">{{ description }}</p>
+    </div>
+  </div>
+</div>
