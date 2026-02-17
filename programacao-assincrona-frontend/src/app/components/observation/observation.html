@@ -1,0 +1,33 @@
+<div class="obs-container" [class.is-selectable]="selectable">
+    @if (selectable) {
+        <div class="checkbox-area">
+            <input type="checkbox" (change)="onCheckChange($event)">
+        </div>
+    }
+    <div class="content-area">
+        <div class="obs-header">
+            <div class="header-left">
+                @if (selectable && date) {
+                    <span class="obs-date-only">{{ date }}</span>
+                } @else {
+                    <span class="teacher-name"><strong>De:</strong> {{ teacherName }}</span>
+                    @if (type === 'admin' && studentName) {
+                        <span class="student-name"> | <strong>Para:</strong> {{ studentName }}</span>
+                    }
+                }
+            </div>
+
+            @if (!selectable && date) {
+                <div class="header-right">
+                    <span class="meta-date">{{ date }}</span>
+                </div>
+            }
+        </div>
+        @if (!selectable) {
+            <hr class="separator">
+        }
+        <div class="obs-message">
+            <p>{{ message }}</p>
+        </div>
+    </div>
+</div>

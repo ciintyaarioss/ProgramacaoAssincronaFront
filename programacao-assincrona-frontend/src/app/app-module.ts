@@ -21,6 +21,8 @@ import { ObservationModal } from './components/modals/observation-modal/observat
 import { RegisterModal } from './components/modals/register-modal/register-modal';
 import { ScoreModal } from './components/modals/score-modal/score-modal';
 import { SystemStatus } from './components/system-status/system-status';
+import { Observations } from './pages/observations/observations';
+import { Observation } from './components/observation/observation';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { SystemStatus } from './components/system-status/system-status';
     RegisterModal,
     ScoreModal,
     SystemStatus,
+    Observations,
+    Observation,
   ],
   imports: [
     BrowserModule,
