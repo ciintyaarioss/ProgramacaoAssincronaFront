@@ -10,9 +10,4 @@ export class SystemStatus {
   @Input() type: 'success' | 'error' = 'success';
   @Input() title: string = '';
   @Input() description: string = '';
-  @Output() retry = new EventEmitter<void>();
-
-  tryAgain() {
-    this.retry.emit();
-  }
 }
