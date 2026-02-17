@@ -16,7 +16,13 @@
 }
 
 .sidebar.closed {
-  padding: 20px 15px;
+  padding: 20px 0; 
+  align-items: center;
+}
+
+.sidebar.closed .itens-tab {
+  width: 100%;
+  align-items: center;
 }
 
 .branding {
