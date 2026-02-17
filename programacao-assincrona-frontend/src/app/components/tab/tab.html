@@ -1,4 +1,4 @@
 <a class="menu-item" [routerLink]="[link]" routerLinkActive="active-class">
   <img [src]="icon" alt="">
-  <span>{{ name }}</span>
+  <span *ngIf="sidebarOpen">{{ name }}</span>
 </a>
