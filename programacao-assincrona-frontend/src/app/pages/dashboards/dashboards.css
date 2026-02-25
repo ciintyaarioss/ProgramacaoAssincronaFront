@@ -1,0 +1,16 @@
+h1 {
+    margin-top: 5vh;
+    margin-left: 3vw;
+}
+
+.info-container {
+    margin-left: 2vw;
+    margin-top: 2vh;
+    width: 100%;
+    max-width: 77vw;
+    height: 70vh;
+    display: grid;
+    grid-template-columns: 1fr 2.2fr; 
+    grid-template-rows: auto 1fr; 
+    gap: 50px;
+}

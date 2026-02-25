@@ -15,7 +15,7 @@ export class AuthService {
   }
 
   getUserType(): string {
-    return localStorage.getItem(this.key) || 'student';
+    return localStorage.getItem(this.key) || 'teacher';
   }
 
   isAdmin(): boolean {

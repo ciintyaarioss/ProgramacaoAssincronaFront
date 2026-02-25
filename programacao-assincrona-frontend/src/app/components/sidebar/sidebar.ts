@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class Sidebar {
   isOpen: boolean = true;
   iconAction: string = 'icon_voltar.svg'; 
-  userType: string = 'admin';
+  userType: string = 'teacher';
 
   menuItems: MenuItem[] = [
     { icon: 'home.svg', name: 'Página inicial', link: '/home', roles: ['admin', 'teacher', 'student'] },

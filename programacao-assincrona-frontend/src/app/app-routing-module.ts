@@ -9,6 +9,7 @@ import { Subjects } from './pages/subjects/subjects';
 import { Teachers } from './pages/teachers/teachers';
 import { Home } from './pages/home/home';
 import { Observations } from './pages/observations/observations';
+import { Dashboards } from './pages/dashboards/dashboards';
 
 const routes: Routes = [
   { path: 'login', component: Login },

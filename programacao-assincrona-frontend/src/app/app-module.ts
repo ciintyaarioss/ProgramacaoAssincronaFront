@@ -23,6 +23,7 @@ import { ScoreModal } from './components/modals/score-modal/score-modal';
 import { SystemStatus } from './components/system-status/system-status';
 import { Observations } from './pages/observations/observations';
 import { Observation } from './components/observation/observation';
+import { Dashboards } from './pages/dashboards/dashboards';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { Observation } from './components/observation/observation';
     SystemStatus,
     Observations,
     Observation,
+    Dashboards,
   ],
   imports: [
     BrowserModule,
