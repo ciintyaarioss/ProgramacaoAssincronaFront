@@ -1,4 +1,8 @@
-<div>
-    <p>{{ title }}</p>
-    <h1>{{ value }}</h1>
+<div
+  [style.--card-bg-color]="bgColor"
+  [style.--card-title-color]="titleColor"
+  [style.--card-value-color]="valueColor"
+>
+  <p>{{ title }}</p>
+  <h1>{{ value }}</h1>
 </div>
