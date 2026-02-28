@@ -1,0 +1,19 @@
+.section-card {
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.section-content {
+  display: flex;
+  gap: 30px;
+  border: solid 1px #A7A7A7;
+  border-radius: 20px;
+  padding: 25px;
+}

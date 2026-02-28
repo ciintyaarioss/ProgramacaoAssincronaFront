@@ -1,0 +1,98 @@
+<h1>Dashboards</h1>
+
+<div class="info-container">
+  <app-section-card title="Disciplina">
+
+    <select section-action>
+      <option>Selecione uma disciplina</option>
+    </select>
+
+    <div class="left-cards">
+      <app-card
+        title="Média dos alunos"
+        [value]=6.7
+        bgColor="#9FAAC4"
+        titleColor="#333"
+        valueColor="#333"
+      ></app-card>
+
+      <app-card
+        title="Menor nota na disciplina"
+        [value]=2.5
+        bgColor="#C7CCD9"
+        titleColor="#333"
+        valueColor="#333"
+      ></app-card>
+
+      <app-card
+        title="Alunos reprovados"
+        [value]=6
+        bgColor="#DADBE6"
+        titleColor="#333"
+        valueColor="#333"
+      ></app-card>
+
+      <app-card
+        title="Alunos aprovados"
+        [value]=2
+        bgColor="#9FAAC4"
+        titleColor="#333"
+        valueColor="#333"
+      ></app-card>
+    </div>
+
+    <div class="right-table">
+      <app-table
+        type="teacher-for-students"
+        [columnsTeacherForStudents]="['Aluno', 'Nota', 'Situação']"
+        [data]="studentsData"
+      ></app-table>
+    </div>
+
+  </app-section-card>
+
+  <app-section-card title="Geral">
+    <div class="left-cards">
+      <app-card
+        title="Quantidade total de alunos"
+        [value]=30
+        bgColor="#F4B9B9"
+        titleColor="#333"
+        valueColor="#333"
+      ></app-card>
+
+      <app-card
+        title="Observações totais"
+        [value]=15
+        bgColor="#E7D6D6"
+        titleColor="#333"
+        valueColor="#333"
+      ></app-card>
+
+      <app-card
+        title="Alunos reprovados"
+        [value]=15
+        bgColor="#E7D6D6"
+        titleColor="#333"
+        valueColor="#333"
+      ></app-card>
+
+      <app-card
+        title="Alunos aprovados"
+        [value]=10
+        bgColor="#F4B9B9"
+        titleColor="#333"
+        valueColor="#333"
+      ></app-card>
+    </div>
+
+    <div class="right-table">
+      <app-table
+        type="students-for-admin"
+        [columnsStudentsForAdmin]="['Aluno', 'Matrícula', 'Observações']"
+        [data]="adminStudentsData"
+      ></app-table>
+    </div>
+
+  </app-section-card>
+</div>

@@ -27,11 +27,9 @@
             <span *ngIf="col=='Ações'">
                     <img src="remove-user.svg" style="margin-right: 30px;" alt="">
                     <img src="verified-user.svg" alt="">
-
             </span>
         </td>
     </tr>
-
     </tbody>
 </table>
 
@@ -72,7 +70,6 @@
     </tbody>
 </table>
 
-
 <table [class.pdf]="pdfMode"  class="custom-table" *ngIf="type =='teacher-for-students'">
     <thead>
         <th *ngFor="let col of columnsTeacherForStudents">{{ col }}            
@@ -87,9 +84,6 @@
     </tbody>
 </table>
 
-
-
-
 <table [class.pdf]="pdfMode" class="custom-table" *ngIf="type =='teacher-for-admin'">
     <thead>
         <th *ngFor="let col of columnsTeacherForAdmin">{{ col }}            
@@ -103,8 +97,6 @@
     </tr>
     </tbody>
 </table>
-
-
 
 <div [class.pdf]="pdfMode" *ngIf="type =='scores-for-pdf'">
     <table class="custom-table" >
@@ -123,8 +115,7 @@
     
                 </span>
                 </td>
-        </tr>
+            </tr>
         </tbody>
     </table>
-    
 </div>

@@ -1,35 +1,35 @@
-h1{
+h1 {
     margin-top: 50px;
     margin-left: 7%;
     margin-bottom: 30px;
 }
-h2{
+
+h2 {
     margin-top: 70px;
     margin-left: 7%;
     margin-bottom: 15px;
     font-size: 28px;
 }
 
-p{
+p {
     font-size: 18px;
     margin-left: 7%;
     margin-bottom: 25px;
 }
-.grades-container{
+
+.grades-container {
     display: flex;
-    justify-content: space-between;
+    gap: 25px;
     width: 35%;
-    margin-top: 20px;
 }
 
-.filters-button-container{
+.filters-button-container {
     display: flex;
     width: 75%;
     margin-left: 7%;
     align-items: center;
     justify-content: space-between;
 }
-
 
 .pdf-wrapper {
   position: absolute;
@@ -38,7 +38,8 @@ p{
   width: 210mm;
   background: white;
 }
-.button-boletim{
+
+.button-boletim {
     padding: 10px;
     border: #7C89AB 3px solid;
     background-color: transparent;
@@ -48,10 +49,9 @@ p{
     font-size: 16px;
     color: #7C89AB;
     font-weight: bold;
-
 }
 
-.table-cards-container{
+.table-cards-container {
     justify-content: space-between;
     display: flex;
     width: 75%;
@@ -63,6 +63,7 @@ p{
     display: flex;
     width: 45%;
 }
+
 .filters-text {
   cursor: pointer;
   color: #666;
@@ -73,13 +74,13 @@ p{
 .filters-text.active {
   color: #E2857E;
   text-decoration: underline;
-  font-weight: 600;
-  text-decoration-thickness: 2px;   /* espessura */
+  text-decoration-thickness: 2px;
   text-underline-offset: 6px; 
 }
-    .table{
-        width: 60%;
-    }
+
+.table{
+    width: 60%;
+}
 
 @media (max-width: 1200px) {
     .table-cards-container{
@@ -91,6 +92,7 @@ p{
         padding: 0px;
         margin-left: 0px;
     }
+
     .filters-text {
       cursor: pointer;
       margin-bottom: 25px;
@@ -98,12 +100,13 @@ p{
       font-weight: bold;
     }
 
-    .table{
+    .table {
         width: 80%;
         margin-top: 40px;
         margin-left: 10%;
     }
-    .grades-container{
+
+    .grades-container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -111,7 +114,8 @@ p{
         width: 100%;
         margin-top: 20px;
     } 
-    .filters-button-container{
+
+    .filters-button-container {
         display: flex;
         width: 100%;
         flex-wrap: wrap;
@@ -127,7 +131,7 @@ p{
         flex-wrap: wrap;
     }
 
-    .button-boletim{
+    .button-boletim {
         padding: 10px;
         cursor: pointer;
         border: #7C89AB 3px solid;
@@ -138,6 +142,5 @@ p{
         color: #7C89AB;
         font-weight: bold;
         margin-top: 20px;
-
     }
 }
