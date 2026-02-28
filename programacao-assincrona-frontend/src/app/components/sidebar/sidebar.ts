@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-sidebar',
   standalone: false,
@@ -9,7 +10,13 @@ import { Component } from '@angular/core';
 export class Sidebar {
   isOpen: boolean = true;
   iconAction: string = 'icon_voltar.svg'; 
-  userType: string = 'teacher';
+  userType: string = '';
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit() {
+    this.userType = this.authService.getUserType() || '';
+  }
 
   menuItems: MenuItem[] = [
     { icon: 'home.svg', name: 'Página inicial', link: '/home', roles: ['admin', 'professor', 'aluno'] },
@@ -18,7 +25,7 @@ export class Sidebar {
     { icon: 'disciplinas.svg', name: 'Disciplinas', link: '/subjects', roles: ['admin', 'professor','aluno'] },    
     { icon: 'dashboards.svg', name: 'Dashboards', link: '/dashboards', roles: ['admin', 'professor'] },
     { icon: 'teachers.svg', name: 'Professores', link: '/teachers', roles: ['admin', 'professor','aluno'] },    
-    { icon: 'profile.svg', name: 'Perfil', link: '/my-profile', roles: ['professor', 'aluno '] }
+    { icon: 'profile.svg', name: 'Perfil', link: '/my-profile', roles: ['professor', 'aluno'] }
   ];
 
   get filteredMenu() {
