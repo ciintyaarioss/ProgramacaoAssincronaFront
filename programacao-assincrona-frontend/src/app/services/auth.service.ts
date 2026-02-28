@@ -1,21 +1,49 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
+
+interface LoginBody {
+  cpf: string;
+  password: string;
+  user_type: 'admin' | 'aluno' | 'professor';
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private key = 'user_role'
+  private keyUserType = 'user_role';
+  private keyUserData = 'user_data';
 
-  constructor() { }
 
-  setUserType(type: 'admin' | 'student' | 'teacher') {
-    localStorage.setItem(this.key, type);
-    window.location.reload();
+  private apiUrl = 'https://programacaoassincrona-back.onrender.com'; // base da API
+
+  constructor(private http: HttpClient) { }
+
+  login(data: LoginBody): Observable<any> {
+    return this.http.post(`${this.apiUrl}`, data).pipe(
+      tap(() => {
+        // salva o tipo do usuário após login
+        this.setUserType(data.user_type);
+        this.setUserData(data);
+      })
+    );
+  }
+
+  setUserData(userData: any) {
+    localStorage.setItem(this.keyUserData, JSON.stringify(userData));
+  }
+  getUserData(): any {
+    const data = localStorage.getItem(this.keyUserData);
+    return data ? JSON.parse(data) : null;
+  }
+  setUserType(type: 'admin' | 'aluno' | 'professor') {
+    localStorage.setItem(this.keyUserType, type);
   }
 
   getUserType(): string {
-    return localStorage.getItem(this.key) || 'student';
+    return localStorage.getItem(this.keyUserType) || 'aluno';
   }
 
   isAdmin(): boolean {
@@ -23,10 +51,15 @@ export class AuthService {
   }
 
   isStudent(): boolean {
-    return this.getUserType() === 'student';
+    return this.getUserType() === 'aluno';
   }
-  
+
   isTeacher(): boolean {
-    return this.getUserType() === 'teacher';
+    return this.getUserType() === 'professor';
+  }
+
+  logout() {
+    localStorage.removeItem(this.keyUserType);
+    window.location.reload();
   }
 }

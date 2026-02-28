@@ -23,12 +23,11 @@ import { ScoreModal } from './components/modals/score-modal/score-modal';
 import { SystemStatus } from './components/system-status/system-status';
 import { Observations } from './pages/observations/observations';
 import { Observation } from './components/observation/observation';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     App,
-    Login,
-    Matricula,
     MyProfile,
     Table,
     Students,
@@ -50,7 +49,9 @@ import { Observation } from './components/observation/observation';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
+
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
