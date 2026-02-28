@@ -44,22 +44,13 @@ export class Login {
 
     this.authService.login(this.loginForm.value).subscribe({
       next: (res) => {
-        console.log('Login realizado', res);
-        this.authService.setUserData(res);
-        const type = this.loginForm.value.user_type;
+      console.log('Login realizado', res);
 
-        if (type === 'admin') {
-          this.router.navigate(['/admin']);
-        }
+      this.authService.setUserData(res);
+      this.authService.setUserType(this.loginForm.value.user_type);
 
-        if (type === 'teacher') {
-          this.router.navigate(['/teacher']);
-        }
-
-        if (type === 'student') {
-          this.router.navigate(['/student']);
-        }
-      },
+      this.router.navigate(['/home']);
+    },
       error: (err) => {
         console.error('Erro no login', err);
         alert('CPF ou senha inválidos');
