@@ -9,6 +9,12 @@ export const roleGuard: CanActivateFn = (route, state) => {
   const userType = authService.getUserType();
   const allowedRoles = route.data['roles'] as Array<string>;
 
+  if (!userType) {
+    alert('Acesso negado');
+    router.navigate(['/home']);
+    return false;
+  }
+
   if (allowedRoles && allowedRoles.includes(userType)) {
     return true;
   }

@@ -1,7 +1,4 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-container">
-
-  
-
   <div class="image-container">
     <img class="image-login" src="login-image.png" alt="">
   </div>
@@ -17,12 +14,24 @@
              placeholder="Digite seu CPF">
     </div>
 
-    <div class="input-container">
+    <div class="input-container password-container">
       <label class="label-login">Senha</label>
-      <input class="input-login"
-             type="password"
-             formControlName="password"
-             placeholder="Digite sua senha">
+
+      <div class="password-wrapper">
+        <input class="input-login"
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="Digite sua senha">
+
+        <img class="eye-icon"
+            [src]="showPassword ? 'eye-closed.svg' : 'eye.svg'"
+            (click)="togglePassword()"
+            alt="Toggle password">
+      </div>
+
+      <div class="forgot-password">
+        <a (click)="goToForgotPassword()">Esqueceu a senha?</a>
+      </div>
     </div>
 
     <div class="type-account-container">
@@ -54,6 +63,12 @@
     <button class="button-login" type="submit">
       Entrar
     </button>
+
+    <div class="register-link">
+      <span class="line"></span>
+      <a (click)="goToRegister()">Ainda não é matriculado?</a>
+      <span class="line"></span>
+    </div>
 
   </div>
 </form>

@@ -15,10 +15,13 @@ export class Header {
   constructor(private authService: AuthService) {
     const userData = this.authService.getUserData();
     const userRole = this.authService.getUserType();
+
     if (userData) {
       this.userName = userData.nome || this.userName;
-      this.userType = userRole.charAt(0).toUpperCase() + userRole.slice(1); // Capitaliza o tipo
-      console.log('Dados  do usuário:', userData);
+    }
+
+    if (userRole) {
+      this.userType = userRole.charAt(0).toUpperCase() + userRole.slice(1);
     }
   }
 }
