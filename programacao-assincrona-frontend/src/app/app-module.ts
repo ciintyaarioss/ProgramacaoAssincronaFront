@@ -55,7 +55,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule
-
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

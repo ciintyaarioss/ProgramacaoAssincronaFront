@@ -12,7 +12,12 @@ import { Observations } from './pages/observations/observations';
 import { Dashboards } from './pages/dashboards/dashboards';
 
 const routes: Routes = [
-  { path: 'login', component: Login },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./pages/login/login').then(m => m.Login)
+  },
   { path: 'matricula', component: Matricula },
   { 
     path: 'home', 
