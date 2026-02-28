@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { Aluno, StudentService } from '../../services/student.service';
 
 @Component({
   selector: 'app-students',
@@ -6,19 +8,69 @@ import { Component } from '@angular/core';
   templateUrl: './students.html',
   styleUrl: './students.css',
 })
-export class Students {
+export class Students implements OnInit {
 
-  studentsData = [
-    { id: 1, nome: 'Alice', cpf: '60206662807', matricula: '2021001' },
-    { id: 2, nome: 'Bob', cpf: '12345678901', matricula: '2021002' },
-    { id: 3, nome: 'Charlie', cpf: '98765432109', matricula: '2021003' },
+  userType: string = '';
+  typeTable: string = '';
+
+
+  constructor(private authService: AuthService, private studentService: StudentService) {
+
+  }
+  studentsData : Aluno[] = [
+
   ];
 
-  selectedFilter: string | null = null;
 
-  selectFilter(filter: string) {
-      this.selectedFilter = filter;   
+  
+  selectedFilter: string | null = 'matriculados';
+  ngOnInit() {
+  this.userType = this.authService.getUserType();
+
+  if (this.userType === 'admin') {
+    this.typeTable = 'students-for-admin';
+  } else if (this.userType === 'professor') {
+    this.typeTable = 'students-for-teacher';
+  } else {
+    this.typeTable = 'students-for-student';
   }
+  if (this.userType === 'professor') {
+      this.studentService.listarAlunos().subscribe({
+    next: (res) => {
+      this.studentsData = res;
+      console.log('Alunos listados', res);
+    }
+  });
+
+
+  }
+  if (this.userType === 'admin') {
+      this.studentService.listarAlunoAtivos().subscribe({
+    next: (res) => {
+      this.studentsData = res;   
+      console.log('Alunos listados', res);}
+    })
+
+
+  }
+}
+  selectFilter(filter: string) {
+      this.selectedFilter = filter;
+      if (filter === 'matriculados') {
+        this.studentService.listarAlunoAtivos().subscribe({
+          next: (res) => {
+            this.studentsData = res;
+            console.log('Alunos listados', res);
+          }
+        }); 
+    }else{
+      this.studentService.listarAlunoDesativos().subscribe({
+        next: (res) => {
+          this.studentsData = res;  
+    }  });
+  }
+
+}
 
 }
 

@@ -9,6 +9,8 @@ export interface Aluno {
   matricula: string;
   ativo?: boolean;
   id?: number;
+    [key: string]: any;
+
 }
 
 
@@ -17,7 +19,7 @@ export interface Aluno {
 @Injectable({
   providedIn: 'root'
 })
-export class AlunoService {
+export class StudentService {
 
   private apiUrl = 'https://programacaoassincrona-back.onrender.com';
 
@@ -29,6 +31,15 @@ export class AlunoService {
 
   listarAlunoDesativos(): Observable<Aluno[]>{
     return this.http.get<Aluno[]>(`${this.apiUrl}/aluno/listarDesativo`);
+  }
+  listarAlunoAtivos(): Observable<Aluno[]>{
+    return this.http.get<Aluno[]>(`${this.apiUrl}/aluno/listarAtivo`);
+  }
+  listarAlunos(): Observable<Aluno[]> {
+    return this.http.get<Aluno[]>(`${this.apiUrl}/aluno/listar`);
+  }
+  acionarAluno(id: number): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/aluno?alunoId=${id}`, {});
   }
 
 }

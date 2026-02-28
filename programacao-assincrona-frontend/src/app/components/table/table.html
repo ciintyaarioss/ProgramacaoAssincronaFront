@@ -1,47 +1,62 @@
-<table [class.pdf]="pdfMode" class="custom-table" *ngIf="type =='students-for-teacher'">
-    <thead>
-            <th *ngFor="let col of columnsStudentsForTeacher">{{ col }}            
-            </th>
-    </thead>
-    <tbody>        
-    <tr *ngFor="let row of data">
-        <td *ngFor="let col of columnsStudentsForTeacher">
-            <span>{{ row[col] }}</span>
-            <span *ngIf="col=='Detalhes'">
-                Ver Mais    
-            <img src="open-new-window.svg" alt="">
-            </span>
-        </td>
+<table [class.pdf]="pdfMode"
+       class="custom-table"
+       *ngIf="type === 'students-for-teacher'">
+
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>CPF</th>
+      <th>Matrículaaa</th>
+      <th>Detalhes</th>
     </tr>
-    </tbody>
-</table>
-<table [class.pdf]="pdfMode" class="custom-table" *ngIf="type =='students-for-admin'">
-    <thead>
-        <th *ngFor="let col of columnsStudentsForAdmin">{{ col }}            
-        </th>
-    </thead>
-    <tbody>        
-    <tr *ngFor="let row of data">
-        <td *ngFor="let col of columnsStudentsForAdmin">
-            <span>{{ row[col] }}</span>
-            <span *ngIf="col=='Ações'">
-                    <img src="remove-user.svg" style="margin-right: 30px;" alt="">
-                    <img src="verified-user.svg" alt="">
+  </thead>
 
-            </span>
-        </td>
+  <tbody>
+    <tr *ngFor="let row of dataStudent">
+      <td>{{ row.nome }}</td>
+      <td>{{ row.cpf }}</td>
+      <td>{{ row.matricula }}</td>
+      <td>
+        Ver Mais
+        <img src="open-new-window.svg" alt="">
+      </td>
     </tr>
+  </tbody>
 
-    </tbody>
 </table>
+<table [class.pdf]="pdfMode"
+       class="custom-table"
+       *ngIf="type === 'students-for-admin'">
 
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>CPF</th>
+      <th>Matrícula</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let row of dataStudent">
+      <td>{{ row.nome }}</td>
+      <td>{{ row.cpf }}</td>
+      <td>{{ row.matricula }}</td>
+      <td>
+        <img  src="remove-user.svg" style="margin-right: 30px;" alt="">
+        <img src="verified-user.svg" (click)="acionarAluno(row.id ? row.id:0)" alt="">
+      </td>
+    </tr>
+  </tbody>
+
+</table>
 <table [class.pdf]="pdfMode" class="custom-table" *ngIf="type =='subjects-for-admin'">
     <thead>
         <th *ngFor="let col of columnsSubjectsForAdmin">{{ col }}            
         </th>
     </thead>
     <tbody>        
-    <tr *ngFor="let row of data">
+    <tr *ngFor="let row of dataSubject">
         <td *ngFor="let col of columnsSubjectsForAdmin">
             <span>{{ row[col] }}</span>
             <span *ngIf="col=='média'">
@@ -59,7 +74,7 @@
         </th>
     </thead>
     <tbody>        
-    <tr *ngFor="let row of data">
+    <tr *ngFor="let row of dataSubject">
         <td *ngFor="let col of columnsSubjectsForTeacher">
             <span>{{ row[col] }}</span>
             <span *ngIf="col=='média'">
@@ -79,7 +94,7 @@
         </th>
     </thead>
     <tbody>        
-    <tr *ngFor="let row of data">
+    <tr *ngFor="let row of dataTeacher">
         <td *ngFor="let col of columnsTeacherForStudents">
             <span>{{ row[col] }}</span>
         </td>
@@ -96,7 +111,7 @@
         </th>
         </thead>
         <tbody>        
-        <tr *ngFor="let row of data">
+        <tr *ngFor="let row of dataTeacher">
             <td *ngFor="let col of columnsTeacherForAdmin">
             <span>{{ row[col] }}</span>
         </td>
@@ -113,7 +128,7 @@
             </th>
             </thead>
             <tbody>
-            <tr *ngFor="let row of data">
+            <tr *ngFor="let row of dataScores">
                 <td *ngFor="let col of columnsScoresForPdf">
                 <span>{{ row[col] }}</span>
     

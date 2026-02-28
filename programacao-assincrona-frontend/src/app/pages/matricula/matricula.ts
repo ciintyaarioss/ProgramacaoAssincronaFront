@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AlunoService } from '../../services/student.service';
+import { StudentService } from '../../services/student.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 @Component({
@@ -16,7 +16,7 @@ export class Matricula {
 
   constructor(
     private fb: FormBuilder,
-    private alunoService: AlunoService,
+    private studentService: StudentService,
     private router: Router
   ) {
 
@@ -45,7 +45,7 @@ export class Matricula {
       matricula: this.gerarMatricula()
     };
 
-    this.alunoService.criarAluno(aluno).subscribe({
+    this.studentService.criarAluno(aluno).subscribe({
       next: (res) => {
         console.log('Aluno criado', res);
         alert('Matrícula realizada com sucesso!');
