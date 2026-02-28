@@ -17,7 +17,7 @@ export class Students {
   selectedFilter: string | null = null;
 
   selectFilter(filter: string) {
-      this.selectedFilter = filter; // seleciona
+      this.selectedFilter = filter;   
   }
 
 }

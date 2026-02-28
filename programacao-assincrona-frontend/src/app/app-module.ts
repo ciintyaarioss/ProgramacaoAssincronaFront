@@ -25,12 +25,11 @@ import { Observations } from './pages/observations/observations';
 import { Observation } from './components/observation/observation';
 import { Dashboards } from './pages/dashboards/dashboards';
 import { SectionCard } from './components/section-card/section-card';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     App,
-    Login,
-    Matricula,
     MyProfile,
     Table,
     Students,
@@ -54,7 +53,9 @@ import { SectionCard } from './components/section-card/section-card';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
+
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

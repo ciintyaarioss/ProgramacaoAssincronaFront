@@ -18,43 +18,37 @@ const routes: Routes = [
     path: 'home', 
     component: Home,
     canActivate: [roleGuard],
-    data: { roles: ['admin', 'teacher', 'student'] } 
+    data: { roles: ['admin', 'professor', 'aluno'] } 
   },
   { 
     path: 'students', 
     component: Students,
     canActivate: [roleGuard],
-    data: { roles: ['admin', 'teacher'] } 
+    data: { roles: ['admin', 'professor'] } 
   },
   { 
     path: 'observations', 
     component: Observations, 
     canActivate: [roleGuard],
-    data: { roles: ['admin', 'student'] }
+    data: { roles: ['admin', 'aluno'] }
   },
   { 
     path: 'subjects', 
     component: Subjects,
     canActivate: [roleGuard],
-    data: { roles: ['admin', 'teacher', 'student'] } 
+    data: { roles: ['admin', 'professor', 'aluno'] } 
   },    
-  { 
-    path: 'dashboards', 
-    component: Dashboards,
-    canActivate: [roleGuard],
-    data: { roles: ['admin', 'teacher'] } 
-  },
   { 
     path: 'teachers', 
     component: Teachers,
     canActivate: [roleGuard],
-    data: { roles: ['admin', 'teacher', 'student'] } 
+    data: { roles: ['admin', 'professor', 'aluno'] } 
   },    
   { 
     path: 'my-profile', 
     component: MyProfile,
     canActivate: [roleGuard],
-    data: { roles: ['teacher', 'student'] } 
+    data: { roles: ['professor', 'aluno'] } 
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' }
