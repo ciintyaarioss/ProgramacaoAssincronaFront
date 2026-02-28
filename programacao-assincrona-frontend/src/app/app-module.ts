@@ -24,6 +24,7 @@ import { SystemStatus } from './components/system-status/system-status';
 import { Observations } from './pages/observations/observations';
 import { Observation } from './components/observation/observation';
 import { Dashboards } from './pages/dashboards/dashboards';
+import { SectionCard } from './components/section-card/section-card';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { Dashboards } from './pages/dashboards/dashboards';
     Observations,
     Observation,
     Dashboards,
+    SectionCard,
   ],
   imports: [
     BrowserModule,

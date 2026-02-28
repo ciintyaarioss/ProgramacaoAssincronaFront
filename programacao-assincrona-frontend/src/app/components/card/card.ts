@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 })
 export class Card {
   @Input() title: string = '';
-  @Input() value: string = '';
+  @Input() value!: string | number;
   @Input() bgColor: string = '#FAFAFA';
   @Input() titleColor: string = '#E2857E';
   @Input() valueColor: string = '#616161';

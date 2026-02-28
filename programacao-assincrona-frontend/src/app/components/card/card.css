@@ -3,8 +3,8 @@ div {
     border-radius: 20px;
     padding: 20px;
     align-items: center;
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
     display: flex;
     flex-direction: column;
 }
@@ -14,10 +14,12 @@ p {
     font-size: 20px;
     margin: 0;
     font-weight: bold;
+    text-align: center;
 }
 
 h1 {
     color: var(--card-value-color, #616161);
     margin-top: 30px;
     font-size: 3rem;
+    text-align: center;
 }

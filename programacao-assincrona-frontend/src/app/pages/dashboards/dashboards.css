@@ -9,8 +9,19 @@ h1 {
     width: 100%;
     max-width: 77vw;
     height: 70vh;
-    display: grid;
-    grid-template-columns: 1fr 2.2fr; 
-    grid-template-rows: auto 1fr; 
-    gap: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 200px);
+  gap: 20px;
+}
+
+.right-table {
+  flex: 1;
+  max-height: 370px;
+  overflow-y: auto;
+  align-items: center;
 }
