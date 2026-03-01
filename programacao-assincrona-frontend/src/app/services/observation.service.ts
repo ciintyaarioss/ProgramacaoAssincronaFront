@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 
 export interface Observation {
-    id: number;
+id: number;
   aluno: string;
   professor: string;
   text: string;

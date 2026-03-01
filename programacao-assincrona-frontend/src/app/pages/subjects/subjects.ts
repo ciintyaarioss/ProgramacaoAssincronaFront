@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Subject, SubjectService } from '../../services/subjects.service';
 
 @Component({
   selector: 'app-subjects',
@@ -6,10 +7,19 @@ import { Component } from '@angular/core';
   templateUrl: './subjects.html',
   styleUrl: './subjects.css',
 })
-export class Subjects {
-    subjectsData = [
-    { id: 1, nome: 'Matemática',media: 8.5, reprovados: '2021001' },
-    { id: 2, nome: 'Português', media: 7.2, reprovados: '2021002' },
-    { id: 3, nome: 'Ciências', media: 9.0, reprovados: '2021003' },
+export class Subjects implements OnInit {
+    subjectsData: Subject[] = [
+
   ];
+
+  constructor(private subjectService: SubjectService, private cdr: ChangeDetectorRef) {
+  }
+
+  ngOnInit() {
+    // Aqui você pode carregar os dados das disciplinas, por exemplo, chamando um serviço
+    this.subjectService.listar().subscribe(res => {
+      this.subjectsData = res;
+      this.cdr.detectChanges(); // Força a detecção de mudanças após atualizar os dados
+    });
+  }
 }

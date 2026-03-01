@@ -2,7 +2,9 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { Aluno } from '../../services/student.service';
 import { StudentService } from '../../services/student.service';
 import { Router } from '@angular/router';
-import { Professor } from '../../services/teacher.service';
+import {  Professor } from '../../services/teacher.service';
+import { Score, Subject } from '../../services/subjects.service';
+
 @Component({
   selector: 'app-table',
   standalone: false,
@@ -11,9 +13,9 @@ import { Professor } from '../../services/teacher.service';
 })
 export class Table implements OnChanges {
   @Input() dataStudent: Aluno[] = [];
-  @Input() dataSubject: any[] = [];
+  @Input() dataSubject: Subject[] = [];
   @Input() dataTeacher: Professor[] = []
-  @Input() dataScores: any[] = []
+  @Input() dataScores: Score[] = []
 
   @Input() type: string = '';
   @Input() pdfMode = false;

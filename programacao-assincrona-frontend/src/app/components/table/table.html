@@ -52,41 +52,49 @@
   </tbody>
 
 </table>
-<table [class.pdf]="pdfMode" class="custom-table" *ngIf="type =='subjects-for-admin'">
-    <thead>
-        <th *ngFor="let col of columnsSubjectsForAdmin">{{ col }}            
-        </th>
-    </thead>
-    <tbody>        
-    <tr *ngFor="let row of dataSubject">
-        <td *ngFor="let col of columnsSubjectsForAdmin">
-            <span>{{ row[col] }}</span>
-            <span *ngIf="col=='média'">
-                    
-            <span>{{ row.media }}</span>
+<table
+  [class.pdf]="pdfMode"
+  class="custom-table"
+  *ngIf="type === 'subjects-for-admin'">
 
-            </span>
-        </td>
+  <thead>
+    <tr>
+      <th>Disciplina</th>
+      <th>Aprovados</th>
+      <th>Reprovados</th>
+      <th>Média</th>
     </tr>
-    </tbody>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let subject of dataSubject">
+      <td>{{ subject.disciplina }}</td>
+      <td>{{ subject.aprovados }}</td>
+      <td>{{ subject.reprovados }}</td>
+      <td>{{ subject.mediaDisciplina | number:'1.1-2' }}</td>
+    </tr>
+  </tbody>
+
 </table>
-<table [class.pdf]="pdfMode" class="custom-table" *ngIf="type =='subjects-for-teacher'">
-    <thead>
-        <th *ngFor="let col of columnsSubjectsForTeacher">{{ col }}            
-        </th>
-    </thead>
-    <tbody>        
-    <tr *ngFor="let row of dataSubject">
-        <td *ngFor="let col of columnsSubjectsForTeacher">
-            <span>{{ row[col] }}</span>
-            <span *ngIf="col=='média'">
-                    
-            <span>{{ row.media }}</span>
+<table
+  [class.pdf]="pdfMode"
+  class="custom-table"
+  *ngIf="type === 'subjects-for-teacher'">
 
-            </span>
-        </td>
+  <thead>
+    <tr>
+      <th>Disciplina</th>
+      <th>Média</th>
     </tr>
-    </tbody>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let subject of dataSubject">
+      <td>{{ subject.disciplina }}</td>
+      <td>{{ subject.mediaDisciplina | number:'1.1-2' }}</td>
+    </tr>
+  </tbody>
+
 </table>
 
 <table [class.pdf]="pdfMode"
@@ -139,19 +147,20 @@
 <div [class.pdf]="pdfMode" *ngIf="type =='scores-for-pdf'">
     <table class="custom-table" >
         <thead>
-            <th *ngFor="let col of columnsScoresForPdf">{{ col }}
-            </th>
+            <th >Disciplina</th>
+            <th>Média Final</th>
+            <th >Situação</th>
             </thead>
             <tbody>
             <tr *ngFor="let row of dataScores">
-                <td *ngFor="let col of columnsScoresForPdf">
-                <span>{{ row[col] }}</span>
-    
-                <span *ngIf="col=='média final'">
-    
-                <span>{{ row.mediaFinal }}</span>
-    
-                </span>
+                <td>
+                <span>{{ row.disciplina }}</span>
+                </td>
+                <td>
+                <span>{{ row.media }}</span>
+                </td>
+                <td>
+                <span>{{ row.status ? 'Aprovado' : 'Reprovado' }}</span>
                 </td>
             </tr>
         </tbody>
