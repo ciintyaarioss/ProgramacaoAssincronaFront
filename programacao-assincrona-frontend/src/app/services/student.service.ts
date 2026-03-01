@@ -13,9 +13,6 @@ export interface Aluno {
 
 }
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -42,26 +39,34 @@ export class StudentService {
         cpf: aluno.cpf,
         matricula: aluno.matricula
       },
-      responseType: 'text'  // 👈 AQUI ESTÁ A SOLUÇÃO
+      responseType: 'text'
     }
   );
-
+  
 }  
-
+  
   listarAlunoDesativos(): Observable<Aluno[]>{
     return this.http.get<Aluno[]>(`${this.apiUrl}/aluno/listarDesativo`);
   }
+
   listarAlunoAtivos(): Observable<Aluno[]>{
     return this.http.get<Aluno[]>(`${this.apiUrl}/aluno/listarAtivo`);
   }
+
   listarAlunos(): Observable<Aluno[]> {
     return this.http.get<Aluno[]>(`${this.apiUrl}/aluno/listar`);
   }
+
   acionarAluno(id: number): Observable<any> {
     return this.http.patch(`${this.apiUrl}/aluno?alunoId=${id}`, {});
   }
+  
   deletarAluno(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/aluno/deletar?id=${id}`); 
+  }
+
+  getAlunoById(id: number): Observable<Aluno> {
+    return this.http.get<Aluno>(`${this.apiUrl}/aluno/${id}`);
   }
 
 }

@@ -48,9 +48,8 @@
 <div class="obs-container">
     <div class="obs-header">
         <h2>Observações enviadas</h2>
-        <div class="obs-button">
-            <button class="btn-del">Deletar observação <img src="/del-circle.svg" alt=""></button>
-            <button class="btn-add">Inserir observação <img src="/add-circle.svg" alt=""></button>
+        <div class="obs-button" *ngIf="userType === 'professor'">
+            <button class="btn-add" (click)="openObservationModal()">Inserir observação <img src="/add-circle.svg" alt=""></button>
         </div>
     </div>
 
@@ -62,7 +61,8 @@
                     [studentName]="obs.aluno"
                     [date]="(obs.data | date:'dd/MM/yyyy HH:mm') ?? ''"
                     [message]="obs.text"
-                    [type]="userType === 'admin' ? 'admin' : 'student'"
+                    [type]="userType === 'admin' ? 'admin' : 'aluno'"
+                    (delete)="excluirObservacao(obs.id)"
                 >
                 </app-observation>
             }
@@ -73,6 +73,13 @@
         }
     </div>
 </div>
+
+<app-observation-modal
+    *ngIf="showObservationModal"
+    [isOpen]="showObservationModal"
+    (confirm)="onObservationConfirm($event)"
+    (close)="onObservationModalClose()"
+></app-observation-modal>
 
 
 <div

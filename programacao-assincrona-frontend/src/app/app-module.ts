@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { Login } from './pages/login/login';
 import { Matricula } from './pages/matricula/matricula';
-import { MyProfile } from './pages/my-profile/my-profile';
+import { MyProfile } from "./pages/my-profile/my-profile";
 import { Table } from './components/table/table';
 import { Students } from './pages/students/students';
 import { Subjects } from './pages/subjects/subjects';
@@ -25,7 +25,7 @@ import { Observations } from './pages/observations/observations';
 import { Observation } from './components/observation/observation';
 import { Dashboards } from './pages/dashboards/dashboards';
 import { SectionCard } from './components/section-card/section-card';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { StudentProfile } from './pages/student-profile/student-profile';
 import { ObservationProfile } from './components/observation-profile/observation-profile';
 
@@ -58,7 +58,8 @@ import { ObservationProfile } from './components/observation-profile/observation
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
