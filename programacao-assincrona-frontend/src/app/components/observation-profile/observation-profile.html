@@ -1,0 +1,15 @@
+<div class="observation-card">
+  <div class="card-header">
+    <input 
+      type="checkbox" 
+      class="custom-checkbox" 
+      [checked]="isChecked"
+      (change)="isChecked = !isChecked"
+    >
+    <span class="date-text">{{ date }}</span>
+  </div>
+  
+  <p class="body-text">
+    {{ text }}
+  </p>
+</div>

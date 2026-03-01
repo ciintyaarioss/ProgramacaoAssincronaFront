@@ -26,6 +26,8 @@ import { Observation } from './components/observation/observation';
 import { Dashboards } from './pages/dashboards/dashboards';
 import { SectionCard } from './components/section-card/section-card';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StudentProfile } from './pages/student-profile/student-profile';
+import { ObservationProfile } from './components/observation-profile/observation-profile';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     Observation,
     Dashboards,
     SectionCard,
+    StudentProfile,
+    ObservationProfile,
   ],
   imports: [
     BrowserModule,

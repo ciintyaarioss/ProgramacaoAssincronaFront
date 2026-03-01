@@ -10,6 +10,7 @@ import { Teachers } from './pages/teachers/teachers';
 import { Home } from './pages/home/home';
 import { Observations } from './pages/observations/observations';
 import { Dashboards } from './pages/dashboards/dashboards';
+import { StudentProfile } from './pages/student-profile/student-profile';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -55,7 +56,19 @@ const routes: Routes = [
     canActivate: [roleGuard],
     data: { roles: ['professor', 'aluno'] } 
   },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { 
+    path: 'dashboards', 
+    component: Dashboards,
+    canActivate: [roleGuard],
+    data: { roles: ['professor', 'admin'] } 
+  },
+  { 
+    path: 'student-profile/:id', 
+    component: StudentProfile,
+    canActivate: [roleGuard],
+    data: { roles: ['professor', 'admin'] } 
+  },
+
   { path: '**', redirectTo: '/home' }
 ];
 
