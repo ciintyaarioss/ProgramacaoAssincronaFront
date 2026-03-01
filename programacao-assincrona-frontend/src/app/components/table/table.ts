@@ -47,8 +47,9 @@ export class Table implements OnChanges {
       }
     });
   }
-    goToStudent(id: number) {
-    this.router.navigate(['/student-profile', id]);
+  goToStudent(aluno: Aluno) {
+    aluno.senha = '';
+    this.router.navigate(['/student-profile'], {queryParams: aluno});
   }
 
 

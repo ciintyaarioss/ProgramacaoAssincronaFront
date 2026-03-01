@@ -63,7 +63,7 @@ const routes: Routes = [
     data: { roles: ['professor', 'admin'] } 
   },
   { 
-    path: 'student-profile/:id', 
+    path: 'student-profile', 
     component: StudentProfile,
     canActivate: [roleGuard],
     data: { roles: ['professor', 'admin'] } 

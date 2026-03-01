@@ -1,6 +1,10 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { ActivatedRoute } from '@angular/router';
+import { Activity, Score, Subject, SubjectService } from '../../services/subjects.service';
+import { AuthService } from '../../services/auth.service';
+import { Observation, ObservationService } from '../../services/observation.service';
 
 @Component({
   selector: 'app-student-profile',
@@ -8,7 +12,7 @@ import html2canvas from 'html2canvas';
   templateUrl: './student-profile.html',
   styleUrl: './student-profile.css',
 })
-export class StudentProfile {
+export class StudentProfile  implements OnInit {
   infos = [
     'Nome: Matheus Ueno',
     'CPF: 602.066.628-07',
@@ -16,29 +20,65 @@ export class StudentProfile {
     'Situação Geral: Pendente ',
   ]
 
+  userType: string = '';
+  observationsList: Observation[] = [];
   subjects = [
     { nome: 'Matemática', media: 8.5, status: 'Aprovado' },
     { nome: 'Português', media: 7.2, status: 'Aprovado' },
     { nome: 'Ciências', media: 5.9, status: 'Reprovado' },
   ]
 
-  scoresData = [
-    { id: 1, atividade: 'Matemática',notas: 8.5 },
-    { id: 2, atividade: 'Português', notas: 7.2},
-    { id: 3, atividade: 'Ciências', notas: 9.0},
-    { id: 4, atividade: 'História', notas: 8.0},
-    { id: 5, atividade: 'Geografia', notas: 7.5},
+  scoresData: Activity[] = [
 
   ];
 
-  scoresDataForPdf = [
-    { id: 1, disciplina: 'Matemática', mediaFinal: 8.5, status: 'Aprovado' },
-    { id: 2, disciplina: 'Português', mediaFinal: 7.2, status: 'Aprovado' },
-    { id: 3, disciplina: 'Ciências', mediaFinal: 5.9, status: 'Reprovado' },
+  scoresDataForPdf: Score[] = [
+
   ];
 
   @ViewChild('pdfContent', { static: false }) pdfContent!: ElementRef;
+  constructor(private route: ActivatedRoute,
+    private authService: AuthService,
+    private subjectService: SubjectService,
+    private cdr: ChangeDetectorRef,
+    private observationService: ObservationService) {}
 
+  ngOnInit() {
+    this.userType = this.authService.getUserType() ?? '';
+
+    const params = this.route.snapshot.queryParamMap;
+    const id = Number(params.get('id'));
+    const nome = params.get('nome');
+    const cpf = params.get('cpf');
+    const matricula = params.get('matricula');
+
+    this.infos = [
+      `Nome: ${nome}`,
+      `CPF: ${cpf}`,
+      `Matrícula: ${matricula}`,
+      `Situação Geral: Pendente`,
+    ];
+
+
+    
+    this.subjectService.listarAtividades(id).subscribe(res => {
+      this.scoresData = res;
+      this.cdr.detectChanges(); // Força a detecção de mudanças após atualizar os dados
+    });
+
+    this.subjectService.listarNotas(id).subscribe(res => {
+      this.scoresDataForPdf = res;
+      this.cdr.detectChanges(); // Força a detecção de mudanças após atualizar os dados
+    });
+
+    this.observationService.listarObservacoesPorAluno(id).subscribe(res => {
+      this.observationsList = res;
+      this.cdr.detectChanges(); // Força a detecção de mudanças após atualizar os dados
+     }
+    );
+
+
+  }
   selectedFilter: string | null = null;
 
   selectFilter(filter: string) {
