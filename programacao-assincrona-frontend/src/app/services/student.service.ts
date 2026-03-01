@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Aluno {
@@ -26,8 +26,27 @@ export class StudentService {
   constructor(private http: HttpClient) { }
 
   criarAluno(aluno: Aluno): Observable<any> {
-    return this.http.post(`${this.apiUrl}/aluno/adicionar`, aluno);
-  }
+    const params = new HttpParams()
+      .set('nome', aluno.nome)
+      .set('senha', aluno.senha)
+      .set('cpf', aluno.cpf)
+      .set('matricula', aluno.matricula);
+
+ return this.http.post(
+   `${this.apiUrl}/aluno/adicionar`,
+    null,
+    {
+      params: {
+        nome: aluno.nome,
+        senha: aluno.senha,
+        cpf: aluno.cpf,
+        matricula: aluno.matricula
+      },
+      responseType: 'text'  // 👈 AQUI ESTÁ A SOLUÇÃO
+    }
+  );
+
+}  
 
   listarAlunoDesativos(): Observable<Aluno[]>{
     return this.http.get<Aluno[]>(`${this.apiUrl}/aluno/listarDesativo`);

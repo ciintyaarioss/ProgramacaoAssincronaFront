@@ -44,7 +44,6 @@ export class Matricula {
       senha: this.registerForm.value.senha,
       matricula: this.gerarMatricula()
     };
-
     this.studentService.criarAluno(aluno).subscribe({
       next: (res) => {
         console.log('Aluno criado', res);
@@ -59,7 +58,7 @@ export class Matricula {
   }
 
   gerarMatricula(): string {
-    return Math.floor(100000 + Math.random() * 900000).toString();
+    return "0002-"+Math.floor(100000 + Math.random() * 900000).toString()+`${new Date().getFullYear()}${new Date().getMonth()+1}${new Date().getDate()}`;
   }
 
 }
