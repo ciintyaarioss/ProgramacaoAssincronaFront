@@ -45,8 +45,10 @@
       <td>{{ row.cpf }}</td>
       <td>{{ row.matricula }}</td>
       <td>
-        <img  src="remove-user.svg" style="margin-right: 30px;" alt="">
-        <img src="verified-user.svg" (click)="acionarAluno(row.id ? row.id:0)" alt="">
+        <img *ngIf="row.ativo === '0'" (click)="deletarAluno(row.id ? row.id:0)" src="remove-user.svg" style="margin-right: 30px;" alt="">
+        <img *ngIf="row.ativo === '1'" (click)="acionarAluno(row.id ? row.id:0)" src="remove-user.svg" alt="">
+
+        <img  *ngIf="row.ativo === '0'"  src="verified-user.svg" (click)="acionarAluno(row.id ? row.id:0)" alt="">
       </td>
     </tr>
   </tbody>

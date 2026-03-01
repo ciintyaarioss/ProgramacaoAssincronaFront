@@ -47,6 +47,15 @@ export class Table implements OnChanges {
       }
     });
   }
+  deletarAluno(id: number) {
+    if (confirm('Tem certeza que deseja deletar este aluno?')) {
+      this.studentService.deletarAluno(id).subscribe({
+        next: (res) => {
+          console.log('Aluno deletado', res);
+        }});
+    }
+  }
+
   goToStudent(aluno: Aluno) {
     aluno.senha = '';
     this.router.navigate(['/student-profile'], {queryParams: aluno});

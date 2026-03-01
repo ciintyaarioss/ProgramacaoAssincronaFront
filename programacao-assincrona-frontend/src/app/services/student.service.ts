@@ -7,7 +7,7 @@ export interface Aluno {
   senha: string;
   cpf: string;
   matricula: string;
-  ativo?: boolean;
+  ativo?: string;
   id?: number;
     [key: string]: any;
 
@@ -59,6 +59,9 @@ export class StudentService {
   }
   acionarAluno(id: number): Observable<any> {
     return this.http.patch(`${this.apiUrl}/aluno?alunoId=${id}`, {});
+  }
+  deletarAluno(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/aluno/deletar?id=${id}`); 
   }
 
 }
