@@ -15,32 +15,26 @@ export class Students implements OnInit {
   typeTable: string = '';
 
 
-  constructor(private authService: AuthService, private studentService: StudentService, private router: Router,  private cdr: ChangeDetectorRef  // 👈 injeta
-) {
-
-  }
+  constructor(private authService: AuthService, private studentService: StudentService, private router: Router,  private cdr: ChangeDetectorRef) {}
   studentsData : Aluno[] = [];
-
-
   
   selectedFilter: string | null = 'matriculados';
+  
   ngOnInit() {
 
     this.userType = this.authService.getUserType() ?? '';
-
-
 
     if (this.userType === 'admin') {
       this.typeTable = 'students-for-admin';
       this.studentService.listarAlunoAtivos().subscribe(res => {
         this.studentsData = res;
-        this.cdr.detectChanges(); // 👈 força atualização
+        this.cdr.detectChanges();
       });
 
     } else if (this.userType === 'professor') {
         this.studentService.listarAlunos().subscribe(res => {
         this.studentsData = res;
-        this.cdr.detectChanges(); // 👈 força atualização
+        this.cdr.detectChanges();
       });
       this.typeTable = 'students-for-teacher';
     } else {
@@ -55,30 +49,31 @@ export class Students implements OnInit {
     }
     this.selectFilter(this.selectedFilter!);
   }
+
   goToStudent(id: number) {
     this.router.navigate(['/student-profile', id]);
   }
 
-selectFilter(filter: string) {
-  this.selectedFilter = filter;
+  selectFilter(filter: string) {
+    this.selectedFilter = filter;
 
 
-  if (this.userType === 'admin') {
-    if (filter === 'matriculados') {
-      this.studentService.listarAlunoAtivos().subscribe(res => {
-        this.studentsData = res;
-        this.cdr.detectChanges(); // 👈 força atualização
+    if (this.userType === 'admin') {
+      if (filter === 'matriculados') {
+        this.studentService.listarAlunoAtivos().subscribe(res => {
+          this.studentsData = res;
+          this.cdr.detectChanges();
 
-      });
-    } else {
-      this.studentService.listarAlunoDesativos().subscribe(res => {
-        this.studentsData = res;
-        this.cdr.detectChanges(); // 👈 força atualização
+        });
+      } else {
+        this.studentService.listarAlunoDesativos().subscribe(res => {
+          this.studentsData = res;
+          this.cdr.detectChanges();
 
-      });
+        });
+      }
     }
   }
-}
 
 }
 

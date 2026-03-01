@@ -17,11 +17,16 @@
                 }
             </div>
 
-            @if (!selectable && date) {
-                <div class="header-right">
+            <div class="header-right">
+                @if (date) {
                     <span class="meta-date">{{ date }}</span>
-                </div>
-            }
+                }
+                @if (type === 'admin') {
+                    <button class="btn-delete" (click)="onDelete()">
+                        <img src="/del-circle.svg" alt="Excluir">
+                    </button>
+                }
+            </div>
         </div>
         @if (!selectable) {
             <hr class="separator">

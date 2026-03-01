@@ -10,7 +10,7 @@
                     [studentName]="obs.aluno"
                     [date]="(obs.data | date:'dd/MM/yyyy HH:mm') ?? ''"
                     [message]="obs.text"
-                    [type]="userType === 'admin' ? 'admin' : 'student'"
+                    [type]="userType === 'admin' ? 'admin' : 'aluno'"
                 >
                 </app-observation>
             }
