@@ -2,6 +2,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { Aluno } from '../../services/student.service';
 import { StudentService } from '../../services/student.service';
 import { Router } from '@angular/router';
+import { Professor } from '../../services/teacher.service';
 @Component({
   selector: 'app-table',
   standalone: false,
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class Table implements OnChanges {
   @Input() dataStudent: Aluno[] = [];
   @Input() dataSubject: any[] = [];
-  @Input() dataTeacher: any[] = []
+  @Input() dataTeacher: Professor[] = []
   @Input() dataScores: any[] = []
 
   @Input() type: string = '';
