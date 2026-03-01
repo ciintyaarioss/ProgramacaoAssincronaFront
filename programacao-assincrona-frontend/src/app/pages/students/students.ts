@@ -32,6 +32,10 @@ export class Students implements OnInit {
 
     if (this.userType === 'admin') {
       this.typeTable = 'students-for-admin';
+      this.studentService.listarAlunoAtivos().subscribe(res => {
+        this.studentsData = res;
+        this.cdr.detectChanges(); // 👈 força atualização
+      });
 
     } else if (this.userType === 'professor') {
         this.studentService.listarAlunos().subscribe(res => {
