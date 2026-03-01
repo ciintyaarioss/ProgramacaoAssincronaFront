@@ -67,10 +67,14 @@ selectFilter(filter: string) {
     if (filter === 'matriculados') {
       this.studentService.listarAlunoAtivos().subscribe(res => {
         this.studentsData = res;
+        this.cdr.detectChanges(); // 👈 força atualização
+
       });
     } else {
       this.studentService.listarAlunoDesativos().subscribe(res => {
         this.studentsData = res;
+        this.cdr.detectChanges(); // 👈 força atualização
+
       });
     }
   }
