@@ -10,7 +10,7 @@ export class Observation {
   @Input() teacherName: string = '';
   @Input() studentName: string = '';
   @Input() message: string = '';
-  @Input() type: 'admin' | 'aluno'  = 'aluno';
+  @Input() type: 'admin' | 'student'  = 'student';
   
   @Input() selectable: boolean = false;
   @Input() date: string = '';

@@ -29,6 +29,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { StudentProfile } from './pages/student-profile/student-profile';
 import { ObservationProfile } from './components/observation-profile/observation-profile';
 import { MatriculaSuccess } from './pages/matricula-success/matricula-success';
+import { ChartSubjects } from './components/chart-subjects/chart-subjects';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { MatriculaSuccess } from './pages/matricula-success/matricula-success';
     StudentProfile,
     ObservationProfile,
     MatriculaSuccess,
+    ChartSubjects,
   ],
   imports: [
     BrowserModule,

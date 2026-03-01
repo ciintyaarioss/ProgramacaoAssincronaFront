@@ -77,16 +77,18 @@
       ></app-card>
 
       <app-card
-        title="Alunos reprovados"
-        [value]=0
+        title="Disciplina com maior média:"
+        [fontSize]="'20px'"
+        [value]=highestAverageSubject.disciplina
         bgColor="#E7D6D6"
         titleColor="#333"
         valueColor="#333"
       ></app-card>
 
       <app-card
-        title="Alunos aprovados"
-        [value]=0
+        title="Disciplina com menor média:"
+        [value]=lowestAverageSubject.disciplina
+        [fontSize]="'20px'"
         bgColor="#F4B9B9"
         titleColor="#333"
         valueColor="#333"
@@ -94,12 +96,10 @@
     </div>
 
     <div class="right-table">
-      <app-table
-        type="students-for-admin"
-        [columnsStudentsForAdmin]="['Aluno', 'Matrícula', 'Observações']"
-        [dataStudent]="adminStudentsData"
-      ></app-table>
+    <app-chart-subjects [subjectsNames]="subjectsNames" [subjectsApproved]="subjectsApproved" [subjectsFailed]="subjectsFailed" [subjectsAverages]="subjectsAverages"></app-chart-subjects>
+
     </div>
 
   </app-section-card>
+
 </div>
