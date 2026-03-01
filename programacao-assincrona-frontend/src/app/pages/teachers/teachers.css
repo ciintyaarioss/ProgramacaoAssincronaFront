@@ -77,12 +77,3 @@
   gap: 15px;
   cursor: pointer;
 }
-
-.page-header {
-  margin-top: 10vh;
-  margin-left: 3vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 90%;
-}

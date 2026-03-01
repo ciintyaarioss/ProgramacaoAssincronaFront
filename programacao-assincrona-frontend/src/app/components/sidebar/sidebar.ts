@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-sidebar',
   standalone: false,
@@ -12,7 +13,7 @@ export class Sidebar {
   iconAction: string = 'icon_voltar.svg'; 
   userType: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.userType = this.authService.getUserType() || '';
@@ -37,6 +38,12 @@ export class Sidebar {
     this.iconAction = this.isOpen ? 'icon_voltar.svg' : 'icon_abrir.svg';
     const width = this.isOpen ? '260px' : '65px'; 
     document.documentElement.style.setProperty('--sidebar-width', width);
+  }
+
+  logout() {
+    localStorage.removeItem('user_role');
+    localStorage.removeItem('user_data');
+    this.router.navigate(['/login']);
   }
 
 }

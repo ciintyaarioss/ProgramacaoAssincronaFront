@@ -17,14 +17,13 @@ export class AuthService {
   private keyUserData = 'user_data';
 
 
-  private apiUrl = 'https://programacaoassincrona-back.onrender.com'; // base da API
+  private apiUrl = 'https://programacaoassincrona-back.onrender.com';
 
   constructor(private http: HttpClient) { }
 
   login(data: LoginBody): Observable<any> {
     return this.http.post(`${this.apiUrl}`, data).pipe(
       tap(() => {
-        // salva o tipo do usuário após login
         this.setUserType(data.user_type);
         this.setUserData(data);
       })

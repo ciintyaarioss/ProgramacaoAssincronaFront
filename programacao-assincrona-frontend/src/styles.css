@@ -9,3 +9,12 @@
 :root {
   --sidebar-width: 260px;
 }
+
+.page-header {
+  margin-top: 7vh;
+  margin-left: 3vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+}

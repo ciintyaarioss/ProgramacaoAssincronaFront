@@ -26,8 +26,8 @@ export class Table implements OnChanges {
   }
 
   ngOnChanges() {
-    console.log('Data recebida no Table:', this.dataStudent);
-  }
+  console.log('Data recebida no Table:', this.dataStudent);
+}
 
   @Input() columnsStudentsForTeacher = ["nome", "cpf", "matricula", "Detalhes"];
   @Input() columnsStudentsForAdmin = ["nome", "cpf", "matricula", "Ações"];
@@ -47,7 +47,6 @@ export class Table implements OnChanges {
       }
     });
   }
-
   deletarAluno(id: number) {
     if (confirm('Tem certeza que deseja deletar este aluno?')) {
       this.studentService.deletarAluno(id).subscribe({
@@ -58,7 +57,8 @@ export class Table implements OnChanges {
   }
 
   goToStudent(aluno: Aluno) {
-    this.router.navigate(['/student-profile', aluno.id]);
+    this.router.navigate(['/student-profile', aluno.matricula]);
   }
+
 
 }
