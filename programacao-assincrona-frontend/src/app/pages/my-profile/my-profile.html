@@ -1,55 +1,81 @@
 <h1>Meu Perfil</h1>
 
 <p *ngFor="let info of infos">{{ info }}</p>
+<div *ngIf="userType === 'professor'">
+    <h2>Observações enviadas</h2>
+    <div class="list-container">
 
-<h2>Notas</h2>
-<div class="filters-button-container">
-    <div class="filters-containers">
-      <span *ngFor="let sub of subjects "
-          class="filters-text"
-        [class.active]="sub.nome === selectedFilter"
-        (click)="selectFilter(sub.nome)"
+    <div class="white-container">
+        @if (observationsList.length > 0) {
+            @for (obs of observationsList; track obs.id) {
+                    <app-observation
+                    [teacherName]="obs.professor"
+                    [studentName]="obs.aluno"
+                    [date]="(obs.data | date:'dd/MM/yyyy HH:mm') ?? ''"
+                    [message]="obs.text"
+                    [type]="'admin'"
+                >
+                </app-observation>
+            }
+        }@else {
+            <p class="without-info">
+                Nenhuma observação encontrada.
+            </p>
+        }
+    </div>
+</div>
+   
+</div>
+<div *ngIf="userType === 'aluno'">
     
-      >{{ sub.nome }}
-      </span>
+    <h2>Notas</h2>
+    <div class="filters-button-container">
+        <div class="filters-containers">
+          <span *ngFor="let sub of subjects "
+              class="filters-text"
+            [class.active]="sub.nome === selectedFilter"
+            (click)="selectFilter(sub.nome)"
+    
+          >{{ sub.nome }}
+          </span>
+        </div>
+        <button class="button-boletim" (click)="gerarPdf()">Imprimir Boletim</button>
     </div>
-    <button class="button-boletim" (click)="gerarPdf()">Imprimir Boletim</button>
-</div>
-
-<div class ="table-cards-container">
-    <div class="grades-container">
-        <app-card
-            title="Média Atual"
-            value="8.5"
-            bgColor="#FAFAFA"
-            titleColor="#E2857E"
-            valueColor="#616161"
-        ></app-card>
-        <app-card
-            title="Aprovado?"
-            value="7.2"
-            bgColor="#FAFAFA"
-            titleColor="#E2857E"
-            valueColor="#616161"
-        ></app-card>
+    
+    <div class ="table-cards-container">
+        <div class="grades-container">
+            <app-card
+                title="Média Atual"
+                value="8.5"
+                bgColor="#FAFAFA"
+                titleColor="#E2857E"
+                valueColor="#616161"
+            ></app-card>
+            <app-card
+                title="Aprovado?"
+                value="7.2"
+                bgColor="#FAFAFA"
+                titleColor="#E2857E"
+                valueColor="#616161"
+            ></app-card>
+        </div>
+    
+        <app-small-table class="table"
+            [data]="scoresData"
+            [type]="'scores-for-students'">
+        </app-small-table>
     </div>
-
-    <app-small-table class="table"
-        [data]="scoresData"
-        [type]="'scores-for-students'">
-    </app-small-table>
-</div>
-
-
-<div
-class="pdf-wrapper"
-#pdfContent>
-<h1> Boletim Escolar</h1>
-<p *ngFor="let info of infos">{{ info }}</p>
-    <app-table 
-       [pdfMode]="true"
+    
+    
+    <div
+    class="pdf-wrapper"
+    #pdfContent>
+    <h1> Boletim Escolar</h1>
+    <p *ngFor="let info of infos">{{ info }}</p>
+        <app-table
+        [pdfMode]="true"
         [dataScores]="scoresDataForPdf"
-         [type]="'scores-for-pdf'">
-
-    </app-table>
+        [type]="'scores-for-pdf'">
+        </app-table>
+    </div>
 </div>
