@@ -60,4 +60,8 @@ export class Matricula {
     return "0002-"+Math.floor(100000 + Math.random() * 900000).toString()+`${new Date().getFullYear()}${new Date().getMonth()+1}${new Date().getDate()}`;
   }
 
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+
 }

@@ -14,4 +14,12 @@
             [sidebarOpen]="isOpen">
         </app-tab>
     </div>
+
+    <!-- Botão Sair -->
+    <div class="sair-container">
+        <div class="menu-item sair" (click)="logout()" [class.closed]="!isOpen">
+            <img src="logout.svg" alt="Sair">
+            <span *ngIf="isOpen">Sair</span>
+        </div>
+    </div>
 </div>

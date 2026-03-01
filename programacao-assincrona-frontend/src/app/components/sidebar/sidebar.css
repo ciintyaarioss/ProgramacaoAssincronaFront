@@ -11,7 +11,6 @@
   padding: 20px;
   z-index: 1001;
   box-sizing: border-box;
-  transition: width 0.3s ease;
   overflow: hidden;
 }
 
@@ -49,7 +48,6 @@
 #button-action {
     cursor: pointer;
     width: 20px;
-    transition: transform 0.3s;
 }
 
 .itens-tab {
@@ -57,4 +55,50 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    flex: 1;
+}
+
+/* Botão Sair */
+.sair-container {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.menu-item.sair {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 15px;
+    color: #FF383C;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 8px;
+}
+
+.menu-item.sair:hover {
+    background-color: rgba(255, 56, 60, 0.1);
+}
+
+.menu-item.sair img {
+    width: 24px;
+    height: 24px;
+    filter: invert(22%) sepia(92%) saturate(2099%) hue-rotate(345deg%) brightness(101%) contrast(101%);
+}
+
+.menu-item.sair span {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sidebar.closed .menu-item.sair {
+    justify-content: center;
+    padding: 12px;
+}
+
+.sidebar.closed .menu-item.sair span {
+    display: none;
 }

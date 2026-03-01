@@ -21,14 +21,6 @@
   align-items: center;
 }
 
-.page-header {
-  margin-top: 10vh;
-  margin-left: 3vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 90%;
-}
 select {
     width: 30%;
     padding: 8px;

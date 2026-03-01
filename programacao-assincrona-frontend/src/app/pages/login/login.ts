@@ -35,7 +35,7 @@ export class Login {
   }
 
   goToRegister() {
-    this.router.navigate(['/register']);
+    this.router.navigate(['/matricula']);
   }
 
   onSubmit() {

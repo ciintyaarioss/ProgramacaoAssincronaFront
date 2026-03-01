@@ -6,16 +6,15 @@
     text-decoration: none;
     font-size: 16px;
     font-weight: 500;
-    transition: all 0.3s ease;
     cursor: pointer;
     border-radius: 15px;
+    margin: 0 8px;
     margin-bottom: 8px;
 }
 
 .menu-item img {
     width: 24px;
     height: 24px;
-    transition: filter 0.3s ease;
 }
 
 .menu-item span {
@@ -33,4 +32,10 @@
 
 .active-class img {
     filter: brightness(0) invert(1);
+}
+
+/* Margem quando sidebar fechado */
+.menu-item.sidebar-closed {
+    padding: 12px 14px;
+    justify-content: center;
 }
