@@ -22,7 +22,6 @@ const routes: Routes = [
   },
   { path: 'matricula', component: Matricula },
   { path: 'matricula-success', component: MatriculaSuccess },
-
   { 
     path: 'home', 
     component: Home,
@@ -66,7 +65,7 @@ const routes: Routes = [
     data: { roles: ['professor', 'admin'] } 
   },
   { 
-    path: 'student-profile', 
+    path: 'student-profile/:matricula', 
     component: StudentProfile,
     canActivate: [roleGuard],
     data: { roles: ['professor', 'admin'] } 

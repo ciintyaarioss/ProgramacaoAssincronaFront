@@ -51,16 +51,18 @@ export class StudentProfile  implements OnInit {
   ngOnInit() {
     this.userType = this.authService.getUserType() ?? '';
 
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.alunoId = id;
+    // Ler matrícula do path param
+    const matricula = this.route.snapshot.paramMap.get('matricula');
 
-    if (!id) {
-      console.error('ID do aluno não encontrado');
+    if (!matricula) {
+      console.error('Matrícula do aluno não encontrada');
       return;
     }
 
-    this.studentService.getAlunoById(id).subscribe({
+    // Buscar dados do aluno pela matrícula
+    this.studentService.getAlunoByMatricula(matricula).subscribe({
       next: (aluno: Aluno) => {
+        this.alunoId = aluno.id || 0;
         this.infos = [
           `Nome: ${aluno.nome || ''}`,
           `CPF: ${aluno.cpf || ''}`,
@@ -68,13 +70,19 @@ export class StudentProfile  implements OnInit {
           `Situação Geral: ${aluno.ativo === 'S' ? 'Ativo' : 'Pendente'}`,
         ];
         this.cdr.detectChanges();
+
+        // Buscar dados usando o ID do aluno
+        if (this.alunoId) {
+          this.carregarDadosAluno(this.alunoId);
+        }
       },
       error: (err) => {
         console.error('Erro ao buscar aluno:', err);
       }
     });
+  }
 
-    
+  carregarDadosAluno(id: number) {
     this.subjectService.listarAtividades(id).subscribe(res => {
       this.scoresData = res;
       this.cdr.detectChanges();

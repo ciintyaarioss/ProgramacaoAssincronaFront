@@ -96,6 +96,12 @@ a{
     font-size: 18px;
     color: #7C89AB;
     text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
 }
 
 .label-login{
