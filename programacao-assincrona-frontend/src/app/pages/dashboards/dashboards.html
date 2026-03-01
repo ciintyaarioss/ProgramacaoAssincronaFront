@@ -4,15 +4,20 @@
 </div>
 <div class="info-container">
   <app-section-card title="Disciplina">
+    <select section-action
+     (change)="onSelectChange($event)">
+      <option [ngValue]="null">Selecione uma disciplina</option>
 
-    <select section-action>
-      <option>Selecione uma disciplina</option>
+      <option *ngFor="let subject of subjectsData"
+              [ngValue]="subject">
+        {{ subject.disciplina }}
+      </option>
     </select>
 
     <div class="left-cards">
       <app-card
         title="Média dos alunos"
-        [value]=6.7
+        [value]=subjectSelected.mediaDisciplina
         bgColor="#9FAAC4"
         titleColor="#333"
         valueColor="#333"
@@ -20,7 +25,7 @@
 
       <app-card
         title="Menor nota na disciplina"
-        [value]=2.5
+        [value]=0
         bgColor="#C7CCD9"
         titleColor="#333"
         valueColor="#333"
@@ -28,7 +33,7 @@
 
       <app-card
         title="Alunos reprovados"
-        [value]=6
+        [value]=subjectSelected.reprovados
         bgColor="#DADBE6"
         titleColor="#333"
         valueColor="#333"
@@ -36,7 +41,7 @@
 
       <app-card
         title="Alunos aprovados"
-        [value]=2
+        [value]=subjectSelected.aprovados
         bgColor="#9FAAC4"
         titleColor="#333"
         valueColor="#333"
@@ -57,7 +62,7 @@
     <div class="left-cards">
       <app-card
         title="Quantidade total de alunos"
-        [value]=30
+        [value]=adminStudentsData.length
         bgColor="#F4B9B9"
         titleColor="#333"
         valueColor="#333"
@@ -65,7 +70,7 @@
 
       <app-card
         title="Observações totais"
-        [value]=15
+        [value]=observationsData.length
         bgColor="#E7D6D6"
         titleColor="#333"
         valueColor="#333"
@@ -73,7 +78,7 @@
 
       <app-card
         title="Alunos reprovados"
-        [value]=15
+        [value]=0
         bgColor="#E7D6D6"
         titleColor="#333"
         valueColor="#333"
@@ -81,7 +86,7 @@
 
       <app-card
         title="Alunos aprovados"
-        [value]=10
+        [value]=0
         bgColor="#F4B9B9"
         titleColor="#333"
         valueColor="#333"

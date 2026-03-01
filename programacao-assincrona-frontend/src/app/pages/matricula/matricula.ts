@@ -47,7 +47,6 @@ export class Matricula {
     this.studentService.criarAluno(aluno).subscribe({
       next: (res) => {
         console.log('Aluno criado', res);
-        alert('Matrícula realizada com sucesso!');
         this.router.navigate(['/matricula-success']);
       },
       error: (err) => {
