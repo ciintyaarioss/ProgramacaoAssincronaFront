@@ -1,3 +1,6 @@
+
+<p>Quantidade: {{ dataStudent.length }}</p>
+<p>Primeiro Nome: {{ dataStudent[0]?.nome }}</p>
 <table [class.pdf]="pdfMode"
        class="custom-table"
        *ngIf="type === 'students-for-teacher'">
@@ -16,9 +19,9 @@
       <td>{{ row.nome }}</td>
       <td>{{ row.cpf }}</td>
       <td>{{ row.matricula }}</td>
-      <td>
+      <td (click)="goToStudent(row.id? row.id:0)">
         Ver Mais
-        <img src="open-new-window.svg" alt="">
+        <img  src="open-new-window.svg" alt="">
       </td>
     </tr>
   </tbody>

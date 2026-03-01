@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { Aluno } from '../../services/student.service';
 import { StudentService } from '../../services/student.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-table',
   standalone: false,
@@ -17,7 +18,7 @@ export class Table implements OnChanges {
   @Input() pdfMode = false;
 
 
-  constructor(private studentService: StudentService) {
+  constructor(private studentService: StudentService, private router: Router) {
 
   }
 
@@ -40,14 +41,11 @@ export class Table implements OnChanges {
     this.studentService.acionarAluno(id).subscribe({
       next: (res) => {
         console.log('Aluno acionado', res);
-        this.studentService.listarAlunoAtivos().subscribe({
-          next: (res) => {
-            this.dataStudent = res;   
-            console.log('Alunos listados', res);
-          }
-        });
       }
     });
+  }
+    goToStudent(id: number) {
+    this.router.navigate(['/student-profile', id]);
   }
 
 
