@@ -1,0 +1,101 @@
+<div class="header">
+    <img src="/fast-arrow-left.svg" alt="">
+    <p>Voltar</p>
+</div>
+<h1>Perfil do aluno</h1>
+
+<p *ngFor="let info of infos">{{ info }}</p>
+
+<h2>Notas</h2>
+<div class="filters-button-container">
+    <div class="filters-containers">
+      <span *ngFor="let sub of subjects "
+          class="filters-text"
+        [class.active]="sub.nome === selectedFilter"
+        (click)="selectFilter(sub.nome)"
+    
+      >{{ sub.nome }}
+      </span>
+    </div>
+    <button class="button-boletim" (click)="gerarPdf()">Imprimir Boletim</button>
+</div>
+
+<div class ="table-cards-container">
+    <div class="grades-container">
+        <app-card
+            title="Média Atual"
+            value="8.5"
+            bgColor="#FAFAFA"
+            titleColor="#E2857E"
+            valueColor="#616161"
+        ></app-card>
+        <app-card
+            title="Aprovado?"
+            value="7.2"
+            bgColor="#FAFAFA"
+            titleColor="#E2857E"
+            valueColor="#616161"
+        ></app-card>
+    </div>
+
+    <app-small-table class="table"
+        [data]="scoresData"
+        [type]="'scores-for-students'">
+    </app-small-table>
+</div>
+
+
+<div class="obs-container">
+    <div class="obs-header">
+        <h2>Observações enviadas</h2>
+        <div class="obs-button">
+            <button class="btn-del">Deletar observação <img src="/del-circle.svg" alt=""></button>
+            <button class="btn-add">Inserir observação <img src="/add-circle.svg" alt=""></button>
+        </div>
+    </div>
+
+    <div class="obs-list-container">
+        <app-observation-profile 
+            date="06/02 - 17:10" 
+            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">
+        </app-observation-profile>
+
+        <app-observation-profile 
+            date="06/02 - 17:10" 
+            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">
+        </app-observation-profile>
+
+        <app-observation-profile 
+            date="06/02 - 17:10" 
+            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">
+        </app-observation-profile>
+
+        <app-observation-profile 
+            date="06/02 - 17:10" 
+            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">
+        </app-observation-profile>
+
+        <app-observation-profile 
+            date="06/02 - 17:10" 
+            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.">
+        </app-observation-profile>
+
+        <app-observation-profile 
+            date="04/02 - 10:15" 
+            text="Faz uma apresentacao decente pfv diva">
+        </app-observation-profile>
+    </div>
+</div>
+
+
+<div
+class="pdf-wrapper"
+#pdfContent>
+<h1> Boletim Escolar</h1>
+<p *ngFor="let info of infos">{{ info }}</p>
+    <app-table 
+        [pdfMode]="true"
+        [data]="scoresDataForPdf"
+        [type]="'scores-for-pdf'">
+    </app-table>
+</div>
