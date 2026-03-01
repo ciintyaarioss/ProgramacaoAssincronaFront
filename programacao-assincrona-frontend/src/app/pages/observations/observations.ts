@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { Observation } from '../../models/observation.model';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { Observation, ObservationService } from '../../services/observation.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-observations',
@@ -10,31 +11,36 @@ import { Observation } from '../../models/observation.model';
 export class Observations {
   observationsList: Observation[] = [];
 
-  userType: 'admin' | 'student' = 'admin'; 
+  userType: 'admin' | 'aluno' | 'professor' = 'admin'; 
 
-  constructor(/* ainda nao tem coisa pra colocar aq */) {}
+  constructor(private observationService: ObservationService, private cdr: ChangeDetectorRef, private authService: AuthService) {}
 
   ngOnInit() {
+    this.userType = this.authService.getUserType() as 'admin' | 'aluno' | 'professor';
     this.loadObservations();
   }
 
   loadObservations() {
+    if (this.userType === 'admin') {
+      this.observationService.listarObservacoes().subscribe(res => {
+        this.observationsList = res;
+        this.cdr.detectChanges(); 
+      });
+    }
+    if (this.userType === 'aluno') {
+  
+      this.observationService.listarObservacoesPorAluno(this.authService.getUserData().id).subscribe(res => {
+        this.observationsList = res;
+        this.cdr.detectChanges(); 
+        
+      });
+    }
 
-    this.observationsList = [
-      {
-        id: 1,
-        teacherName: 'Rafael Akira',
-        studentName: 'Laura Melges',
-        date: '31/01 - 21:50',
-        message: 'Precisa melhorar a formatação do código.'
-      },
-      {
-        id: 2,
-        teacherName: 'Ana Luzia',
-        studentName: 'João Silva',
-        date: '01/02 - 10:00',
-        message: 'Parabéns pela apresentação!'
-      }
-    ];
+    if (this.userType === 'professor') {
+      this.observationService.listarObservacoesPorProfessor(this.authService.getUserData().id).subscribe(res => {
+        this.observationsList = res;
+        this.cdr.detectChanges();
+      });
+    }
   }
 }
