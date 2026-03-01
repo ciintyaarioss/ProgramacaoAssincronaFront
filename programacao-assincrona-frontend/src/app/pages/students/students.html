@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>Lista de Estudantes</h1>
 </div>
-<div class="filters-containers">
+<div class="filters-containers" *ngIf="userType === 'admin'">
   <p 
     class="filters-text"
     [class.active]="selectedFilter === 'matriculados'"
