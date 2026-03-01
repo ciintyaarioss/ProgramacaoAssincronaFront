@@ -8,11 +8,6 @@
     padding: 25px 25px 25px 25px;
 }
 
-h1 {
-    margin-top: 10vh;
-    margin-left: 3vw;
-}
-
 .search-container{
     display: flex;
     justify-content: flex-end;
@@ -71,3 +66,11 @@ h1 {
   cursor: pointer;
 }
 
+.page-header {
+  margin-top: 10vh;
+  margin-left: 3vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+}

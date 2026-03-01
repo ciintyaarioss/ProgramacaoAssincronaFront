@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Aluno, StudentService } from '../../services/student.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-students',
@@ -14,7 +15,7 @@ export class Students implements OnInit {
   typeTable: string = '';
 
 
-  constructor(private authService: AuthService, private studentService: StudentService) {
+  constructor(private authService: AuthService, private studentService: StudentService, private router: Router) {
 
   }
   studentsData : Aluno[] = [
@@ -54,6 +55,10 @@ export class Students implements OnInit {
 
   }
 }
+  goToStudent(id: number) {
+    this.router.navigate(['/student-profile', id]);
+  }
+
   selectFilter(filter: string) {
       this.selectedFilter = filter;
       if (filter === 'matriculados') {
