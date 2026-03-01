@@ -61,7 +61,7 @@
                     [studentName]="obs.aluno"
                     [date]="(obs.data | date:'dd/MM/yyyy HH:mm') ?? ''"
                     [message]="obs.text"
-                    [type]="userType === 'admin' ? 'admin' : 'aluno'"
+                    [type]="userType === 'admin' ? 'admin' : 'student'"
                     (delete)="excluirObservacao(obs.id)"
                 >
                 </app-observation>
