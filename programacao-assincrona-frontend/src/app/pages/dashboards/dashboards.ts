@@ -13,6 +13,8 @@ export class Dashboards implements OnInit {
   studentsData: Aluno[] = [
 
   ];
+
+  
   observationsData: Observation[] = [
 
   ];
@@ -22,9 +24,27 @@ export class Dashboards implements OnInit {
   aprovados: 0,
   mediaDisciplina: 0
   };
+
+  highestAverageSubject: Subject = {
+    disciplina: '',
+    reprovados: 0,
+    aprovados: 0,
+    mediaDisciplina: 0
+  };
+
+  lowestAverageSubject: Subject = {
+    disciplina: '',
+    reprovados: 0,
+    aprovados: 0,
+    mediaDisciplina: 0
+  };
   subjectsData: Subject[] = [
 
   ];
+  subjectsNames: string[] = [];
+  subjectsAverages: number[] = [];
+  subjectsApproved: number[] = [];
+  subjectsFailed: number[] = [];
   adminStudentsData : Aluno[] = [
 
   ];
@@ -35,16 +55,16 @@ export class Dashboards implements OnInit {
     this.subjectSelected = subject;
 
   }
-onSelectChange(event: Event) {
-  const select = event.target as HTMLSelectElement;
-  const selectedIndex = select.selectedIndex;
+  onSelectChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    const selectedIndex = select.selectedIndex;
 
-  const subject = this.subjectsData[selectedIndex - 1];
+    const subject = this.subjectsData[selectedIndex - 1];
 
-  if (subject) {
-    this.selectSubject(subject);
+    if (subject) {
+      this.selectSubject(subject);
+    }
   }
-}
   ngOnInit() {
     this.observationsService.listarObservacoes().subscribe(res => {
       this.observationsData = res;
@@ -57,6 +77,16 @@ onSelectChange(event: Event) {
     });
     this.subjectService.listar().subscribe(res => {
       this.subjectsData = res;
+
+      this.subjectsNames = this.subjectsData.map(s => s.disciplina);
+      this.subjectsApproved = this.subjectsData.map(s => s.aprovados);
+      this.subjectsFailed = this.subjectsData.map(s => s.reprovados);
+      this.subjectsAverages = this.subjectsData.map(s => s.mediaDisciplina);
+      console.log(this.subjectsNames);
+      console.log(this.subjectsAverages);
+      
+      this.highestAverageSubject = this.subjectsData.reduce((prev, current) => (prev.mediaDisciplina > current.mediaDisciplina) ? prev : current);
+      this.lowestAverageSubject = this.subjectsData.reduce((prev, current) => (prev.mediaDisciplina < current.mediaDisciplina) ? prev : current);
       this.cdr.detectChanges(); 
     });
   }

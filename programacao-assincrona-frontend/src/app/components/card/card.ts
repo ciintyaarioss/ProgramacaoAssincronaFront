@@ -12,4 +12,6 @@ export class Card {
   @Input() bgColor: string = '#FAFAFA';
   @Input() titleColor: string = '#E2857E';
   @Input() valueColor: string = '#616161';
+  @Input() fontSize: string = '50px';
+  @Input() marginTopP : string = '0px';
 }
