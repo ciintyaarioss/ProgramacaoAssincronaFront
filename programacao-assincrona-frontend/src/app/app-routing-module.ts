@@ -11,6 +11,7 @@ import { Home } from './pages/home/home';
 import { Observations } from './pages/observations/observations';
 import { Dashboards } from './pages/dashboards/dashboards';
 import { StudentProfile } from './pages/student-profile/student-profile';
+import { MatriculaSuccess } from './pages/matricula-success/matricula-success';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -20,6 +21,8 @@ const routes: Routes = [
       import('./pages/login/login').then(m => m.Login)
   },
   { path: 'matricula', component: Matricula },
+  { path: 'matricula-success', component: MatriculaSuccess },
+
   { 
     path: 'home', 
     component: Home,

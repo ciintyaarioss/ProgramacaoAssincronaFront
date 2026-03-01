@@ -28,6 +28,7 @@ import { SectionCard } from './components/section-card/section-card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StudentProfile } from './pages/student-profile/student-profile';
 import { ObservationProfile } from './components/observation-profile/observation-profile';
+import { MatriculaSuccess } from './pages/matricula-success/matricula-success';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ObservationProfile } from './components/observation-profile/observation
     SectionCard,
     StudentProfile,
     ObservationProfile,
+    MatriculaSuccess,
   ],
   imports: [
     BrowserModule,

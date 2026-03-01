@@ -48,7 +48,7 @@ export class Matricula {
       next: (res) => {
         console.log('Aluno criado', res);
         alert('Matrícula realizada com sucesso!');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/matricula-success']);
       },
       error: (err) => {
         console.error('Erro ao cadastrar', err);
