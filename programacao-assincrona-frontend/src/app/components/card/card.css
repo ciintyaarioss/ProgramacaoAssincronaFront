@@ -1,8 +1,6 @@
-div{
-    margin-top: 50px;
-    margin-left: 7%;
-    background-color: #FAFAFA;
-    border-radius: 8px;
+div {
+    background-color: var(--card-bg-color, #FAFAFA); 
+    border-radius: 20px;
     padding: 20px;
     align-items: center;
     width: 150px;
@@ -10,14 +8,18 @@ div{
     display: flex;
     flex-direction: column;
 }
-p{
-    color: #E2857E;
+
+p {
+    color: var(--card-title-color, #E2857E);
     font-size: 20px;
     margin: 0;
     font-weight: bold;
+    text-align: center;
 }
-h1{
-    margin-top: 35px;
-    color: #616161;
-    font-size: 40px;
+
+h1 {
+    color: var(--card-value-color, #616161);
+    margin-top: 30px;
+    font-size: 3rem;
+    text-align: center;
 }

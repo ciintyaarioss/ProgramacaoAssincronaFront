@@ -11,21 +11,31 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.css',
 })
 export class Login {
-
   loginForm: FormGroup;
+  showPassword = false;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
   ) {
-
     this.loginForm = this.fb.group({
       cpf: ['', Validators.required],
       password: ['', Validators.required],
       user_type: ['aluno', Validators.required]
     });
+  }
 
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
+
+  goToForgotPassword() {
+    this.router.navigate(['/forgot-password']);
+  }
+
+  goToRegister() {
+    this.router.navigate(['/register']);
   }
 
   onSubmit() {
@@ -34,23 +44,13 @@ export class Login {
 
     this.authService.login(this.loginForm.value).subscribe({
       next: (res) => {
-        console.log('Login realizado', res);
-        this.authService.setUserData(res); // salva os dados do usuário
-        // Redirecionamento baseado no tipo
-        const type = this.loginForm.value.user_type;
+      console.log('Login realizado', res);
 
-        if (type === 'admin') {
-          this.router.navigate(['/admin']);
-        }
+      this.authService.setUserData(res);
+      this.authService.setUserType(this.loginForm.value.user_type);
 
-        if (type === 'teacher') {
-          this.router.navigate(['/teacher']);
-        }
-
-        if (type === 'student') {
-          this.router.navigate(['/student']);
-        }
-      },
+      this.router.navigate(['/home']);
+    },
       error: (err) => {
         console.error('Erro no login', err);
         alert('CPF ou senha inválidos');

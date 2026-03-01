@@ -25,7 +25,7 @@ export class Students implements OnInit {
   
   selectedFilter: string | null = 'matriculados';
   ngOnInit() {
-  this.userType = this.authService.getUserType();
+  this.userType = this.authService.getUserType() ? this.authService.getUserType()! : '';
 
   if (this.userType === 'admin') {
     this.typeTable = 'students-for-admin';

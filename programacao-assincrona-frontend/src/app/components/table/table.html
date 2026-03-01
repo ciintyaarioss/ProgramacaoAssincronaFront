@@ -23,6 +23,7 @@
     </tr>
   </tbody>
 
+
 </table>
 <table [class.pdf]="pdfMode"
        class="custom-table"
@@ -87,7 +88,6 @@
     </tbody>
 </table>
 
-
 <table [class.pdf]="pdfMode"  class="custom-table" *ngIf="type =='teacher-for-students'">
     <thead>
         <th *ngFor="let col of columnsTeacherForStudents">{{ col }}            
@@ -102,9 +102,6 @@
     </tbody>
 </table>
 
-
-
-
 <table [class.pdf]="pdfMode" class="custom-table" *ngIf="type =='teacher-for-admin'">
     <thead>
         <th *ngFor="let col of columnsTeacherForAdmin">{{ col }}            
@@ -118,8 +115,6 @@
     </tr>
     </tbody>
 </table>
-
-
 
 <div [class.pdf]="pdfMode" *ngIf="type =='scores-for-pdf'">
     <table class="custom-table" >
@@ -138,8 +133,7 @@
     
                 </span>
                 </td>
-        </tr>
+            </tr>
         </tbody>
     </table>
-    
 </div>

@@ -1,4 +1,4 @@
-<div class="main-wrapper">
+<div *ngIf="router.url !== '/login'" class="main-wrapper">
   <app-sidebar></app-sidebar>
   <div class="content-area">
     <app-header></app-header>
@@ -7,3 +7,5 @@
     </main>
   </div>
 </div>
+
+<router-outlet *ngIf="router.url === '/login'"></router-outlet>
