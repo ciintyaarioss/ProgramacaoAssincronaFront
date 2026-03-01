@@ -16,8 +16,13 @@ export class Observation {
   @Input() date: string = '';
   
   @Output() selectionChange = new EventEmitter<boolean>();
+  @Output() delete = new EventEmitter<void>();
 
   onCheckChange(event: any) {
     this.selectionChange.emit(event.target.checked);
+  }
+
+  onDelete() {
+    this.delete.emit();
   }
 }
