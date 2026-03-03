@@ -21,7 +21,7 @@ export interface ObservationRequest {
 })
 export class ObservationService {
 
-  private API = 'https://programacaoassincrona-back-1.onrender.com/';
+  private API = 'https://programacaoassincrona-back-1.onrender.com';
 
   constructor(private http: HttpClient) {}
 

@@ -11,6 +11,7 @@ import { OnInit } from '@angular/core';
 })
 export class Teachers implements OnInit {
   teachersData: Professor[] = [];
+  teachersDataFiltered: Professor[] = [];
   isAdmin: boolean = false;
   showRegisterModal: boolean = false;
 
@@ -28,6 +29,7 @@ export class Teachers implements OnInit {
   loadTeachers() {
     this.teacherService.listarProfessores().subscribe(res => {
       this.teachersData = res;
+      this.teachersDataFiltered = res;
       this.cdr.detectChanges();
     });
   }
@@ -58,6 +60,10 @@ export class Teachers implements OnInit {
         alert('Erro ao cadastrar professor');
       }
     });
+  }
+
+  searchByName(name: string) {
+    this.teachersDataFiltered = this.teachersData.filter(teacher => teacher.nome.toLowerCase().includes(name.toLowerCase()));
   }
 
   onModalClose() {

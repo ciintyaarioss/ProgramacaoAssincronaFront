@@ -8,11 +8,11 @@
     src="/search.svg" 
     class="input-icon"
   >
-  <input placeholder="Buscar disciplina">
+  <input  #searchInput  placeholder="Buscar disciplina"  (input)="searchByName(searchInput.value)">
 </div>
     </div>
     <app-table
-      [dataSubject]="subjectsData"
+      [dataSubject]="subjectsDataFiltered"
       [type]="'subjects-for-admin'"
     ></app-table>
 

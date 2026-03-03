@@ -15,12 +15,12 @@
             src="/search.svg" 
             class="input-icon"
           >
-          <input placeholder="Buscar disciplina">
+          <input placeholder="Buscar professor" (input)="searchByName($event.target.value)">
         </div>
     </div>
 
     <app-table
-      [dataTeacher]="teachersData"
+      [dataTeacher]="teachersDataFiltered"
       [type]="'teacher-for-students'"
     ></app-table>
 

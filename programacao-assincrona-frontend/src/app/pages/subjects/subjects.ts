@@ -11,7 +11,7 @@ export class Subjects implements OnInit {
     subjectsData: Subject[] = [
 
   ];
-
+    subjectsDataFiltered: Subject[] = []
   constructor(private subjectService: SubjectService, private cdr: ChangeDetectorRef) {
   }
 
@@ -19,7 +19,11 @@ export class Subjects implements OnInit {
     // Aqui você pode carregar os dados das disciplinas, por exemplo, chamando um serviço
     this.subjectService.listar().subscribe(res => {
       this.subjectsData = res;
+      this.subjectsDataFiltered = res;
       this.cdr.detectChanges(); // Força a detecção de mudanças após atualizar os dados
     });
+  }
+  searchByName(name: string) {
+    this.subjectsDataFiltered = this.subjectsData.filter(subject => subject.disciplina.toLowerCase().includes(name.toLowerCase()));
   }
 }

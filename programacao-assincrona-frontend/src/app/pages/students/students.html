@@ -26,12 +26,13 @@
             src="/search.svg" 
             class="input-icon"
           >
-          <input placeholder="Buscar usuário">
+          <input  #searchInput  placeholder="Buscar usuário"  (input)="searchByName(searchInput.value)"
+>
         </div>
     </div>
 
 <app-table
-  [dataStudent]="studentsData"
+  [dataStudent]="studentsDataFiltered"
   [type]="typeTable"
 ></app-table>
 
