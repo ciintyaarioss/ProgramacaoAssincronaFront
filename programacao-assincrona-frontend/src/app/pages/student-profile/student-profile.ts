@@ -20,15 +20,15 @@ export class StudentProfile  implements OnInit {
     'Matrícula: ',
     'Situação Geral: ',
   ]
-
+  status: string = 'Sim';
+  media: number = 0;
   userType: string = '';
   observationsList: Observation[] = [];
-  subjects = [
-    { nome: 'Matemática', media: 8.5, status: 'Aprovado' },
-    { nome: 'Português', media: 7.2, status: 'Aprovado' },
-    { nome: 'Ciências', media: 5.9, status: 'Reprovado' },
-  ]
 
+  subjects: Score[] = [
+
+  ]
+  scoresDataFiltered: Activity[] = []
   scoresData: Activity[] = [
 
   ];
@@ -67,7 +67,6 @@ export class StudentProfile  implements OnInit {
           `Nome: ${aluno.nome || ''}`,
           `CPF: ${aluno.cpf || ''}`,
           `Matrícula: ${aluno.matricula || ''}`,
-          `Situação Geral: ${aluno.ativo === 'S' ? 'Ativo' : 'Pendente'}`,
         ];
         this.cdr.detectChanges();
 
@@ -90,6 +89,19 @@ export class StudentProfile  implements OnInit {
 
     this.subjectService.listarNotas(id).subscribe(res => {
       this.scoresDataForPdf = res;
+      this.media = this.subjects.length > 0 ? this.subjects[0].media : 0;
+      this.status = this.subjects.length > 0 ? (this.subjects[0].status ? 'Sim' : 'Não') : 'Não';
+      this.scoresDataFiltered = this.scoresData.filter(activity => activity.disciplina === this.selectedFilter);
+      this.cdr.detectChanges();
+    });
+
+      this.subjectService.listarNotas(this.alunoId).subscribe(res => {
+      this.subjects = res;
+      this.selectFilter(this.subjects[0]);
+      this.cdr.detectChanges(); 
+    
+      this.selectedFilter = this.subjects.length > 0 ? this.subjects[0].disciplina : null;
+
       this.cdr.detectChanges();
     });
 
@@ -152,8 +164,12 @@ export class StudentProfile  implements OnInit {
 
   selectedFilter: string | null = null;
 
-  selectFilter(filter: string) {
-      this.selectedFilter = filter;
+  selectFilter(filter: Score) {
+      this.selectedFilter = filter.disciplina;
+      this.status = filter.status ? 'Sim' : 'Não';
+      this.media = filter.media;
+
+      this.scoresDataFiltered = this.scoresData.filter(activity => activity.disciplina === filter.disciplina);
   }
   
   gerarPdf() {

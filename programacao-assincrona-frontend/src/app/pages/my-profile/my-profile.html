@@ -26,17 +26,21 @@
 </div>
    
 </div>
-<div *ngIf="userType === 'aluno'">
+
+<div *ngIf="userType === 'aluno' && subjects.length === 0" class="without-info">
+    <h2>Nenhuma disciplina encontrada.</h2>
+</div>
+<div *ngIf="userType === 'aluno' && subjects.length > 0" >
     
     <h2>Notas</h2>
     <div class="filters-button-container">
         <div class="filters-containers">
           <span *ngFor="let sub of subjects "
               class="filters-text"
-            [class.active]="sub.nome === selectedFilter"
-            (click)="selectFilter(sub.nome)"
+            [class.active]="sub.disciplina === selectedFilter"
+            (click)="selectFilter(sub)"
     
-          >{{ sub.nome }}
+          >{{ sub.disciplina }}
           </span>
         </div>
         <button class="button-boletim" (click)="gerarPdf()">Imprimir Boletim</button>
@@ -46,14 +50,14 @@
         <div class="grades-container">
             <app-card
                 title="Média Atual"
-                value="8.5"
+                [value]='media'
                 bgColor="#FAFAFA"
                 titleColor="#E2857E"
                 valueColor="#616161"
             ></app-card>
             <app-card
                 title="Aprovado?"
-                value="7.2"
+                [value]='status'
                 bgColor="#FAFAFA"
                 titleColor="#E2857E"
                 valueColor="#616161"
@@ -61,7 +65,7 @@
         </div>
     
         <app-small-table class="table"
-            [data]="scoresData"
+            [data]="scoresDataFiltered"
             [type]="'scores-for-students'">
         </app-small-table>
     </div>

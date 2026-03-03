@@ -18,7 +18,7 @@ export interface Aluno {
 })
 export class StudentService {
 
-  private apiUrl = 'https://programacaoassincrona-back.onrender.com';
+  private apiUrl = 'https://programacaoassincrona-back-1.onrender.com';
 
   constructor(private http: HttpClient) { }
 

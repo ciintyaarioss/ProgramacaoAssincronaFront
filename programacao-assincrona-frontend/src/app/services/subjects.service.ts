@@ -16,8 +16,8 @@ export interface ScoreStudent{
 }
 
 export interface Activity {
-  id: number;
   titulo: string;
+  disciplina: string;
   valor: number;
 }
 
@@ -32,7 +32,7 @@ export interface Score {
 })
 export class SubjectService {
 
-  private API = 'https://programacaoassincrona-back.onrender.com';
+  private API = 'https://programacaoassincrona-back-1.onrender.com';
 
   constructor(private http: HttpClient) {}
 

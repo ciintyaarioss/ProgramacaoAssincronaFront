@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/co
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { AuthService } from '../../services/auth.service';
-import { Activity, Score, SubjectService } from '../../services/subjects.service';
+import { Activity, Score, Subject, SubjectService } from '../../services/subjects.service';
 import { Observation, ObservationService } from '../../services/observation.service';
 
 @Component({
@@ -18,20 +18,22 @@ export class MyProfile {
     'Nome: Matheus Ueno',
     'CPF: 602.066.628-07',
     'Matrícula: 2021001',
-    'Situação Geral: Pendente ',
   ]
 
   userType: string = '';
 
+  scoreSelected: Score ={ disciplina: 'Matemática', media: 8.5, status: false }
 
-  subjects = [
-    { nome: 'Matemática', media: 8.5, status: 'Aprovado' },
-    { nome: 'Português', media: 7.2, status: 'Aprovado' },
-    { nome: 'Ciências', media: 5.9, status: 'Reprovado' },
+  subjects: Score[] = [
+
   ]
   observationsList: Observation[] = [];
 
   scoresData: Activity[] = [
+
+  ];
+
+  scoresDataFiltered: Activity[] = [
 
   ];
 
@@ -42,9 +44,16 @@ export class MyProfile {
   @ViewChild('pdfContent', { static: false }) pdfContent!: ElementRef;
 
   selectedFilter: string | null = 'Matemática';
+  status: string = 'Sim';
+  media: number = 0;
+  
 
-  selectFilter(filter: string) {
-      this.selectedFilter = filter;
+  selectFilter(filter: Score) {
+      this.selectedFilter = filter.disciplina;
+      this.status = filter.status ? 'Sim' : 'Não';
+      this.media = filter.media;
+
+      this.scoresDataFiltered = this.scoresData.filter(activity => activity.disciplina === filter.disciplina);
   }
   constructor(private authService: AuthService, private subjectService: SubjectService, private cdr: ChangeDetectorRef, private observationService: ObservationService) {}
   ngOnInit() {
@@ -55,7 +64,6 @@ export class MyProfile {
         `Nome: ${userData.nome}`,
         `CPF: ${userData.cpf}`,
         `Matrícula: ${userData.matricula}`,
-        `Situação Geral: Pendente`,
       ];
     }
     if(this.userType==='professor') {
@@ -67,8 +75,21 @@ export class MyProfile {
 
     }
 
+    this.subjectService.listarNotas(userData.id).subscribe(res => {
+      this.subjects = res;
+      this.selectedFilter = this.subjects.length > 0 ? this.subjects[0].disciplina : null;
+      this.selectFilter(this.subjects[0]);
+      this.cdr.detectChanges(); 
+    
+      this.media = this.subjects.length > 0 ? this.subjects[0].media : 0;
+      this.status = this.subjects.length > 0 ? (this.subjects[0].status ? 'Sim' : 'Não') : 'Não';
+      this.scoresDataFiltered = this.scoresData.filter(activity => activity.disciplina === this.selectedFilter);
+      this.cdr.detectChanges();
+    });
+
     this.subjectService.listarAtividades(userData.id).subscribe(res => {
       this.scoresData = res;
+      console.log(this.subjects[0])
       this.cdr.detectChanges(); 
     });
 

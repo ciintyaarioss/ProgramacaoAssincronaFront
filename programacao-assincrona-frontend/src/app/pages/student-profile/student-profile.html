@@ -6,32 +6,33 @@
 
 <p *ngFor="let info of infos">{{ info }}</p>
 
-<h2>Notas</h2>
-<div class="filters-button-container">
+<h2  *ngIf="subjects.length > 0">Notas</h2>
+<div  class="filters-button-container" *ngIf="subjects.length > 0">
     <div class="filters-containers">
       <span *ngFor="let sub of subjects "
           class="filters-text"
-        [class.active]="sub.nome === selectedFilter"
-        (click)="selectFilter(sub.nome)"
+        [class.active]="sub.disciplina === selectedFilter"
+        (click)="selectFilter(sub)"
     
-      >{{ sub.nome }}
+      >{{ sub.disciplina }}
       </span>
     </div>
     <button class="button-boletim" (click)="gerarPdf()">Imprimir Boletim</button>
 </div>
 
-<div class ="table-cards-container">
+<h2 *ngIf="subjects.length === 0">Nenhuma nota disponível</h2>
+<div class ="table-cards-container"  *ngIf="subjects.length > 0">
     <div class="grades-container">
         <app-card
             title="Média Atual"
-            value="8.5"
+            [value]="media"
             bgColor="#FAFAFA"
             titleColor="#E2857E"
             valueColor="#616161"
         ></app-card>
         <app-card
             title="Aprovado?"
-            value="7.2"
+            [value]="status"
             bgColor="#FAFAFA"
             titleColor="#E2857E"
             valueColor="#616161"
@@ -39,7 +40,7 @@
     </div>
 
     <app-small-table class="table"
-        [data]="scoresData"
+        [data]="scoresDataFiltered"
         [type]="'scores-for-students'">
     </app-small-table>
 </div>

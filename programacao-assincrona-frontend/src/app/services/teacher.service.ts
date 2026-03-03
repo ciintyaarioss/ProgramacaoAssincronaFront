@@ -28,7 +28,7 @@ export interface ProfessorRequest {
 })
 export class ProfessorService {
 
-  private API = 'https://programacaoassincrona-back.onrender.com';
+  private API = 'https://programacaoassincrona-back-1.onrender.com';
 
   constructor(private http: HttpClient) {}
 
