@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Activity } from '../../services/subjects.service';
+import { Activity, ScoreStudent } from '../../services/subjects.service';
 
 @Component({
   selector: 'app-small-table',
@@ -9,6 +9,7 @@ import { Activity } from '../../services/subjects.service';
 })
 export class SmallTable {
   @Input() data: Activity[] = [];
+  @Input() dataScoresForStudents: ScoreStudent[] = [];
   @Input() type: string = '';
 
   @Input() columnsScoresForStudents = ["atividade", "notas"];

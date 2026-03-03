@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Aluno, StudentService } from '../../services/student.service';
-import { Subject, SubjectService } from '../../services/subjects.service';
+import { Activity, ScoreStudent, Subject, SubjectService } from '../../services/subjects.service';
 import { Observation, ObservationService } from '../../services/observation.service';
 
 @Component({
@@ -13,7 +13,8 @@ export class Dashboards implements OnInit {
   studentsData: Aluno[] = [
 
   ];
-
+  scoresData: Activity[] = [];
+  scoresForStudentsData: ScoreStudent[] = [];
   
   observationsData: Observation[] = [
 
@@ -22,21 +23,25 @@ export class Dashboards implements OnInit {
   disciplina: '',
   reprovados: 0,
   aprovados: 0,
-  mediaDisciplina: 0
+  mediaDisciplina: 0,
+  piorNota: 0
+
   };
 
   highestAverageSubject: Subject = {
     disciplina: '',
     reprovados: 0,
     aprovados: 0,
-    mediaDisciplina: 0
+    mediaDisciplina: 0,
+    piorNota: 0
   };
 
   lowestAverageSubject: Subject = {
     disciplina: '',
     reprovados: 0,
     aprovados: 0,
-    mediaDisciplina: 0
+    mediaDisciplina: 0,
+    piorNota: 0
   };
   subjectsData: Subject[] = [
 
@@ -45,14 +50,20 @@ export class Dashboards implements OnInit {
   subjectsAverages: number[] = [];
   subjectsApproved: number[] = [];
   subjectsFailed: number[] = [];
-  adminStudentsData : Aluno[] = [
+  adminStudentsData : Aluno[] = [];
 
-  ];
-    constructor(private subjectService: SubjectService, private studentService: StudentService, private observationsService: ObservationService,private cdr: ChangeDetectorRef) {
+  
+  constructor(private subjectService: SubjectService, private studentService: StudentService, private observationsService: ObservationService,private cdr: ChangeDetectorRef) {
   }
 
+  
   selectSubject(subject: Subject) {
     this.subjectSelected = subject;
+    this.subjectService.listarNotasPorDisciplina(subject.disciplina).subscribe(res => {
+      this.scoresForStudentsData = res;
+      this.cdr.detectChanges(); 
+    }
+    );
 
   }
   onSelectChange(event: Event) {
@@ -65,6 +76,8 @@ export class Dashboards implements OnInit {
       this.selectSubject(subject);
     }
   }
+
+  
   ngOnInit() {
     this.observationsService.listarObservacoes().subscribe(res => {
       this.observationsData = res;

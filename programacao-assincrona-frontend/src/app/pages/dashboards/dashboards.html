@@ -25,7 +25,7 @@
 
       <app-card
         title="Menor nota na disciplina"
-        [value]=0
+        [value]=subjectSelected.piorNota
         bgColor="#C7CCD9"
         titleColor="#333"
         valueColor="#333"
@@ -49,11 +49,10 @@
     </div>
 
     <div class="right-table">
-      <app-table
-        type="teacher-for-students"
-        [columnsTeacherForStudents]="['Aluno', 'Nota', 'Situação']"
-        [dataStudent]="studentsData"
-      ></app-table>
+        <app-small-table class="table"
+            [dataScoresForStudents]="scoresForStudentsData"
+            [type]="'scores-for-dashboard'">
+        </app-small-table>
     </div>
 
   </app-section-card>

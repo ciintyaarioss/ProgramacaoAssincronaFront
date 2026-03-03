@@ -16,4 +16,24 @@
         </tr>
         </tbody>
     </table>
+    <table class="custom-table" *ngIf="type =='scores-for-dashboard'">
+        <thead>
+                <th>Nome</th>
+                <th>Média</th>
+                <th>Situação</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let row of dataScoresForStudents">
+            <td >
+                <span>{{ row.alunoNome }}</span>
+            </td>
+            <td >
+                <span>{{ row.media }}</span>
+            </td>
+                        <td >
+                <span>{{ row.status }}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
