@@ -26,19 +26,18 @@ export class StudentProfile  implements OnInit {
   observationsList: Observation[] = [];
 
   subjects: Score[] = [
-
   ]
   scoresDataFiltered: Activity[] = []
   scoresData: Activity[] = [
-
   ];
 
   scoresDataForPdf: Score[] = [
-
   ];
 
   alunoId: number = 0;
   showObservationModal: boolean = false;
+  showScoreModal: boolean = false;
+  selectedActivity: Activity | null = null;
 
   @ViewChild('pdfContent', { static: false }) pdfContent!: ElementRef;
   constructor(private route: ActivatedRoute,
@@ -144,6 +143,35 @@ export class StudentProfile  implements OnInit {
 
   onObservationModalClose() {
     this.showObservationModal = false;
+  }
+
+  openEditScoreModal(activity: Activity) {
+    this.selectedActivity = activity;
+    this.showScoreModal = true;
+  }
+
+  onScoreEditConfirm(data: {titulo: string, valor: number}) {
+    if (!this.selectedActivity?.id) {
+      alert('ID da nota não encontrado');
+      return;
+    }
+
+    this.subjectService.atualizarNota(this.selectedActivity.id, data.valor).subscribe({
+      next: () => {
+        this.showScoreModal = false;
+        this.selectedActivity = null;
+        this.carregarDadosAluno(this.alunoId);
+        alert('Nota atualizada com sucesso!');
+      },
+      error: () => {
+        alert('Erro ao atualizar nota');
+      }
+    });
+  }
+
+  onScoreModalClose() {
+    this.showScoreModal = false;
+    this.selectedActivity = null;
   }
 
   excluirObservacao(id: number) {

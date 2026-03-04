@@ -41,7 +41,9 @@
 
     <app-small-table class="table"
         [data]="scoresDataFiltered"
-        [type]="'scores-for-students'">
+        [type]="'scores-for-students'"
+        [userType]="userType"
+        (editScore)="openEditScoreModal($event)">
     </app-small-table>
 </div>
 
@@ -81,6 +83,15 @@
     (confirm)="onObservationConfirm($event)"
     (close)="onObservationModalClose()"
 ></app-observation-modal>
+
+<app-score-modal
+    *ngIf="showScoreModal"
+    [isOpen]="showScoreModal"
+    [activity]="selectedActivity"
+    [isEditMode]="true"
+    (confirm)="onScoreEditConfirm($event)"
+    (close)="onScoreModalClose()"
+></app-score-modal>
 
 
 <div

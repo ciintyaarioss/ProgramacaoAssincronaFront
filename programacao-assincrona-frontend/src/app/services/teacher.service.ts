@@ -38,7 +38,7 @@ export class ProfessorService {
 
   criarProfessor(request: ProfessorRequest): Observable<any> {
     return this.http.post(
-      `${this.API}/professor/adicionar`,
+      `${this.API}/professor`,
       {
         nome: request.nome,
         cpf: request.cpf,
