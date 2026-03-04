@@ -3,17 +3,16 @@
 </div>
 <div class="table-container">
     <div class="search-container">
-<div class="input-wrapper">
-  <img 
-    src="/search.svg" 
-    class="input-icon"
-  >
-  <input  #searchInput  placeholder="Buscar disciplina"  (input)="searchByName(searchInput.value)">
-</div>
+      <div class="input-wrapper">
+        <img 
+          src="/search.svg" 
+          class="input-icon"
+        >
+        <input  #searchInput  placeholder="Buscar disciplina"  (input)="searchByName(searchInput.value)">
+      </div>
     </div>
     <app-table
       [dataSubject]="subjectsDataFiltered"
       [type]="'subjects-for-admin'"
     ></app-table>
-
 </div>

@@ -14,7 +14,6 @@ input {
     border: 1px #C7C7C7 solid;
     border-radius: 16px;
     padding: 12px;
-    width: 16vw;
 }
 
 input:focus, .dropdown:focus {

@@ -12,7 +12,7 @@
 }
 
 .modal-container {
-    width: auto;
+    width: 60vh;
     height: auto;
     background-color: white;
     border-radius: 47px;
@@ -22,16 +22,24 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 35px 50px;
+    padding: 25px 40px;
 }
 
-.modal-header, .modal-body {
+.modal-header {
+    width: 100%;
+    height: auto;
+    color: #2C2C2C;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.modal-body {
     width: 100%;
     height: auto;
     color: #2C2C2C;
     font-size: 16px;
-    display: flex;
-    justify-content: center;
     margin-bottom: 30px;
 }
 

@@ -1,5 +1,5 @@
-<div class="status-backdrop">
-  <div class="status-card">
+<div class="status-backdrop" (click)="onBackdropClick()">
+  <div class="status-card" (click)="$event.stopPropagation()">
     <div class="illustration-container">
         @if (type === 'success') {
             <img src="/success-status.svg" alt="Imagem de sucesso">

@@ -14,7 +14,6 @@ input {
     border: 1px #C7C7C7 solid;
     border-radius: 16px;
     padding: 12px;
-    width: 16vw;
 }
 
 input:focus, .dropdown:focus {
@@ -33,7 +32,6 @@ input:focus, .dropdown:focus {
     border: 1px #C7C7C7 solid;
     border-radius: 16px;
     padding: 12px;
-    width: 16vw;
     cursor: pointer;
     font-size: 14px;
 }

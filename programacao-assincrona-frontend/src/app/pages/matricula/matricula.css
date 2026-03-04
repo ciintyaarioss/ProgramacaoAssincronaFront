@@ -138,32 +138,38 @@ a:hover{
     justify-content: center;
     display: flex;
     }
+
     .image-container{
         display: none;
     }
+
     .form-container{
         width: 100%;
     }
+
     .input-container{
-    flex-direction: column;
-    margin-top: 30px;
-    width: 80%;
-    display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+        width: 80%;
+        display: flex;
     }
+
     .register-link{
-    width: 80%;
-    justify-content: space-between ;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 30px;
+        width: 80%;
+        justify-content: space-between ;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 30px;
     }
+
     .line{
         width: 40%;
         height: 2px;
         background-color: #454A6A;
         margin-bottom: 10px;
     }
+    
     .button-login{
         margin-top: 50px;
         width: 80%;

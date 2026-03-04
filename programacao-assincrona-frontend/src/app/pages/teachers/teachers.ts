@@ -15,6 +15,22 @@ export class Teachers implements OnInit {
   isAdmin: boolean = false;
   showRegisterModal: boolean = false;
 
+  showStatus: boolean = false;
+  statusType: 'success' | 'error' = 'success';
+  statusTitle: string = '';
+  statusDescription: string = '';
+
+  displayStatus(type: 'success' | 'error', title: string, description: string) {
+    this.statusType = type;
+    this.statusTitle = title;
+    this.statusDescription = description;
+    this.showStatus = true;
+  }
+
+  onStatusClose() {
+    this.showStatus = false;
+  }
+
   constructor(
     private teacherService: ProfessorService, 
     private authService: AuthService,
@@ -39,25 +55,19 @@ export class Teachers implements OnInit {
   }
 
   onRegisterSuccess(data: {nome: string, cpf: string, disciplina: string}) {
-    const adminId = this.authService.getUserData()?.id;
-    if (!adminId) {
-      alert('Erro: Admin não identificado');
-      return;
-    }
-
     this.teacherService.criarProfessor({
       nome: data.nome,
       cpf: data.cpf,
-      disciplina: data.disciplina,
-      adminId: adminId
+      disciplina: data.disciplina
     }).subscribe({
       next: () => {
         this.showRegisterModal = false;
         this.loadTeachers();
-        alert('Professor cadastrado com sucesso!');
+        this.displayStatus('success', 'Cadastro realizado com sucesso!', 'Informe as credenciais de acesso ao seu professor para o primeiro login');
       },
       error: () => {
-        alert('Erro ao cadastrar professor');
+        this.showRegisterModal = false;
+        this.displayStatus('error', 'Não foi possível completar o cadastro.', 'Tente novamente mais tarde!');
       }
     });
   }

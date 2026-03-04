@@ -32,3 +32,11 @@
   (confirm)="onRegisterSuccess($event)"
   (close)="onModalClose()"
 ></app-register-modal>
+
+<app-system-status
+  *ngIf="showStatus"
+  [type]="statusType"
+  [title]="statusTitle"
+  [description]="statusDescription"
+  (closed)="onStatusClose()"
+></app-system-status>

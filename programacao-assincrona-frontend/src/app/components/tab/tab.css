@@ -2,13 +2,12 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 12px 20px;
+    padding: 12px 14px;
     text-decoration: none;
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
     border-radius: 15px;
-    margin: 0 8px;
     margin-bottom: 8px;
 }
 
@@ -34,7 +33,6 @@
     filter: brightness(0) invert(1);
 }
 
-/* Margem quando sidebar fechado */
 .menu-item.sidebar-closed {
     padding: 12px 14px;
     justify-content: center;
