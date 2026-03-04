@@ -37,6 +37,7 @@ export class StudentProfile  implements OnInit {
   alunoId: number = 0;
   showObservationModal: boolean = false;
   showScoreModal: boolean = false;
+  showAddScoreModal: boolean = false;
   selectedActivity: Activity | null = null;
 
   @ViewChild('pdfContent', { static: false }) pdfContent!: ElementRef;
@@ -172,6 +173,31 @@ export class StudentProfile  implements OnInit {
   onScoreModalClose() {
     this.showScoreModal = false;
     this.selectedActivity = null;
+  }
+
+  openAddScoreModal() {
+    this.showAddScoreModal = true;
+  }
+
+  onAddScoreConfirm(data: {titulo: string, valor: number}) {
+    this.subjectService.criarNota({
+      titulo: data.titulo,
+      nota: data.valor,
+      aluno_id: this.alunoId
+    }).subscribe({
+      next: () => {
+        this.showAddScoreModal = false;
+        this.carregarDadosAluno(this.alunoId);
+        alert('Nota enviada com sucesso!');
+      },
+      error: () => {
+        alert('Erro ao enviar nota');
+      }
+    });
+  }
+
+  onAddScoreModalClose() {
+    this.showAddScoreModal = false;
   }
 
   excluirObservacao(id: number) {

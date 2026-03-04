@@ -18,6 +18,7 @@
       </span>
     </div>
     <button class="button-boletim" (click)="gerarPdf()">Imprimir Boletim</button>
+    <button class="btn-add" (click)="openAddScoreModal()"><img src="/add-circle.svg" alt=""> Enviar nota</button>
 </div>
 
 <h2 *ngIf="subjects.length === 0">Nenhuma nota disponível</h2>
@@ -83,6 +84,14 @@
     (confirm)="onObservationConfirm($event)"
     (close)="onObservationModalClose()"
 ></app-observation-modal>
+
+<app-score-modal
+    *ngIf="showAddScoreModal"
+    [isOpen]="showAddScoreModal"
+    [isEditMode]="false"
+    (confirm)="onAddScoreConfirm($event)"
+    (close)="onAddScoreModalClose()"
+></app-score-modal>
 
 <app-score-modal
     *ngIf="showScoreModal"

@@ -3,11 +3,12 @@
     height: 100%;
     display: flex;
     justify-content: space-between;
-    margin-top: 70px;
+    margin-top: 7%;
 }
 
 .container img{
     justify-self: end;
+    height: 70%;
 }
 
 .text-group {

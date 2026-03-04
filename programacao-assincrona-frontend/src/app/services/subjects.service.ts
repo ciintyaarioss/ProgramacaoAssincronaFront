@@ -53,4 +53,8 @@ export class SubjectService {
   atualizarNota(notaId: number, valor: number): Observable<any> {
     return this.http.patch(`${this.API}/nota?nota_id=${notaId}&valor=${valor}`, {});
   }
+
+  criarNota(data: {titulo: string, nota: number, aluno_id: number}): Observable<any> {
+    return this.http.post(`${this.API}/nota`, data);
+  }
 }
