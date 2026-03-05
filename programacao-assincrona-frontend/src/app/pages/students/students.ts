@@ -73,12 +73,15 @@ export class Students implements OnInit {
       if (filter === 'matriculados') {
         this.studentService.listarAlunoAtivos().subscribe(res => {
           this.studentsData = res;
+          this.studentsDataFiltered = res;
           this.cdr.detectChanges();
 
         });
       } else {
         this.studentService.listarAlunoDesativos().subscribe(res => {
           this.studentsData = res;
+          this.studentsDataFiltered = res;
+
           this.cdr.detectChanges();
 
         });
