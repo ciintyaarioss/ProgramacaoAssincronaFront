@@ -39,18 +39,6 @@ p {
   background: white;
 }
 
-.button-boletim {
-    padding: 10px;
-    border: #7C89AB 3px solid;
-    background-color: transparent;
-    border-radius: 15px;
-    width: 200px;
-    cursor: pointer;
-    font-size: 16px;
-    color: #7C89AB;
-    font-weight: bold;
-}
-
 .table-cards-container {
     justify-content: space-between;
     display: flex;
@@ -189,7 +177,7 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 75%;
+    width: 80%;
 }
 
 .obs-header > h2{
@@ -232,7 +220,8 @@ p {
 }
 
 
-.header{
+.back{
+    cursor: pointer;
     margin-top: 20px;
     display: flex;
     color: #2C2C2C;
@@ -241,6 +230,6 @@ p {
     gap: 9px;
 }
 
-.header > p{
+.back > p{
     margin: 0;
 }

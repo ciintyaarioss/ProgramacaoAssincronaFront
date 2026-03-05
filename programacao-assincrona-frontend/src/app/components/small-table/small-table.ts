@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Activity, ScoreStudent } from '../../services/subjects.service';
 
 @Component({
@@ -11,7 +11,12 @@ export class SmallTable {
   @Input() data: Activity[] = [];
   @Input() dataScoresForStudents: ScoreStudent[] = [];
   @Input() type: string = '';
+  @Input() userType: string = '';
+  @Output() editScore = new EventEmitter<Activity>();
 
-  @Input() columnsScoresForStudents = ["atividade", "notas"];
+  columnsScoresForStudents = ["atividade", "notas"];
 
+  onEditScore(activity: Activity) {
+    this.editScore.emit(activity);
+  }
 }

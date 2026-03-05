@@ -1,4 +1,4 @@
-<div class="header">
+<div class="back" (click)="goBack()">
     <img src="/fast-arrow-left.svg" alt="">
     <p>Voltar</p>
 </div>
@@ -17,7 +17,7 @@
       >{{ sub.disciplina }}
       </span>
     </div>
-    <button class="button-boletim" (click)="gerarPdf()">Imprimir Boletim</button>
+    <button class="btn-add" (click)="openAddScoreModal()"><img src="/add-circle.svg" alt=""> Enviar nota</button>
 </div>
 
 <h2 *ngIf="subjects.length === 0">Nenhuma nota disponível</h2>
@@ -41,7 +41,9 @@
 
     <app-small-table class="table"
         [data]="scoresDataFiltered"
-        [type]="'scores-for-students'">
+        [type]="'scores-for-students'"
+        [userType]="userType"
+        (editScore)="openEditScoreModal($event)">
     </app-small-table>
 </div>
 
@@ -50,7 +52,7 @@
     <div class="obs-header">
         <h2>Observações enviadas</h2>
         <div class="obs-button" *ngIf="userType === 'professor'">
-            <button class="btn-add" (click)="openObservationModal()">Inserir observação <img src="/add-circle.svg" alt=""></button>
+            <button class="btn-add" (click)="openObservationModal()"> <img src="/add-circle.svg" alt="">Inserir observação</button>
         </div>
     </div>
 
@@ -81,6 +83,31 @@
     (confirm)="onObservationConfirm($event)"
     (close)="onObservationModalClose()"
 ></app-observation-modal>
+
+<app-score-modal
+    *ngIf="showAddScoreModal"
+    [isOpen]="showAddScoreModal"
+    [isEditMode]="false"
+    (confirm)="onAddScoreConfirm($event)"
+    (close)="onAddScoreModalClose()"
+></app-score-modal>
+
+<app-score-modal
+    *ngIf="showScoreModal"
+    [isOpen]="showScoreModal"
+    [activity]="selectedActivity"
+    [isEditMode]="true"
+    (confirm)="onScoreEditConfirm($event)"
+    (close)="onScoreModalClose()"
+></app-score-modal>
+
+<app-system-status
+    *ngIf="showStatus"
+    [type]="statusType"
+    [title]="statusTitle"
+    [description]="statusDescription"
+    (closed)="onStatusClose()"
+></app-system-status>
 
 
 <div

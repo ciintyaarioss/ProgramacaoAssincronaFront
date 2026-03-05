@@ -71,7 +71,6 @@ const routes: Routes = [
     data: { roles: ['professor', 'admin'] } 
   },
 
-  { path: '**', redirectTo: '/home' }
 ];
 
 @NgModule({

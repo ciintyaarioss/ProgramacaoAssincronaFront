@@ -1,8 +1,7 @@
 .info-container {
     margin-left: 2vw;
     margin-top: 2vh;
-    width: 100%;
-    max-width: 77vw;
+    width: 90%;
     height: 70vh;
     display: flex;
     flex-direction: column;
@@ -23,8 +22,12 @@
 
 select {
     width: 30%;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 16px;
     font-size: 16px;
+}
+
+select:focus {
+  outline: none;
 }

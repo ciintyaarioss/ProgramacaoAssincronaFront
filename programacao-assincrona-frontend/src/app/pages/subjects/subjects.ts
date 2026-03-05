@@ -16,11 +16,10 @@ export class Subjects implements OnInit {
   }
 
   ngOnInit() {
-    // Aqui você pode carregar os dados das disciplinas, por exemplo, chamando um serviço
     this.subjectService.listar().subscribe(res => {
       this.subjectsData = res;
       this.subjectsDataFiltered = res;
-      this.cdr.detectChanges(); // Força a detecção de mudanças após atualizar os dados
+      this.cdr.detectChanges();
     });
   }
   searchByName(name: string) {

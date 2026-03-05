@@ -21,7 +21,7 @@
 .status-content {
     margin-top: -90px;
     background-color: white;
-    width: 22vw;
+    width: 30vw;
     padding: 18px;
     border-radius: 16px;
 }
@@ -33,6 +33,7 @@
 }
 
 .status-title {
+    margin-bottom: 15px;
     text-align: center;
     font-weight: 600;
     font-size: 1.3rem;

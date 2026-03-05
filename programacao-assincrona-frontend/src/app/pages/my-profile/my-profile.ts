@@ -105,7 +105,7 @@ export class MyProfile {
 
   }
   gerarPdf() {
-    setTimeout(() => { // garante renderização do Angular
+    setTimeout(() => {
     
       html2canvas(this.pdfContent.nativeElement, {
         scale: 2,

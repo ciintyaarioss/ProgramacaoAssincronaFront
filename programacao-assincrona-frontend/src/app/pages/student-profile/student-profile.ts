@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Activity, Score, Subject, SubjectService } from '../../services/subjects.service';
 import { AuthService } from '../../services/auth.service';
 import { Observation, ObservationService } from '../../services/observation.service';
@@ -26,32 +26,52 @@ export class StudentProfile  implements OnInit {
   observationsList: Observation[] = [];
 
   subjects: Score[] = [
-
   ]
   scoresDataFiltered: Activity[] = []
   scoresData: Activity[] = [
-
   ];
 
   scoresDataForPdf: Score[] = [
-
   ];
 
   alunoId: number = 0;
   showObservationModal: boolean = false;
+  showScoreModal: boolean = false;
+  showAddScoreModal: boolean = false;
+  selectedActivity: Activity | null = null;
+
+  showStatus: boolean = false;
+  statusType: 'success' | 'error' = 'success';
+  statusTitle: string = '';
+  statusDescription: string = '';
+
+  displayStatus(type: 'success' | 'error', title: string, description: string) {
+    this.statusType = type;
+    this.statusTitle = title;
+    this.statusDescription = description;
+    this.showStatus = true;
+  }
+
+  onStatusClose() {
+    this.showStatus = false;
+  }
 
   @ViewChild('pdfContent', { static: false }) pdfContent!: ElementRef;
   constructor(private route: ActivatedRoute,
+    private router: Router,
     private authService: AuthService,
     private subjectService: SubjectService,
     private cdr: ChangeDetectorRef,
     private observationService: ObservationService,
     private studentService: StudentService) {}
 
+  goBack() {
+    this.router.navigate(['/students']);
+  }
+
   ngOnInit() {
     this.userType = this.authService.getUserType() ?? '';
 
-    // Ler matrícula do path param
     const matricula = this.route.snapshot.paramMap.get('matricula');
 
     if (!matricula) {
@@ -59,7 +79,6 @@ export class StudentProfile  implements OnInit {
       return;
     }
 
-    // Buscar dados do aluno pela matrícula
     this.studentService.getAlunoByMatricula(matricula).subscribe({
       next: (aluno: Aluno) => {
         this.alunoId = aluno.id || 0;
@@ -70,7 +89,6 @@ export class StudentProfile  implements OnInit {
         ];
         this.cdr.detectChanges();
 
-        // Buscar dados usando o ID do aluno
         if (this.alunoId) {
           this.carregarDadosAluno(this.alunoId);
         }
@@ -134,16 +152,73 @@ export class StudentProfile  implements OnInit {
       next: () => {
         this.showObservationModal = false;
         this.carregarObservacoes(this.alunoId);
-        alert('Observação cadastrada com sucesso!');
+        this.displayStatus('success', 'Observação enviada com sucesso!', 'Peça ao seu aluno que veja a aba "Observações" no menu lateral!');
       },
       error: () => {
-        alert('Erro ao cadastrar observação');
+        this.showObservationModal = false;
+        this.displayStatus('error', 'Não foi possível enviar a observação!', 'Tente novamente mais tarde!');
       }
     });
   }
 
   onObservationModalClose() {
     this.showObservationModal = false;
+  }
+
+  openEditScoreModal(activity: Activity) {
+    this.selectedActivity = activity;
+    this.showScoreModal = true;
+  }
+
+  onScoreEditConfirm(data: {titulo: string, valor: number}) {
+    if (!this.selectedActivity?.id) {
+      alert('ID da nota não encontrado');
+      return;
+    }
+
+    this.subjectService.atualizarNota(this.selectedActivity.id, data.valor).subscribe({
+      next: () => {
+        this.showScoreModal = false;
+        this.selectedActivity = null;
+        this.carregarDadosAluno(this.alunoId);
+        this.displayStatus('success', 'Nota editada com sucesso!', 'Peça ao seu aluno que veja a aba "Perfil" no menu lateral!');
+      },
+      error: () => {
+        this.showScoreModal = false;
+        this.displayStatus('error', 'Não foi possível enviar a nota!', 'Tente novamente mais tarde!');
+      }
+    });
+  }
+
+  onScoreModalClose() {
+    this.showScoreModal = false;
+    this.selectedActivity = null;
+  }
+
+  openAddScoreModal() {
+    this.showAddScoreModal = true;
+  }
+
+  onAddScoreConfirm(data: {titulo: string, valor: number}) {
+    this.subjectService.criarNota({
+      titulo: data.titulo,
+      nota: data.valor,
+      aluno_id: this.alunoId
+    }).subscribe({
+      next: () => {
+        this.showAddScoreModal = false;
+        this.carregarDadosAluno(this.alunoId);
+        this.displayStatus('success', 'Nota enviada com sucesso!', 'Peça ao seu aluno que veja a aba "Perfil" no menu lateral!');
+      },
+      error: () => {
+        this.showAddScoreModal = false;
+        this.displayStatus('error', 'Não foi possível enviar a nota!', 'Tente novamente mais tarde!');
+      }
+    });
+  }
+
+  onAddScoreModalClose() {
+    this.showAddScoreModal = false;
   }
 
   excluirObservacao(id: number) {

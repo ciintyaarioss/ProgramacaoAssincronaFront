@@ -20,7 +20,6 @@ export interface ProfessorRequest {
   nome: string;
   cpf: string;
   disciplina: string;
-  adminId: number;
 }
 
 @Injectable({
@@ -38,12 +37,11 @@ export class ProfessorService {
 
   criarProfessor(request: ProfessorRequest): Observable<any> {
     return this.http.post(
-      `${this.API}/professor/adicionar`,
+      `${this.API}/professor`,
       {
         nome: request.nome,
         cpf: request.cpf,
         disciplina: request.disciplina,
-        adminId: request.adminId
       }
     );
   }

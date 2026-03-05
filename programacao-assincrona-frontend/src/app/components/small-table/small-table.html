@@ -4,6 +4,7 @@
                 <th >Atividade
                 </th>
                 <th >Nota</th>
+                <th *ngIf="userType === 'professor'">Ação</th>
         </thead>
         <tbody>
         <tr *ngFor="let row of data">
@@ -12,6 +13,9 @@
             </td>
             <td >
                 <span>{{ row.valor }}</span>
+            </td>
+            <td *ngIf="userType === 'professor'">
+                <img src="edit.svg" alt="Editar" (click)="onEditScore(row)" style="cursor: pointer;">
             </td>
         </tr>
         </tbody>
