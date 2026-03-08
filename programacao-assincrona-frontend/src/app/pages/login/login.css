@@ -76,6 +76,7 @@ input:focus{
     font-size: 20px;
     font-weight: 700;
     cursor: pointer;
+    margin-top: 5vh;
 }
 
 .forgot-password{
@@ -311,4 +312,11 @@ a:hover{
 
 .forgot-password a:hover {
   text-decoration: underline;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 12px;
+  font-weight: 300;
+  margin-top: 4px;
 }

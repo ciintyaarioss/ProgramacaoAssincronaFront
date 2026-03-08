@@ -57,7 +57,7 @@ import { ChartSubjects } from './components/chart-subjects/chart-subjects';
     StudentProfile,
     ObservationProfile,
     MatriculaSuccess,
-    ChartSubjects,
+    ChartSubjects
   ],
   imports: [
     BrowserModule,

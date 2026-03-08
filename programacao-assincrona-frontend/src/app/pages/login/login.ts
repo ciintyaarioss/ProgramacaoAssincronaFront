@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -13,11 +14,13 @@ import { CommonModule } from '@angular/common';
 export class Login {
   loginForm: FormGroup;
   showPassword = false;
+  errorMessage = '';
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {
     this.loginForm = this.fb.group({
       cpf: ['', Validators.required],
@@ -38,24 +41,32 @@ export class Login {
     this.router.navigate(['/matricula']);
   }
 
+  clearError() {
+    this.errorMessage = '';
+  }
+
   onSubmit() {
+    this.errorMessage = '';
 
     if (this.loginForm.invalid) return;
 
     this.authService.login(this.loginForm.value).subscribe({
       next: (res) => {
-      console.log('Login realizado', res);
+        console.log('Login realizado', res);
 
-      this.authService.setUserData(res);
-      this.authService.setUserType(this.loginForm.value.user_type);
+        this.authService.setUserData(res);
+        this.authService.setUserType(this.loginForm.value.user_type);
 
-      this.router.navigate(['/home']);
-    },
-      error: (err) => {
+        this.router.navigate(['/home']);
+      },
+      error: (err: any) => {
         console.error('Erro no login', err);
-        alert('CPF ou senha inválidos');
+        
+        this.errorMessage = 'Credenciais incorretas, tente novamente.';
+        setTimeout(() => {
+          this.cdr.detectChanges();
+        });
       }
     });
   }
-
 }
