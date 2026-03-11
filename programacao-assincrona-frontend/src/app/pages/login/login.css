@@ -174,8 +174,8 @@ a:hover{
 
 .radio-option input:checked + .custom-radio::after {
   content: "";
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   background: #fff;
   position: absolute;
   top: 50%;
@@ -295,23 +295,6 @@ a:hover{
 
 .eye-icon:hover {
   opacity: 1;
-}
-
-.forgot-password {
-  margin-top: 10px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.forgot-password a {
-  font-size: 14px;
-  color: #7C89AB;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.forgot-password a:hover {
-  text-decoration: underline;
 }
 
 .error-message {

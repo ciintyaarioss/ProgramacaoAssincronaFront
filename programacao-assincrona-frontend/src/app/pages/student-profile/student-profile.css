@@ -67,7 +67,7 @@ p {
 }
 
 .table{
-    width: 60%;
+    width: 25vw;
 }
 
 @media (max-width: 1200px) {
