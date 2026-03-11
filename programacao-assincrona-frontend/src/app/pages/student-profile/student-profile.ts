@@ -222,17 +222,13 @@ export class StudentProfile  implements OnInit {
   }
 
   excluirObservacao(id: number) {
-    if (!confirm('Tem certeza que deseja excluir esta observação?')) {
-      return;
-    }
-
     this.observationService.excluirObservacao(id).subscribe({
       next: () => {
         this.carregarObservacoes(this.alunoId);
-        alert('Observação excluída com sucesso!');
+        this.displayStatus('success', 'Observação excluída com sucesso!', '');
       },
       error: () => {
-        alert('Erro ao excluir observação');
+        this.displayStatus('error', 'Não foi possível excluir a observação!', 'Tente novamente mais tarde!');
       }
     });
   }

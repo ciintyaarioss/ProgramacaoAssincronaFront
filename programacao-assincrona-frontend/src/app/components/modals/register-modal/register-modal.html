@@ -12,7 +12,7 @@
     </div>
     <div class="input-group">
       <label for="cpf">CPF</label>
-      <input type="text" id="teacher-cpf" placeholder="Insira o CPF do professor">
+      <input type="text" id="teacher-cpf" placeholder="000.000.000-00" (input)="onCpfInput($event)" maxlength="14">
     </div>
     <div class="dropdown">
       <label for="disciplina">Disciplina</label>
