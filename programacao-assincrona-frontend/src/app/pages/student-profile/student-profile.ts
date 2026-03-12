@@ -200,11 +200,17 @@ export class StudentProfile  implements OnInit {
   }
 
   onAddScoreConfirm(data: {titulo: string, valor: number}) {
+    const professorId = this.authService.getUserData()?.id;
+    if (!professorId) {
+      this.displayStatus('error', 'Professor não identificado!', '');
+      return;
+    }
+
     this.subjectService.criarNota({
       titulo: data.titulo,
       nota: data.valor,
       aluno_id: this.alunoId
-    }).subscribe({
+    }, professorId).subscribe({
       next: () => {
         this.showAddScoreModal = false;
         this.carregarDadosAluno(this.alunoId);

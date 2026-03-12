@@ -2,10 +2,9 @@
     margin-left: 2vw;
     margin-top: 2vh;
     background-color: #FAFAFA;
-    width: 100%;
-    max-width: 77vw;
-    height: 60vh;
-    border-radius: 30px;
+    width: 90%;
+    max-height: 68vh;
+    border-radius: 20px;
     padding: 1.5vw;
     overflow-y: auto; 
     display: flex;

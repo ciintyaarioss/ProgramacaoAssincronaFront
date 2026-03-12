@@ -12,7 +12,9 @@
              type="text"
              formControlName="cpf"
              placeholder="Digite seu CPF"
-             (input)="clearError()">
+             (input)="clearError()"
+             maxlength="14"
+             (input)="onCpfInput($event)">
       <div *ngIf="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>

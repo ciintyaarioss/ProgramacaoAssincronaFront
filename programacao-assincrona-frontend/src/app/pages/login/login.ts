@@ -15,6 +15,7 @@ export class Login {
   loginForm: FormGroup;
   showPassword = false;
   errorMessage = '';
+  cpfRaw = '';
 
   constructor(
     private fb: FormBuilder,
@@ -43,6 +44,23 @@ export class Login {
 
   clearError() {
     this.errorMessage = '';
+  }
+
+  onCpfInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const raw = input.value.replace(/\D/g, '').slice(0, 11);
+    this.cpfRaw = raw;
+
+    let formatted = raw;
+    if (raw.length > 9) {
+      formatted = `${raw.slice(0, 3)}.${raw.slice(3, 6)}.${raw.slice(6, 9)}-${raw.slice(9)}`;
+    } else if (raw.length > 6) {
+      formatted = `${raw.slice(0, 3)}.${raw.slice(3, 6)}.${raw.slice(6)}`;
+    } else if (raw.length > 3) {
+      formatted = `${raw.slice(0, 3)}.${raw.slice(3)}`;
+    }
+
+    input.value = formatted;
   }
 
   onSubmit() {

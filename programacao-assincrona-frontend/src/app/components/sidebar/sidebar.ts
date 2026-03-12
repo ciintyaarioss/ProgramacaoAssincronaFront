@@ -41,8 +41,7 @@ export class Sidebar {
   }
 
   logout() {
-    localStorage.removeItem('user_role');
-    localStorage.removeItem('user_data');
+    this.authService.logout();
     this.router.navigate(['/login']);
   }
 

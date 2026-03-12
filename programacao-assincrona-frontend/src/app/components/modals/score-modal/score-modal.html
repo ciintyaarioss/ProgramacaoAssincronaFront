@@ -12,7 +12,8 @@
     </div>
     <div class="input-group">
       <label for="score">Nota</label>
-      <input type="number" id="activity-score" [value]="activityScore" (input)="activityScore = $any($event.target).value" [placeholder]="isEditMode ? '' : 'Insira a nota para a atividade'">
+      <input type="number" id="activity-score" [value]="activityScore" (input)="activityScore = $any($event.target).value" [placeholder]="isEditMode ? '' : 'Insira a nota para a atividade'" max="10"
+      min="0">
     </div>
   </div>
 </app-base-modal>
