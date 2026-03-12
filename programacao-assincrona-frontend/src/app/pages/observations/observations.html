@@ -3,7 +3,9 @@
 </div>
 <div class="list-container">
     <div class="white-container">
-        @if (observationsList.length > 0) {
+        @if (isLoading) {
+            <app-loading-spinner></app-loading-spinner>
+        } @else if (observationsList.length > 0) {
             @for (obs of observationsList; track obs.id) {
                 <app-observation
                     [teacherName]="obs.professor"

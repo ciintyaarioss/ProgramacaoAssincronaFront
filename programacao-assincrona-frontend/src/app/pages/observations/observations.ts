@@ -10,6 +10,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class Observations {
   observationsList: Observation[] = [];
+  isLoading: boolean = false;
 
   userType: 'admin' | 'aluno' | 'professor' = 'admin'; 
 
@@ -21,25 +22,37 @@ export class Observations {
   }
 
   loadObservations() {
+    this.isLoading = true;
+    this.cdr.detectChanges();
     if (this.userType === 'admin') {
-      this.observationService.listarObservacoes().subscribe(res => {
-        this.observationsList = res;
-        this.cdr.detectChanges(); 
+      this.observationService.listarObservacoes().subscribe({
+        next: res => {
+          this.observationsList = res;
+          this.isLoading = false;
+          this.cdr.detectChanges();
+        },
+        error: () => { this.isLoading = false; this.cdr.detectChanges(); }
       });
     }
     if (this.userType === 'aluno') {
-  
-      this.observationService.listarObservacoesPorAluno(this.authService.getUserData().id).subscribe(res => {
-        this.observationsList = res;
-        this.cdr.detectChanges(); 
-        
+      this.observationService.listarObservacoesPorAluno(this.authService.getUserData().id).subscribe({
+        next: res => {
+          this.observationsList = res;
+          this.isLoading = false;
+          this.cdr.detectChanges();
+        },
+        error: () => { this.isLoading = false; this.cdr.detectChanges(); }
       });
     }
 
     if (this.userType === 'professor') {
-      this.observationService.listarObservacoesPorProfessor(this.authService.getUserData().id).subscribe(res => {
-        this.observationsList = res;
-        this.cdr.detectChanges();
+      this.observationService.listarObservacoesPorProfessor(this.authService.getUserData().id).subscribe({
+        next: res => {
+          this.observationsList = res;
+          this.isLoading = false;
+          this.cdr.detectChanges();
+        },
+        error: () => { this.isLoading = false; this.cdr.detectChanges(); }
       });
     }
   }

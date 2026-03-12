@@ -19,6 +19,7 @@ export class Table implements OnChanges {
 
   @Input() type: string = '';
   @Input() pdfMode = false;
+  @Input() isLoading: boolean = false;
 
 
   constructor(private studentService: StudentService, private router: Router) {

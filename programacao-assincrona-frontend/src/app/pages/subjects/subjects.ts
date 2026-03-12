@@ -8,18 +8,23 @@ import { Subject, SubjectService } from '../../services/subjects.service';
   styleUrl: './subjects.css',
 })
 export class Subjects implements OnInit {
-    subjectsData: Subject[] = [
+    subjectsData: Subject[] = [];
+    subjectsDataFiltered: Subject[] = [];
+    isLoading: boolean = false;
 
-  ];
-    subjectsDataFiltered: Subject[] = []
   constructor(private subjectService: SubjectService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
-    this.subjectService.listar().subscribe(res => {
-      this.subjectsData = res;
-      this.subjectsDataFiltered = res;
-      this.cdr.detectChanges();
+    this.isLoading = true;
+    this.subjectService.listar().subscribe({
+      next: res => {
+        this.subjectsData = res;
+        this.subjectsDataFiltered = res;
+        this.isLoading = false;
+        this.cdr.detectChanges();
+      },
+      error: () => { this.isLoading = false; this.cdr.detectChanges(); }
     });
   }
   searchByName(name: string) {

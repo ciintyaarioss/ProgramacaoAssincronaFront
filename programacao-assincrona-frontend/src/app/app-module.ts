@@ -30,6 +30,7 @@ import { StudentProfile } from './pages/student-profile/student-profile';
 import { ObservationProfile } from './components/observation-profile/observation-profile';
 import { MatriculaSuccess } from './pages/matricula-success/matricula-success';
 import { ChartSubjects } from './components/chart-subjects/chart-subjects';
+import { LoadingSpinner } from './components/loading-spinner/loading-spinner';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ChartSubjects } from './components/chart-subjects/chart-subjects';
     StudentProfile,
     ObservationProfile,
     MatriculaSuccess,
-    ChartSubjects
+    ChartSubjects,
+    LoadingSpinner
   ],
   imports: [
     BrowserModule,

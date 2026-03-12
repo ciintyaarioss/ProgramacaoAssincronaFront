@@ -44,6 +44,22 @@ export class StudentProfile  implements OnInit {
   statusType: 'success' | 'error' = 'success';
   statusTitle: string = '';
   statusDescription: string = '';
+  isLoading: boolean = false;
+  private pendingRequests: number = 0;
+
+  private startRequest() {
+    this.pendingRequests++;
+    this.isLoading = true;
+  }
+
+  private finishRequest() {
+    this.pendingRequests--;
+    if (this.pendingRequests <= 0) {
+      this.pendingRequests = 0;
+      this.isLoading = false;
+      setTimeout(() => this.cdr.detectChanges(), 30);
+    }
+  }
 
   displayStatus(type: 'success' | 'error', title: string, description: string) {
     this.statusType = type;
@@ -79,6 +95,7 @@ export class StudentProfile  implements OnInit {
       return;
     }
 
+    this.startRequest();
     this.studentService.getAlunoByMatricula(matricula).subscribe({
       next: (aluno: Aluno) => {
         this.alunoId = aluno.id || 0;
@@ -87,7 +104,7 @@ export class StudentProfile  implements OnInit {
           `CPF: ${aluno.cpf || ''}`,
           `Matrícula: ${aluno.matricula || ''}`,
         ];
-        this.cdr.detectChanges();
+        this.finishRequest();
 
         if (this.alunoId) {
           this.carregarDadosAluno(this.alunoId);
@@ -95,35 +112,52 @@ export class StudentProfile  implements OnInit {
       },
       error: (err) => {
         console.error('Erro ao buscar aluno:', err);
+        this.finishRequest();
       }
     });
   }
 
   carregarDadosAluno(id: number) {
-    this.subjectService.listarAtividades(id).subscribe(res => {
-      this.scoresData = res;
-      this.cdr.detectChanges();
+    this.startRequest(); // atividades
+    this.subjectService.listarAtividades(id).subscribe({
+      next: res => {
+        this.scoresData = res;
+        this.finishRequest();
+      },
+      error: () => this.finishRequest()
     });
 
-    this.subjectService.listarNotas(id).subscribe(res => {
-      this.scoresDataForPdf = res;
-      this.media = this.subjects.length > 0 ? this.subjects[0].media : 0;
-      this.status = this.subjects.length > 0 ? (this.subjects[0].status ? 'Sim' : 'Não') : 'Não';
-      this.scoresDataFiltered = this.scoresData.filter(activity => activity.disciplina === this.selectedFilter);
-      this.cdr.detectChanges();
+    this.startRequest(); // notas para pdf
+    this.subjectService.listarNotas(id).subscribe({
+      next: res => {
+        this.scoresDataForPdf = res;
+        this.finishRequest();
+      },
+      error: () => this.finishRequest()
     });
 
-      this.subjectService.listarNotas(this.alunoId).subscribe(res => {
-      this.subjects = res;
-      this.selectFilter(this.subjects[0]);
-      this.cdr.detectChanges(); 
-    
-      this.selectedFilter = this.subjects.length > 0 ? this.subjects[0].disciplina : null;
-
-      this.cdr.detectChanges();
+    this.startRequest(); // notas + filtro
+    this.subjectService.listarNotas(this.alunoId).subscribe({
+      next: res => {
+        this.subjects = res;
+        this.selectFilter(this.subjects[0]);
+        this.selectedFilter = this.subjects.length > 0 ? this.subjects[0].disciplina : null;
+        this.media = this.subjects.length > 0 ? this.subjects[0].media : 0;
+        this.status = this.subjects.length > 0 ? (this.subjects[0].status ? 'Sim' : 'Não') : 'Não';
+        this.scoresDataFiltered = this.scoresData.filter(activity => activity.disciplina === this.selectedFilter);
+        this.finishRequest();
+      },
+      error: () => this.finishRequest()
     });
 
-    this.carregarObservacoes(id);
+    this.startRequest(); // observações
+    this.observationService.listarObservacoesPorAluno(id).subscribe({
+      next: res => {
+        this.observationsList = res;
+        this.finishRequest();
+      },
+      error: () => this.finishRequest()
+    });
   }
 
   carregarObservacoes(alunoId: number) {

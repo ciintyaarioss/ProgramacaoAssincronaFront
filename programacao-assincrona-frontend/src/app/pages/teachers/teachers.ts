@@ -14,6 +14,7 @@ export class Teachers implements OnInit {
   teachersDataFiltered: Professor[] = [];
   isAdmin: boolean = false;
   showRegisterModal: boolean = false;
+  isLoading: boolean = false;
 
   showStatus: boolean = false;
   statusType: 'success' | 'error' = 'success';
@@ -43,10 +44,16 @@ export class Teachers implements OnInit {
   }
 
   loadTeachers() {
-    this.teacherService.listarProfessores().subscribe(res => {
-      this.teachersData = res;
-      this.teachersDataFiltered = res;
-      this.cdr.detectChanges();
+    this.isLoading = true;
+    this.cdr.detectChanges();
+    this.teacherService.listarProfessores().subscribe({
+      next: res => {
+        this.teachersData = res;
+        this.teachersDataFiltered = res;
+        this.isLoading = false;
+        this.cdr.detectChanges();
+      },
+      error: () => { this.isLoading = false; this.cdr.detectChanges(); }
     });
   }
 

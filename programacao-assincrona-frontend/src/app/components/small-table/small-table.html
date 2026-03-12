@@ -1,43 +1,47 @@
 <div class="table-container">
-    <table class="custom-table" *ngIf="type =='scores-for-students'">
-        <thead>
-                <th >Atividade
-                </th>
-                <th >Nota</th>
-                <th *ngIf="userType === 'professor'">Ação</th>
-        </thead>
-        <tbody>
-        <tr *ngFor="let row of data">
-            <td >
-                <span>{{ row.titulo }}</span>
-            </td>
-            <td >
-                <span>{{ row.valor }}</span>
-            </td>
-            <td *ngIf="userType === 'professor'">
-                <img src="edit.svg" alt="Editar" (click)="onEditScore(row)" style="cursor: pointer;">
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <table class="custom-table" *ngIf="type =='scores-for-dashboard'">
-        <thead>
-                <th>Nome</th>
-                <th>Média</th>
-                <th>Situação</th>
-        </thead>
-        <tbody>
-        <tr *ngFor="let row of dataScoresForStudents">
-            <td >
-                <span>{{ row.alunoNome }}</span>
-            </td>
-            <td >
-                <span>{{ row.media }}</span>
-            </td>
-                        <td >
-                <span>{{ row.status }}</span>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    @if (isLoading) {
+      <app-loading-spinner></app-loading-spinner>
+    } @else {
+      <table class="custom-table" *ngIf="type =='scores-for-students'">
+          <thead>
+                  <th >Atividade
+                  </th>
+                  <th >Nota</th>
+                  <th *ngIf="userType === 'professor'">Ação</th>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of data">
+              <td >
+                  <span>{{ row.titulo }}</span>
+              </td>
+              <td >
+                  <span>{{ row.valor }}</span>
+              </td>
+              <td *ngIf="userType === 'professor'">
+                  <img src="edit.svg" alt="Editar" (click)="onEditScore(row)" style="cursor: pointer;">
+              </td>
+          </tr>
+          </tbody>
+      </table>
+      <table class="custom-table" *ngIf="type =='scores-for-dashboard'">
+          <thead>
+                  <th>Nome</th>
+                  <th>Média</th>
+                  <th>Situação</th>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of dataScoresForStudents">
+              <td >
+                  <span>{{ row.alunoNome }}</span>
+              </td>
+              <td >
+                  <span>{{ row.media }}</span>
+              </td>
+                          <td >
+                  <span>{{ row.status }}</span>
+              </td>
+          </tr>
+          </tbody>
+      </table>
+    }
 </div>
