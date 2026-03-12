@@ -40,12 +40,15 @@ export class SubjectService {
   listar(): Observable<Subject[]> {
     return this.http.get<Subject[]>(`${this.API}/nota/statusDisciplina`);
   }
+  
   listarAtividades(alunoId: number): Observable<Activity[]> {
     return this.http.get<Activity[]>(`${this.API}/nota?aluno_id=${alunoId}`);
   }
+
   listarNotas(alunoId: number): Observable<Score[]> {
     return this.http.get<Score[]>(`${this.API}/nota/discplinaByAluno?aluno_id=${alunoId}`);
   }
+
   listarNotasPorDisciplina(disciplina: string): Observable<ScoreStudent[]> {
     return this.http.get<ScoreStudent[]>(`${this.API}/nota/notasDisciplina?disciplina=${disciplina}`);
   }
@@ -54,7 +57,7 @@ export class SubjectService {
     return this.http.patch(`${this.API}/nota?nota_id=${notaId}&valor=${valor}`, {});
   }
 
-  criarNota(data: {titulo: string, nota: number, aluno_id: number}): Observable<any> {
-    return this.http.post(`${this.API}/nota`, data);
+  criarNota(data: {titulo: string, nota: number, aluno_id: number}, professorId: number): Observable<any> {
+    return this.http.post(`${this.API}/nota?professor_id=${professorId}`, data);
   }
 }

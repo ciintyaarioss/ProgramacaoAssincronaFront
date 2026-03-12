@@ -18,7 +18,9 @@
       <input class="input-login"
              type="text"
              formControlName="cpf"
-             placeholder="Insira seu CPF">
+             placeholder="Insira seu CPF"
+             maxlength="14"
+             (input)="onCpfInput($event)">
     </div>
 
     <div class="input-container">

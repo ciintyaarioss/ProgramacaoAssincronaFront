@@ -9,13 +9,10 @@
 @if (subjects.length > 0) {
     <div class="header-score">
         <h2>Notas</h2>
-        <button class="btn-add" (click)="openAddScoreModal()"><img src="/add-circle.svg" alt=""> Enviar nota</button>
     </div>
-    
 } @else {
     <div class="header-score">
         <h2>Nenhuma nota disponível</h2>
-      <button class="btn-add" (click)="openAddScoreModal()"><img src="/add-circle.svg" alt=""> Enviar nota</button>
     </div>
 }
 
@@ -29,7 +26,6 @@
       >{{ sub.disciplina }}
       </span>
     </div>
-    <button class="btn-add" (click)="openAddScoreModal()"><img src="/add-circle.svg" alt=""> Enviar nota</button>
 </div>
 
 <div class ="table-cards-container"  *ngIf="subjects.length > 0">
@@ -50,12 +46,15 @@
         ></app-card>
     </div>
 
-    <app-small-table class="table"
-        [data]="scoresDataFiltered"
-        [type]="'scores-for-students'"
-        [userType]="userType"
-        (editScore)="openEditScoreModal($event)">
-    </app-small-table>
+    <div class="table-col">
+        <button class="btn-add" (click)="openAddScoreModal()"><img src="/add-circle.svg" alt=""> Enviar nota</button>
+        <app-small-table class="table"
+            [data]="scoresDataFiltered"
+            [type]="'scores-for-students'"
+            [userType]="userType"
+            (editScore)="openEditScoreModal($event)">
+        </app-small-table>
+    </div>
 </div>
 
 

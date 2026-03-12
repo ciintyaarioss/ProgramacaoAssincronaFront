@@ -59,6 +59,6 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem(this.keyUserType);
-    window.location.reload();
+    localStorage.removeItem(this.keyUserData);
   }
 }
