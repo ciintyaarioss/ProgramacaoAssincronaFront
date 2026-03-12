@@ -13,6 +13,7 @@ export class Students implements OnInit {
 
   userType: string = '';
   typeTable: string = '';
+  isLoading: boolean = false;
 
 
   constructor(private authService: AuthService, private studentService: StudentService, private router: Router,  private cdr: ChangeDetectorRef) {}
@@ -27,33 +28,34 @@ export class Students implements OnInit {
 
     if (this.userType === 'admin') {
       this.typeTable = 'students-for-admin';
-      this.studentService.listarAlunoAtivos().subscribe(res => {
-        this.studentsData = res;
-        this.studentsDataFiltered = res;
-
-        this.cdr.detectChanges();
+      this.isLoading = true;
+      this.studentService.listarAlunoAtivos().subscribe({
+        next: res => {
+          this.studentsData = res;
+          this.studentsDataFiltered = res;
+          this.isLoading = false;
+          this.cdr.detectChanges();
+        },
+        error: () => { this.isLoading = false; this.cdr.detectChanges(); }
       });
 
     } else if (this.userType === 'professor') {
-        this.studentService.listarAlunos().subscribe(res => {
-        this.studentsData = res;
-        this.studentsDataFiltered = res;
-
-        this.cdr.detectChanges();
-      });
       this.typeTable = 'students-for-teacher';
+      this.isLoading = true;
+      this.studentService.listarAlunos().subscribe({
+        next: res => {
+          this.studentsData = res;
+          this.studentsDataFiltered = res;
+          this.isLoading = false;
+          this.cdr.detectChanges();
+        },
+        error: () => { this.isLoading = false; this.cdr.detectChanges(); }
+      });
+      return;
     } else {
       this.typeTable = 'students-for-student';
     }
 
-    if (this.userType === 'professor') {
-      this.studentService.listarAlunos().subscribe(res => {
-        this.studentsData = res;
-        this.studentsDataFiltered = res;
-        this.cdr.detectChanges();
-      });
-      return;
-    }
     this.selectFilter(this.selectedFilter!);
 
   }
@@ -68,22 +70,28 @@ export class Students implements OnInit {
   selectFilter(filter: string) {
     this.selectedFilter = filter;
 
-
     if (this.userType === 'admin') {
+      this.isLoading = true;
+      this.cdr.detectChanges();
       if (filter === 'matriculados') {
-        this.studentService.listarAlunoAtivos().subscribe(res => {
-          this.studentsData = res;
-          this.studentsDataFiltered = res;
-          this.cdr.detectChanges();
-
+        this.studentService.listarAlunoAtivos().subscribe({
+          next: res => {
+            this.studentsData = res;
+            this.studentsDataFiltered = res;
+            this.isLoading = false;
+            this.cdr.detectChanges();
+          },
+          error: () => { this.isLoading = false; this.cdr.detectChanges(); }
         });
       } else {
-        this.studentService.listarAlunoDesativos().subscribe(res => {
-          this.studentsData = res;
-          this.studentsDataFiltered = res;
-
-          this.cdr.detectChanges();
-
+        this.studentService.listarAlunoDesativos().subscribe({
+          next: res => {
+            this.studentsData = res;
+            this.studentsDataFiltered = res;
+            this.isLoading = false;
+            this.cdr.detectChanges();
+          },
+          error: () => { this.isLoading = false; this.cdr.detectChanges(); }
         });
       }
     }

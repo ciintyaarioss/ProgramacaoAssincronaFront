@@ -12,6 +12,7 @@ export class SmallTable {
   @Input() dataScoresForStudents: ScoreStudent[] = [];
   @Input() type: string = '';
   @Input() userType: string = '';
+  @Input() isLoading: boolean = false;
   @Output() editScore = new EventEmitter<Activity>();
 
   columnsScoresForStudents = ["atividade", "notas"];

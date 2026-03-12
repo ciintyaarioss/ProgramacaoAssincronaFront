@@ -1,133 +1,138 @@
-<div class="back" (click)="goBack()">
-    <img src="/fast-arrow-left.svg" alt="">
-    <p>Voltar</p>
-</div>
-<h1>Perfil do aluno</h1>
+<div class="page-wrapper">
 
-<p *ngFor="let info of infos">{{ info }}</p>
+  <app-loading-spinner *ngIf="isLoading" [fullscreen]="true"></app-loading-spinner>
 
-@if (subjects.length > 0) {
-    <div class="header-score">
-        <h2>Notas</h2>
+  <div *ngIf="!isLoading">
+
+    <div class="back" (click)="goBack()">
+        <img src="/fast-arrow-left.svg" alt="">
+        <p>Voltar</p>
     </div>
-} @else {
-    <div class="header-score">
-        <h2>Nenhuma nota disponível</h2>
-    </div>
-}
+    <h1>Perfil do aluno</h1>
 
-<div  class="filters-button-container" *ngIf="subjects.length > 0">
-    <div class="filters-containers">
-      <span *ngFor="let sub of subjects "
-          class="filters-text"
-        [class.active]="sub.disciplina === selectedFilter"
-        (click)="selectFilter(sub)"
-    
-      >{{ sub.disciplina }}
-      </span>
-    </div>
-</div>
+    <p *ngFor="let info of infos">{{ info }}</p>
 
-<div class ="table-cards-container"  *ngIf="subjects.length > 0">
-    <div class="grades-container">
-        <app-card
-            title="Média Atual"
-            [value]="media"
-            bgColor="#FAFAFA"
-            titleColor="#E2857E"
-            valueColor="#616161"
-        ></app-card>
-        <app-card
-            title="Aprovado?"
-            [value]="status"
-            bgColor="#FAFAFA"
-            titleColor="#E2857E"
-            valueColor="#616161"
-        ></app-card>
-    </div>
+    @if (subjects.length > 0) {
+        <div class="header-score">
+            <h2>Notas</h2>
+        </div>
+    } @else {
+        <div class="header-score">
+            <h2>Nenhuma nota disponível</h2>
+        </div>
+    }
 
-    <div class="table-col">
-        <button class="btn-add" (click)="openAddScoreModal()"><img src="/add-circle.svg" alt=""> Enviar nota</button>
-        <app-small-table class="table"
-            [data]="scoresDataFiltered"
-            [type]="'scores-for-students'"
-            [userType]="userType"
-            (editScore)="openEditScoreModal($event)">
-        </app-small-table>
-    </div>
-</div>
-
-
-<div class="obs-container">
-    <div class="obs-header">
-        <h2>Observações enviadas</h2>
-        <div class="obs-button" *ngIf="userType === 'professor'">
-            <button class="btn-add" (click)="openObservationModal()"> <img src="/add-circle.svg" alt="">Inserir observação</button>
+    <div class="filters-button-container" *ngIf="subjects.length > 0">
+        <div class="filters-containers">
+          <span *ngFor="let sub of subjects"
+              class="filters-text"
+            [class.active]="sub.disciplina === selectedFilter"
+            (click)="selectFilter(sub)"
+          >{{ sub.disciplina }}
+          </span>
         </div>
     </div>
 
-    <div class="obs-list-container">
-        @if (observationsList.length > 0) {
-            @for (obs of observationsList; track obs.id) {
-                <app-observation
-                    [teacherName]="obs.professor"
-                    [studentName]="obs.aluno"
-                    [date]="(obs.data | date:'dd/MM/yyyy HH:mm') ?? ''"
-                    [message]="obs.text"
-                    [type]="userType === 'admin' || userType === 'professor' ? 'teacher' : 'student'"
-                    (deleteObs)="excluirObservacao(obs.id)"
-                >
-                </app-observation>
-            }
-        } @else {
-            <p class="without-info">
-                Nenhuma observação encontrada.
-            </p>
-        }
+    <div class="table-cards-container" *ngIf="subjects.length > 0">
+        <div class="grades-container">
+            <app-card
+                title="Média Atual"
+                [value]="media"
+                bgColor="#FAFAFA"
+                titleColor="#E2857E"
+                valueColor="#616161"
+            ></app-card>
+            <app-card
+                title="Aprovado?"
+                [value]="status"
+                bgColor="#FAFAFA"
+                titleColor="#E2857E"
+                valueColor="#616161"
+            ></app-card>
+        </div>
+
+        <div class="table-col">
+            <button class="btn-add" (click)="openAddScoreModal()"><img src="/add-circle.svg" alt=""> Enviar nota</button>
+            <app-small-table class="table"
+                [data]="scoresDataFiltered"
+                [type]="'scores-for-students'"
+                [userType]="userType"
+                (editScore)="openEditScoreModal($event)">
+            </app-small-table>
+        </div>
     </div>
-</div>
 
-<app-observation-modal
-    *ngIf="showObservationModal"
-    [isOpen]="showObservationModal"
-    (confirm)="onObservationConfirm($event)"
-    (close)="onObservationModalClose()"
-></app-observation-modal>
+    <div class="obs-container">
+        <div class="obs-header">
+            <h2>Observações enviadas</h2>
+            <div class="obs-button" *ngIf="userType === 'professor'">
+                <button class="btn-add" (click)="openObservationModal()"> <img src="/add-circle.svg" alt="">Inserir observação</button>
+            </div>
+        </div>
 
-<app-score-modal
-    *ngIf="showAddScoreModal"
-    [isOpen]="showAddScoreModal"
-    [isEditMode]="false"
-    (confirm)="onAddScoreConfirm($event)"
-    (close)="onAddScoreModalClose()"
-></app-score-modal>
+        <div class="obs-list-container">
+            @if (observationsList.length > 0) {
+                @for (obs of observationsList; track obs.id) {
+                    <app-observation
+                        [teacherName]="obs.professor"
+                        [studentName]="obs.aluno"
+                        [date]="(obs.data | date:'dd/MM/yyyy HH:mm') ?? ''"
+                        [message]="obs.text"
+                        [type]="userType === 'admin' || userType === 'professor' ? 'teacher' : 'student'"
+                        (deleteObs)="excluirObservacao(obs.id)"
+                    >
+                    </app-observation>
+                }
+            } @else {
+                <p class="without-info">
+                    Nenhuma observação encontrada.
+                </p>
+            }
+        </div>
+    </div>
 
-<app-score-modal
-    *ngIf="showScoreModal"
-    [isOpen]="showScoreModal"
-    [activity]="selectedActivity"
-    [isEditMode]="true"
-    (confirm)="onScoreEditConfirm($event)"
-    (close)="onScoreModalClose()"
-></app-score-modal>
+    <app-observation-modal
+        *ngIf="showObservationModal"
+        [isOpen]="showObservationModal"
+        (confirm)="onObservationConfirm($event)"
+        (close)="onObservationModalClose()"
+    ></app-observation-modal>
 
-<app-system-status
-    *ngIf="showStatus"
-    [type]="statusType"
-    [title]="statusTitle"
-    [description]="statusDescription"
-    (closed)="onStatusClose()"
-></app-system-status>
+    <app-score-modal
+        *ngIf="showAddScoreModal"
+        [isOpen]="showAddScoreModal"
+        [isEditMode]="false"
+        (confirm)="onAddScoreConfirm($event)"
+        (close)="onAddScoreModalClose()"
+    ></app-score-modal>
 
+    <app-score-modal
+        *ngIf="showScoreModal"
+        [isOpen]="showScoreModal"
+        [activity]="selectedActivity"
+        [isEditMode]="true"
+        (confirm)="onScoreEditConfirm($event)"
+        (close)="onScoreModalClose()"
+    ></app-score-modal>
 
-<div
-class="pdf-wrapper"
-#pdfContent>
-<h1> Boletim Escolar</h1>
-<p *ngFor="let info of infos">{{ info }}</p>
-    <app-table 
-        [pdfMode]="true"
-        [dataScores]="scoresDataForPdf"
-        [type]="'scores-for-pdf'">
-    </app-table>
+    <app-system-status
+        *ngIf="showStatus"
+        [type]="statusType"
+        [title]="statusTitle"
+        [description]="statusDescription"
+        (closed)="onStatusClose()"
+    ></app-system-status>
+
+    <div class="pdf-wrapper" #pdfContent>
+      <h1> Boletim Escolar</h1>
+      <p *ngFor="let info of infos">{{ info }}</p>
+          <app-table
+              [pdfMode]="true"
+              [dataScores]="scoresDataForPdf"
+              [type]="'scores-for-pdf'">
+          </app-table>
+    </div>
+
+  </div>
+
 </div>

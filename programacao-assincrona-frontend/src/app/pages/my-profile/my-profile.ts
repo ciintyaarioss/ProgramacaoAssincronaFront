@@ -46,6 +46,22 @@ export class MyProfile {
   selectedFilter: string | null = 'Matemática';
   status: string = 'Sim';
   media: number = 0;
+  isLoading: boolean = false;
+  private pendingRequests: number = 0;
+
+  private startRequest() {
+    this.pendingRequests++;
+    this.isLoading = true;
+  }
+
+  private finishRequest() {
+    this.pendingRequests--;
+    if (this.pendingRequests <= 0) {
+      this.pendingRequests = 0;
+      this.isLoading = false;
+      setTimeout(() => this.cdr.detectChanges(), 30);
+    }
+  }
   
 
   selectFilter(filter: Score) {
@@ -75,32 +91,45 @@ export class MyProfile {
 
     }
 
-    this.subjectService.listarNotas(userData.id).subscribe(res => {
-      this.subjects = res;
-      this.selectedFilter = this.subjects.length > 0 ? this.subjects[0].disciplina : null;
-      this.selectFilter(this.subjects[0]);
-      this.cdr.detectChanges(); 
-    
-      this.media = this.subjects.length > 0 ? this.subjects[0].media : 0;
-      this.status = this.subjects.length > 0 ? (this.subjects[0].status ? 'Sim' : 'Não') : 'Não';
-      this.scoresDataFiltered = this.scoresData.filter(activity => activity.disciplina === this.selectedFilter);
-      this.cdr.detectChanges();
+    this.startRequest();
+    this.subjectService.listarNotas(userData.id).subscribe({
+      next: res => {
+        this.subjects = res;
+        this.selectedFilter = this.subjects.length > 0 ? this.subjects[0].disciplina : null;
+        this.selectFilter(this.subjects[0]);
+        this.media = this.subjects.length > 0 ? this.subjects[0].media : 0;
+        this.status = this.subjects.length > 0 ? (this.subjects[0].status ? 'Sim' : 'Não') : 'Não';
+        this.scoresDataFiltered = this.scoresData.filter(activity => activity.disciplina === this.selectedFilter);
+        this.finishRequest();
+      },
+      error: () => this.finishRequest()
     });
 
-    this.subjectService.listarAtividades(userData.id).subscribe(res => {
-      this.scoresData = res;
-      console.log(this.subjects[0])
-      this.cdr.detectChanges(); 
+    this.startRequest();
+    this.subjectService.listarAtividades(userData.id).subscribe({
+      next: res => {
+        this.scoresData = res;
+        this.finishRequest();
+      },
+      error: () => this.finishRequest()
     });
 
-    this.subjectService.listarNotas(userData.id).subscribe(res => {
-      this.scoresDataForPdf = res;
-      this.cdr.detectChanges();
+    this.startRequest();
+    this.subjectService.listarNotas(userData.id).subscribe({
+      next: res => {
+        this.scoresDataForPdf = res;
+        this.finishRequest();
+      },
+      error: () => this.finishRequest()
     });
 
-    this.observationService.listarObservacoesPorProfessor(userData.id).subscribe(res => {
-      this.observationsList = res;
-      this.cdr.detectChanges(); 
+    this.startRequest();
+    this.observationService.listarObservacoesPorProfessor(userData.id).subscribe({
+      next: res => {
+        this.observationsList = res;
+        this.finishRequest();
+      },
+      error: () => this.finishRequest()
     });
 
   }
