@@ -10,19 +10,19 @@ export class Observation {
   @Input() teacherName: string = '';
   @Input() studentName: string = '';
   @Input() message: string = '';
-  @Input() type: 'admin' | 'student'  = 'student';
+  @Input() type: 'admin' | 'student' | 'teacher' = 'student';
   
   @Input() selectable: boolean = false;
   @Input() date: string = '';
   
   @Output() selectionChange = new EventEmitter<boolean>();
-  @Output() delete = new EventEmitter<void>();
+  @Output() deleteObs = new EventEmitter<void>();
 
   onCheckChange(event: any) {
     this.selectionChange.emit(event.target.checked);
   }
 
   onDelete() {
-    this.delete.emit();
+    this.deleteObs.emit();
   }
 }

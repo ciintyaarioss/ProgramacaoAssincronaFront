@@ -6,7 +6,19 @@
 
 <p *ngFor="let info of infos">{{ info }}</p>
 
-<h2  *ngIf="subjects.length > 0">Notas</h2>
+@if (subjects.length > 0) {
+    <div class="header-score">
+        <h2>Notas</h2>
+        <button class="btn-add" (click)="openAddScoreModal()"><img src="/add-circle.svg" alt=""> Enviar nota</button>
+    </div>
+    
+} @else {
+    <div class="header-score">
+        <h2>Nenhuma nota disponível</h2>
+      <button class="btn-add" (click)="openAddScoreModal()"><img src="/add-circle.svg" alt=""> Enviar nota</button>
+    </div>
+}
+
 <div  class="filters-button-container" *ngIf="subjects.length > 0">
     <div class="filters-containers">
       <span *ngFor="let sub of subjects "
@@ -20,7 +32,6 @@
     <button class="btn-add" (click)="openAddScoreModal()"><img src="/add-circle.svg" alt=""> Enviar nota</button>
 </div>
 
-<h2 *ngIf="subjects.length === 0">Nenhuma nota disponível</h2>
 <div class ="table-cards-container"  *ngIf="subjects.length > 0">
     <div class="grades-container">
         <app-card
@@ -64,8 +75,8 @@
                     [studentName]="obs.aluno"
                     [date]="(obs.data | date:'dd/MM/yyyy HH:mm') ?? ''"
                     [message]="obs.text"
-                    [type]="userType === 'admin' ? 'admin' : 'student'"
-                    (delete)="excluirObservacao(obs.id)"
+                    [type]="userType === 'admin' || userType === 'professor' ? 'teacher' : 'student'"
+                    (deleteObs)="excluirObservacao(obs.id)"
                 >
                 </app-observation>
             }

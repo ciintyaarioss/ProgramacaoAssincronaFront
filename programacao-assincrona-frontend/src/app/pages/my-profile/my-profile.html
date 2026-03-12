@@ -7,7 +7,7 @@
 
     <div class="white-container">
         @if (observationsList.length > 0) {
-            @for (obs of observationsList; track obs.id) {
+            @for (obs of observationsList; track $index) {
                     <app-observation
                     [teacherName]="obs.professor"
                     [studentName]="obs.aluno"

@@ -66,3 +66,14 @@ th, td {
 td {
   font-weight: 450;
 }
+
+.icon-action {
+  cursor: pointer;
+}
+
+.td-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}

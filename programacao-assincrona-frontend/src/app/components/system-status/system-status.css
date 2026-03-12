@@ -4,11 +4,21 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 999;
+    transition: background-color 500ms ease;
+}
+
+.status-backdrop.visible {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.status-backdrop.closing {
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 500ms ease 100ms;
 }
 
 .status-card {
@@ -16,6 +26,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    transform: translateY(-40px) scale(0.95);
+    transition: opacity 400ms ease, transform 400ms ease;
+}
+
+.status-backdrop.visible .status-card {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: opacity 400ms ease 150ms, transform 400ms ease 150ms;
+}
+
+.status-backdrop.closing .status-card {
+    opacity: 0;
+    transform: translateY(-40px) scale(0.95);
+    transition: opacity 300ms ease, transform 300ms ease;
 }
 
 .status-content {

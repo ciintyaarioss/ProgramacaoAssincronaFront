@@ -17,9 +17,9 @@
       <td>{{ row.nome }}</td>
       <td>{{ row.cpf }}</td>
       <td>{{ row.matricula }}</td>
-      <td (click)="goToStudent(row)">
-        Ver Mais
-        <img  src="open-new-window.svg" alt="">
+      <td class="td-action" (click)="goToStudent(row)">
+        <p class="icon-action" >Ver mais</p>
+        <img class="icon-action" src="open-new-window.svg" alt="">
       </td>
     </tr>
   </tbody>
@@ -45,10 +45,9 @@
       <td>{{ row.cpf }}</td>
       <td>{{ row.matricula }}</td>
       <td>
-        <img *ngIf="row.ativo === '0'" (click)="deletarAluno(row.id ? row.id:0)" src="remove-user.svg" style="margin-right: 30px;" alt="">
-        <img *ngIf="row.ativo === '1'" (click)="acionarAluno(row.id ? row.id:0)" src="remove-user.svg" alt="">
-
-        <img  *ngIf="row.ativo === '0'"  src="verified-user.svg" (click)="acionarAluno(row.id ? row.id:0)" alt="">
+        <img class="icon-action" *ngIf="row.ativo === '0'" (click)="deletarAluno(row.id ? row.id:0)" src="remove-user.svg" style="margin-right: 30px;" alt="">
+        <img class="icon-action" *ngIf="row.ativo === '1'" (click)="acionarAluno(row.id ? row.id:0)" src="remove-user.svg" alt="">
+        <img class="icon-action" *ngIf="row.ativo === '0'"  src="verified-user.svg" (click)="acionarAluno(row.id ? row.id:0)" alt="">
       </td>
     </tr>
   </tbody>

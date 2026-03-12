@@ -21,7 +21,7 @@
                 @if (date) {
                     <span class="meta-date">{{ date }}</span>
                 }
-                @if (type === 'admin') {
+                @if (type === 'admin' || type === 'teacher') {
                     <button class="btn-delete" (click)="onDelete()">
                         <img src="/del-circle.svg" alt="Excluir">
                     </button>

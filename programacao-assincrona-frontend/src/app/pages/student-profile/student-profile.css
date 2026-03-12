@@ -6,9 +6,22 @@ h1 {
 
 h2 {
     margin-top: 70px;
-    margin-left: 7%;
     margin-bottom: 15px;
     font-size: 28px;
+}
+
+.notes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 75%;
+    margin-left: 7%;
+}
+
+.notes-header > h2 {
+    margin-top: 70px;
+    margin-left: 0;
+    margin-bottom: 0;
 }
 
 p {
@@ -67,7 +80,7 @@ p {
 }
 
 .table{
-    width: 60%;
+    width: 25vw;
 }
 
 @media (max-width: 1200px) {
@@ -232,4 +245,13 @@ p {
 
 .back > p{
     margin: 0;
+}
+
+.header-score {
+    margin-left: 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 80%;
+    margin-top: 50px;
 }

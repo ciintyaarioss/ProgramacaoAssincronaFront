@@ -43,4 +43,12 @@ export class Observations {
       });
     }
   }
+
+  excluirObservacao(id: number) {
+    this.observationService.excluirObservacao(id).subscribe(() => {
+      this.observationsList = this.observationsList.filter(obs => obs.id !== id);
+      this.cdr.detectChanges();
+    });
+  }
+
 }

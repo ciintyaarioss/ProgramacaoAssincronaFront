@@ -1,4 +1,7 @@
-<div class="status-backdrop" (click)="onBackdropClick()">
+<div class="status-backdrop"
+     [class.visible]="isVisible"
+     [class.closing]="isClosing"
+     (click)="onBackdropClick()">
   <div class="status-card" (click)="$event.stopPropagation()">
     <div class="illustration-container">
         @if (type === 'success') {

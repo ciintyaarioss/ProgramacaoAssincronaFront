@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-system-status',
@@ -12,11 +12,21 @@ export class SystemStatus implements OnInit, OnDestroy {
   @Input() description: string = '';
   @Output() closed = new EventEmitter<void>();
 
+  isVisible: boolean = false;
+  isClosing: boolean = false;
+
   private timer: ReturnType<typeof setTimeout> | null = null;
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
   ngOnInit() {
+    setTimeout(() => {
+      this.isVisible = true;
+      this.cdr.detectChanges();
+    }, 30);
+
     this.timer = setTimeout(() => {
-      this.close();
+      this.startClose();
     }, 10000);
   }
 
@@ -27,10 +37,16 @@ export class SystemStatus implements OnInit, OnDestroy {
   }
 
   onBackdropClick() {
-    this.close();
+    this.startClose();
   }
 
-  close() {
-    this.closed.emit();
+  startClose() {
+    if (this.isClosing) return;
+    this.isClosing = true;
+    this.cdr.detectChanges();
+
+    setTimeout(() => {
+      this.closed.emit();
+    }, 500);
   }
 }
