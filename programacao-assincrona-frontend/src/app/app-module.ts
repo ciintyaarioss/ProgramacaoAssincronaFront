@@ -20,6 +20,7 @@ import { BaseModal } from './components/modals/base-modal/base-modal';
 import { ObservationModal } from './components/modals/observation-modal/observation-modal';
 import { RegisterModal } from './components/modals/register-modal/register-modal';
 import { ScoreModal } from './components/modals/score-modal/score-modal';
+import { ChangePasswordModal } from './components/modals/change-password-modal/change-password-modal';
 import { SystemStatus } from './components/system-status/system-status';
 import { Observations } from './pages/observations/observations';
 import { Observation } from './components/observation/observation';
@@ -50,6 +51,7 @@ import { LoadingSpinner } from './components/loading-spinner/loading-spinner';
     ObservationModal,
     RegisterModal,
     ScoreModal,
+    ChangePasswordModal,
     SystemStatus,
     Observations,
     Observation,

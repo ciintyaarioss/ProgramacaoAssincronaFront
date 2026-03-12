@@ -7,12 +7,16 @@
       <ng-content select="[modal-body]"></ng-content>
     </div>
     <div class="modal-footer">
-      <button class="btn-cancel" (click)="onCancel()">
-        {{ cancelText }}
-      </button>
-      <button class="btn-confirm" (click)="onConfirm()">
-        {{ confirmText }}
-      </button>
+      @if (isLoading) {
+        <app-loading-spinner></app-loading-spinner>
+      } @else {
+        <button class="btn-cancel" (click)="onCancel()">
+          {{ cancelText }}
+        </button>
+        <button class="btn-confirm" (click)="onConfirm()">
+          {{ confirmText }}
+        </button>
+      }
     </div>
   </div>
 </div>

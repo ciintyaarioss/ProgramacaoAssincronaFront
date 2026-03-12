@@ -61,4 +61,8 @@ export class AuthService {
     localStorage.removeItem(this.keyUserType);
     localStorage.removeItem(this.keyUserData);
   }
+
+  updatePassword(body: { cpf: string, password: string, newPassword: string, user_type: string }): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/auth/update-password`, body);
+  }
 }

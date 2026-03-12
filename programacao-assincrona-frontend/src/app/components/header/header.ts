@@ -10,7 +10,6 @@ import { AuthService } from '../../services/auth.service';
 export class Header {
   userName: string = 'Maria Silva';
   userType: string = 'Admin';
-  imageUser: string = 'icon_admin.svg'
 
   constructor(private authService: AuthService) {
     const userData = this.authService.getUserData();

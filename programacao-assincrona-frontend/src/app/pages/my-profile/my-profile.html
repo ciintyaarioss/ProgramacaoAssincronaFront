@@ -7,6 +7,10 @@
     <h1>Meu Perfil</h1>
 
     <p *ngFor="let info of infos">{{ info }}</p>
+
+    <button *ngIf="userType === 'professor'" class="btn-change-password" (click)="openChangePasswordModal()">
+      Alterar senha
+    </button>
     <div *ngIf="userType === 'professor'">
         <h2>Observações enviadas</h2>
         <div class="list-container">
@@ -85,5 +89,21 @@
     </div>
 
   </div>
+
+  <app-change-password-modal
+    *ngIf="showChangePasswordModal"
+    [isOpen]="showChangePasswordModal"
+    [isLoading]="isChangingPassword"
+    (confirm)="onChangePasswordConfirm($event)"
+    (close)="onChangePasswordModalClose()"
+  ></app-change-password-modal>
+
+  <app-system-status
+    *ngIf="showStatus"
+    [type]="statusType"
+    [title]="statusTitle"
+    [description]="statusDescription"
+    (closed)="onStatusClose()"
+  ></app-system-status>
 
 </div>

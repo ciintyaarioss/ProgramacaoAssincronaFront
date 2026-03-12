@@ -24,22 +24,67 @@ export class MyProfile {
 
   scoreSelected: Score ={ disciplina: 'Matemática', media: 8.5, status: false }
 
-  subjects: Score[] = [
-
-  ]
+  subjects: Score[] = []
   observationsList: Observation[] = [];
 
-  scoresData: Activity[] = [
+  scoresData: Activity[] = [];
+  scoresDataFiltered: Activity[] = [];
+  scoresDataForPdf: Score[] = [];
 
-  ];
+  showChangePasswordModal: boolean = false;
+  isChangingPassword: boolean = false;
+  showStatus: boolean = false;
+  statusType: 'success' | 'error' = 'success';
+  statusTitle: string = '';
+  statusDescription: string = '';
 
-  scoresDataFiltered: Activity[] = [
+  displayStatus(type: 'success' | 'error', title: string, description: string) {
+    this.statusType = type;
+    this.statusTitle = title;
+    this.statusDescription = description;
+    this.showStatus = true;
+  }
 
-  ];
+  onStatusClose() {
+    this.showStatus = false;
+  }
 
-  scoresDataForPdf: Score[] = [
+  openChangePasswordModal() {
+    this.showChangePasswordModal = true;
+  }
 
-  ];
+  onChangePasswordModalClose() {
+    this.showChangePasswordModal = false;
+  }
+
+  onChangePasswordConfirm(data: { currentPassword: string, newPassword: string }) {
+    const userData = this.authService.getUserData();
+    const userType = this.authService.getUserType() ?? '';
+    this.isChangingPassword = true;
+    this.authService.updatePassword({
+      cpf: userData.cpf,
+      password: data.currentPassword,
+      newPassword: data.newPassword,
+      user_type: userType
+    }).subscribe({
+      next: () => {
+        this.isChangingPassword = false;
+        this.showChangePasswordModal = false;
+        setTimeout(() => {
+          this.displayStatus('success', 'Senha alterada com sucesso!', 'Sua senha foi atualizada.');
+          this.cdr.detectChanges();
+        }, 50);
+      },
+      error: () => {
+        this.isChangingPassword = false;
+        this.showChangePasswordModal = false;
+        setTimeout(() => {
+          this.displayStatus('error', 'Não foi possível alterar a senha.', 'Verifique sua senha atual e tente novamente.');
+          this.cdr.detectChanges();
+        }, 50);
+      }
+    });
+  }
 
   @ViewChild('pdfContent', { static: false }) pdfContent!: ElementRef;
 
