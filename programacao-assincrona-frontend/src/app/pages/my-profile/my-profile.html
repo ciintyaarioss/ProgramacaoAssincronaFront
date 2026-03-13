@@ -79,15 +79,7 @@
             </div>
         </div>
 
-        <div class="pdf-wrapper" #pdfContent>
-          <h1> Boletim Escolar</h1>
-          <p *ngFor="let info of infos">{{ info }}</p>
-              <app-table
-              [pdfMode]="true"
-              [dataScores]="scoresDataForPdf"
-              [type]="'scores-for-pdf'">
-              </app-table>
-        </div>
+
     </div>
 
   </div>
@@ -108,8 +100,13 @@
     (closed)="onStatusClose()"
   ></app-system-status>
 
-  <app-table-pdf>
-    
+  <app-table-pdf  #pdfContent
+    [nome]="infos[0]"
+    [cpf]="infos[1]"
+    [matricula]="infos[2]"
+    [dataScores]="scoresDataForPdf"
+    >
+
   </app-table-pdf>
 </div>
 

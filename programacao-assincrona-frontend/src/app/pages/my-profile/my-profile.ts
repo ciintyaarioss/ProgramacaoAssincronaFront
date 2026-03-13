@@ -29,7 +29,8 @@ export class MyProfile {
 
   scoresData: Activity[] = [];
   scoresDataFiltered: Activity[] = [];
-  scoresDataForPdf: Score[] = [];
+  scoresDataForPdf: Score[] = [
+  ];
 
   showChangePasswordModal: boolean = false;
   isChangingPassword: boolean = false;

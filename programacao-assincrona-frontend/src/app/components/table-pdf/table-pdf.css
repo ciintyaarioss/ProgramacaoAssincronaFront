@@ -9,3 +9,17 @@ label{
     font-weight: bold;
     color: aliceblue;
 }
+
+.textoTable{
+    width: 150px;
+    color: black;
+}
+.mediaTexto{
+    color: black;
+
+}
+.statusTexto{
+    margin: 10px;
+    color: black;
+
+}

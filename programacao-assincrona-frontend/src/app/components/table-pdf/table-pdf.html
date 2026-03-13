@@ -7,9 +7,9 @@
 </div>
 
 <div>
-    <p>Nome do Aluno:{{nome}}</p>
-    <p>CPF:{{cpf}}</p>
-    <p>Matrícula:{{matricula}}</p>
+    <p>{{nome}}</p>
+    <p>{{cpf}}</p>
+    <p>{{matricula}}</p>
 </div>
 <div style="margin-left: auto;margin-right: auto; margin-top: 20px; width: 70%; height: 70px; background-color: #514E5F; align-items: center; display: flex; justify-content: center;">
     <label >Disciplinas</label>
@@ -17,11 +17,16 @@
 
 <div style="margin-left: auto;margin-right: auto; width: 70%; height: 40px; background-color: #8E8A9F; align-items: center; display: flex; justify-content: space-around;">
     <label >Nome</label>
-    <label >Média</label>
+    <label style="margin-left: 50px;">Média</label>
     <label >Status</label>
 </div>
-<div style="margin-left: auto;margin-right: auto; width: 70%; height: 40px; align-items: center; display: flex; justify-content: space-around;" *ngFor="let score in dataScores">
-    <label >{{ score.disciplina }}</label>
-    <label >{{ score.media }}</label>
-    <label >{{ score.status? "Aprovado": "Recuperação" }}</label>
+<div 
+  *ngFor="let score of dataScores"
+  style="margin-left:auto; margin-right:auto; width:70%; height:40px; 
+  align-items:center; display:flex; justify-content:space-around;"
+>
+  <label class="textoTable">{{ score.disciplina }}</label>
+  <label class="textoTable" class="mediaTexto">{{ score.media }}</label>
+  <label class="textoTable" class="statusTexto">{{ score.status ? "Aprovado" : "Recuperação" }}</label>
 </div>
+<div style="height: 50px;"></div>

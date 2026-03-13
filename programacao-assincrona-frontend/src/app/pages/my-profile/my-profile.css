@@ -98,14 +98,14 @@ p {
 
 .filters-containers {
     display: flex;
-    flex-wrap: wrap;
     width: 60%;
+    overflow-x: scroll;
+
 }
 
 .filters-text {
   cursor: pointer;
   color: #666;
-  margin-top: 20px;
   margin-right: 50px;
   font-weight: bold;
 }
