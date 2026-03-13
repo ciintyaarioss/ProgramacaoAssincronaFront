@@ -23,6 +23,7 @@ export class StudentService {
   constructor(private http: HttpClient) { }
 
   criarAluno(aluno: Aluno): Observable<any> {
+    aluno.cpf = aluno.cpf.replace(/\D/g, '');
     const params = new HttpParams()
       .set('nome', aluno.nome)
       .set('senha', aluno.senha)
@@ -42,7 +43,6 @@ export class StudentService {
       responseType: 'text'
     }
   );
-  
 }  
   
   listarAlunoDesativos(): Observable<Aluno[]>{

@@ -1,0 +1,27 @@
+<div style=" margin-top: 20px; width: 100%; display: flex; justify-content: center; flex-direction: column; align-items: center;">
+    <img style="width: 200px; height: auto;" src="ATLASpdf.svg" alt="ATLAS">
+    <h1 style="margin-top: 20px; color: #514E5F;">Boletim Escolar</h1>
+</div>
+<div style=" margin-top: 20px; width: 100%; height: 10px; background-color: #514E5F;">
+
+</div>
+
+<div>
+    <p>Nome do Aluno:{{nome}}</p>
+    <p>CPF:{{cpf}}</p>
+    <p>Matrícula:{{matricula}}</p>
+</div>
+<div style="margin-left: auto;margin-right: auto; margin-top: 20px; width: 70%; height: 70px; background-color: #514E5F; align-items: center; display: flex; justify-content: center;">
+    <label >Disciplinas</label>
+</div>
+
+<div style="margin-left: auto;margin-right: auto; width: 70%; height: 40px; background-color: #8E8A9F; align-items: center; display: flex; justify-content: space-around;">
+    <label >Nome</label>
+    <label >Média</label>
+    <label >Status</label>
+</div>
+<div style="margin-left: auto;margin-right: auto; width: 70%; height: 40px; align-items: center; display: flex; justify-content: space-around;" *ngFor="let score in dataScores">
+    <label >{{ score.disciplina }}</label>
+    <label >{{ score.media }}</label>
+    <label >{{ score.status? "Aprovado": "Recuperação" }}</label>
+</div>

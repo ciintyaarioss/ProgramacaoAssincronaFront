@@ -36,6 +36,7 @@ export class ProfessorService {
   }
 
   criarProfessor(request: ProfessorRequest): Observable<any> {
+    request.cpf =request.cpf.replace(/\D/g, '');
     return this.http.post(
       `${this.API}/professor`,
       {

@@ -22,7 +22,11 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(data: LoginBody): Observable<any> {
+    
+    data.cpf =data.cpf.replace(/\D/g, '');
+
     return this.http.post(`${this.apiUrl}/auth/login`, data).pipe(
+
       tap(() => {
         this.setUserType(data.user_type);
         this.setUserData(data);

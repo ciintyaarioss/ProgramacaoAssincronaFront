@@ -30,6 +30,7 @@ p {
 
 .filters-button-container {
     display: flex;
+    flex-wrap: wrap;
     width: 75%;
     margin-left: 7%;
     align-items: center;
@@ -85,12 +86,14 @@ p {
 
 .filters-containers {
     display: flex;
-    width: 45%;
+    flex-wrap: wrap;
+    width: 60%;
 }
 
 .filters-text {
   cursor: pointer;
   color: #666;
+  margin-top: 20px;
   margin-right: 50px;
   font-weight: bold;
 }

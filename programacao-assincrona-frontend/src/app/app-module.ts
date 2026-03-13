@@ -32,6 +32,7 @@ import { ObservationProfile } from './components/observation-profile/observation
 import { MatriculaSuccess } from './pages/matricula-success/matricula-success';
 import { ChartSubjects } from './components/chart-subjects/chart-subjects';
 import { LoadingSpinner } from './components/loading-spinner/loading-spinner';
+import { TablePdf } from './components/table-pdf/table-pdf';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { LoadingSpinner } from './components/loading-spinner/loading-spinner';
     ObservationProfile,
     MatriculaSuccess,
     ChartSubjects,
-    LoadingSpinner
+    LoadingSpinner,
+    TablePdf,
   ],
   imports: [
     BrowserModule,
