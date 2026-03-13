@@ -71,10 +71,12 @@
                 ></app-card>
             </div>
 
-            <app-small-table class="table"
-                [data]="scoresDataFiltered"
-                [type]="'scores-for-students'">
-            </app-small-table>
+            <div class="table-col">
+                <app-small-table class="table"
+                    [data]="scoresDataFiltered"
+                    [type]="'scores-for-students'">
+                </app-small-table>
+            </div>
         </div>
 
         <div class="pdf-wrapper" #pdfContent>
